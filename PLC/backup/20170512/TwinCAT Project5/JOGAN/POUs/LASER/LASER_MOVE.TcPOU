@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LASER_MOVE" Id="{85a2939b-857c-40e3-b48b-4c2d4e56a905}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LASER_MOVE
+//FUNCTION LASER_MOVE : BOOL
+VAR_INPUT
+	STEP_DATA_1: BYTE;
+	STEP_DATA_2: BYTE;
+	STEP_DATA_3: BYTE;
+	STEP_DATA_4: BYTE;
+	STEP_DATA_5: BYTE;
+
+END_VAR
+
+VAR
+	
+	(*
+DataWordInput1 AT %IB232 : ARRAY [0..15] OF WORD; 
+DataWordInput2 AT %IB264 : ARRAY [16..31] OF WORD;
+DataWordInput3 AT %IB264 : ARRAY [32..47] OF WORD; 
+DataWordInput4 AT %IB296 : ARRAY [48..56] OF WORD; 
+DataWordOutput1 AT %QB232 : ARRAY [0..15] OF WORD; 
+DataWordOutput2 AT %QB264 : ARRAY [16..31] OF WORD; 
+DataWordOutput3 AT %QB296 : ARRAY [32..47] OF WORD; 
+DataWordOutput4 AT %QB328 : ARRAY [48..56] OF WORD; 
+
+DataWordInput1 AT %IB100 : ARRAY [0..15] OF WORD; 
+DataWordInput2 AT %IB132 : ARRAY [16..31] OF WORD; 
+DataWordInput3 AT %IB164 : ARRAY [32..47] OF WORD; 
+DataWordInput4 AT %IB196 : ARRAY [48..56] OF WORD; 
+DataWordOutput1 AT %QB100 : ARRAY [0..15] OF WORD; 
+DataWordOutput2 AT %QB132 : ARRAY [16..31] OF WORD; 
+DataWordOutput3 AT %QB164 : ARRAY [32..47] OF WORD; 
+DataWordOutput4 AT %QB196 : ARRAY [48..56] OF WORD; 
+	*)
+	Gateway_Q0_MODE_COMMAND_0 AT %QX232.0 : BOOL ;
+	Gateway_Q0_MODE_COMMAND_1 AT %QX232.1 : BOOL ;
+	Gateway_Q0_RESET AT %QX232.4 : BOOL;
+	Gateway_Q0_RESTART AT %QX232.5 : BOOL;
+	Gateway_Q0_STOP AT %QX232.7 : BOOL;
+	Gateway_Q1_0 AT %QX233.0 : BOOL;
+	Gateway_Q1_1 AT %QX233.1 : BOOL;
+	Gateway_Q1_2 AT %QX233.2 : BOOL;
+	Gateway_Q1_3 AT %QX233.3 : BOOL;
+	Gateway_Q1_4 AT %QX233.4 : BOOL;
+	Gateway_Gateway_Unit_2_Status AT %QB234 : BYTE;
+	Gateway_Q3_0 AT %QX235.0 : BOOL;
+	Gateway_Q3_1 AT %QX235.1 : BOOL;
+	Gateway_Q3_2 AT %QX235.2 : BOOL;
+	Gateway_Q3_3 AT %QX235.3 : BOOL;	
+	
+
+	ID1_StepData AT %QB246 : BYTE;
+	ID1_Hold AT %QX247.0 : BOOL;
+	ID1_SVON AT %QX247.1 : BOOL;
+	ID1_Drive AT %QX247.2 : BOOL;
+	ID1_Reset AT %QX247.3 : BOOL;
+	ID1_Setup AT %QX247.4 : BOOL;
+	
+
+	ID2_StepData AT %QB266 : BYTE;
+	ID2_Hold AT %QX267.0 : BOOL;
+	ID2_SVON AT %QX267.1 : BOOL;
+	ID2_Drive AT %QX267.2 : BOOL;
+	ID2_Reset AT %QX267.3 : BOOL;
+	ID2_Setup AT %QX267.4 : BOOL;
+
+
+	ID3_StepData AT %QB286 : BYTE;
+	ID3_Hold AT %QX287.0 : BOOL;
+	ID3_SVON AT %QX287.1 : BOOL;
+	ID3_Drive AT %QX287.2 : BOOL;
+	ID3_Reset AT %QX287.3 : BOOL;
+	ID3_Setup AT %QX287.4 : BOOL;
+	
+	
+	ID4_StepData AT %QB306 : BYTE;
+	ID4_Hold AT %QX307.0 : BOOL;
+	ID4_SVON AT %QX307.1 : BOOL;
+	ID4_Drive AT %QX307.2 : BOOL;
+	ID4_Reset AT %QX307.3 : BOOL;
+	ID4_Setup AT %QX307.4 : BOOL;
+	
+
+	ID5_StepData AT %QB326 : BYTE;
+	ID5_Hold AT %QX327.0 : BOOL;
+	ID5_SVON AT %QX327.1 : BOOL;
+	ID5_Drive AT %QX327.2 : BOOL;
+	ID5_Reset AT %QX327.3 : BOOL;
+	ID5_Setup AT %QX327.4 : BOOL;
+	
+	byte0 : BYTE;
+	byte1 : BYTE;
+	byte2 : BYTE;
+	byte3 : BYTE;
+	
+	bit14_0 : BOOL;
+	bit14_1 : BOOL;
+	bit14_2 : BOOL;
+	bit14_3 : BOOL;
+	bit14_4 : BOOL;
+	bit14_5 : BOOL;
+	
+	bit15_0 : BOOL;
+	bit15_1 : BOOL;
+	bit15_2 : BOOL;
+	bit15_3 : BOOL;
+	bit15_4 : BOOL; 
+	
+	bit34_0 : BOOL;
+	bit34_1 : BOOL;
+	bit34_2 : BOOL;
+	bit34_3 : BOOL;
+	bit34_4 : BOOL;
+	bit34_5 : BOOL;
+	
+	bit35_0 : BOOL;
+	bit35_1 : BOOL;
+	bit35_2 : BOOL;
+	bit35_3 : BOOL;
+	bit35_4 : BOOL; 
+	
+	bit54_0 : BOOL;
+	bit54_1 : BOOL;
+	bit54_2 : BOOL;
+	bit54_3 : BOOL;
+	bit54_4 : BOOL;
+	bit54_5 : BOOL;
+	
+	bit55_0 : BOOL;
+	bit55_1 : BOOL;
+	bit55_2 : BOOL;
+	bit55_3 : BOOL;
+	bit55_4 : BOOL; 
+	
+	bit74_0 : BOOL;
+	bit74_1 : BOOL;
+	bit74_2 : BOOL;
+	bit74_3 : BOOL;
+	bit74_4 : BOOL;
+	bit74_5 : BOOL;
+	
+	bit75_0 : BOOL;
+	bit75_1 : BOOL;
+	bit75_2 : BOOL;
+	bit75_3 : BOOL;
+	bit75_4 : BOOL; 
+	
+	bit94_0 : BOOL;
+	bit94_1 : BOOL;
+	bit94_2 : BOOL;
+	bit94_3 : BOOL;
+	bit94_4 : BOOL;
+	bit94_5 : BOOL;
+	
+	bit95_0 : BOOL;
+	bit95_1 : BOOL;
+	bit95_2 : BOOL;
+	bit95_3 : BOOL;
+	bit95_4 : BOOL; 	
+	
+	ID1_I0_MODE_COMMAND_0 AT %IX232.0 : BOOL :=0;
+	ID1_I0_MODE_COMMAND_1 AT %IX232.1 : BOOL:=0;
+	ID1_I0_READY AT %IX232.4 : BOOL;
+	ID1_I0_ALARM AT %IX232.5 : BOOL;
+	ID1_I0_INITIAL AT %IX232.6 : BOOL;
+	ID1_I0_COMMUNICATING AT %IX232.7 : BOOL;
+	ID1_I1_0 AT %IX233.0 : BOOL;
+	ID1_I1_1 AT %IX233.1 : BOOL;
+	ID1_I1_2 AT %IX233.2 : BOOL;
+	ID1_I1_3 AT %IX233.3 : BOOL;
+	ID1_I1_4 AT %IX233.4 : BOOL;
+	ID1_I2_0 AT %IX234.0 : BOOL;
+	ID1_I2_1 AT %IX234.1 : BOOL;
+	ID1_I2_2 AT %IX234.2 : BOOL;
+	ID1_I2_3 AT %IX234.3 : BOOL;
+	ID1_I2_4 AT %IX234.4 : BOOL;
+
+	ID1_I3_0 AT %IX235.0 : BOOL;
+	ID1_I3_1 AT %IX235.1 : BOOL;
+	
+	ID1_I32_0 AT %IX264.0 : BOOL;
+	ID1_I32_1 AT %IX264.1 : BOOL;
+	ID1_I33_0 AT %IX265.0 : BOOL;
+	ID1_I33_1 AT %IX265.1 : BOOL;
+(*-----------------------------------------------------------*)
+
+	iTest15: SINT;
+	iTest16: SINT;
+	
+	bTest1 : BOOL;
+	bTest2 : BOOL;
+	bTest3 : BOOL;
+	bTest4 : BOOL;
+	bTest5 : BOOL;
+	bTest6 : BOOL;
+	bTest7 : BOOL;
+	bTest8 : BOOL;
+	bTest9 : BOOL;
+	bTest10 : BOOL;
+	bTest11 : BOOL;
+	bTest12 : BOOL;
+	bTest13 : BOOL;
+	bTest14 : BOOL;
+	
+	StepData1 : BYTE;
+	StepData2 : BYTE;
+	StepData3 : BYTE;
+	StepData4 : BYTE;
+	StepData5 : BYTE;
+	
+	star :BOOL;
+	hom : BOOL;
+
+	reset: BOOL;
+	
+	ID1_ALARM AT%IX247.7 : BOOL;
+	ID2_ALARM AT%IX267.7 : BOOL;
+	ID3_ALARM AT%IX287.7 : BOOL;
+	ID4_ALARM AT%IX307.7 : BOOL;
+	ID5_ALARM AT%IX327.7 : BOOL;
+	
+	ID1_SVRE AT%IX247.1 : BOOL;
+	ID2_SVRE AT%IX267.1 : BOOL;
+	ID3_SVRE AT%IX287.1 : BOOL;
+	ID4_SVRE AT%IX307.1 : BOOL;
+	ID5_SVRE AT%IX327.1 : BOOL;
+	
+	ID1_INP AT%IX247.3 : BOOL;
+	ID2_INP AT%IX267.3 : BOOL;
+	ID3_INP AT%IX287.3 : BOOL;
+	ID4_INP AT%IX307.3 : BOOL;
+	ID5_INP AT%IX327.3 : BOOL;
+	
+	PROSES: STRING;
+	STAGE: INT;
+	
+	PROCESS: INT;
+	START_PROCESS: BOOL;
+	STEP_DATAS: INT;
+	PROCESS_DELAY: TIME :=T#300MS;
+	LASER_RUNNING: BOOL :=FALSE;
+	ACTIVE_STEPDATA : BYTE;
+	//ACTIVE_ID: INT :=1;
+	TMR1: TON;
+	TMR2: TON;
+	TMR3: TON;
+	TMR4: TON;
+	TMR5: TON;
+	TMR6: TON;
+	TMR10: Ton;
+	TMR11: TON;
+	TMR12: TON;
+	TMR13: TON;
+	TMR14: TON;
+	TMR20: TON;
+	TMR21: TON;
+	TMR22: TON;
+	TMR23: TON;
+	TMR30: TON;
+	TMR31: TON;
+	TMR32: TON;
+	TMR33: TON;
+	TMR40: TON;
+	TMR41: TON;
+	TMR42: TON;
+	TMR43: TON;
+	TMR50: TON;
+	TMR51: TON;
+	TMR52: TON;
+	TMR53: TON;
+	
+	
+	TMR101: TON;
+	TMR102: TON;
+	TMR103: TON;
+	TMR104: TON;
+	TMR105: TON;
+	TMR106: TON;
+	ID5: INT;
+	TMR7: Ton;
+	TMR_RES_CARTSN: TOF;
+	TMR_ACTIVATE_RESET: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+PROCESS_DELAY:= T#400MS;
+IF 	SORTER_VAR.ACTIVE_ID >=0 THEN
+STEP_DATA_1:=STEP_DATA_1+1;
+
+IF STEP_DATA_2>=5 THEN
+	STEP_DATA_2:=STEP_DATA_2+1;
+END_IF
+
+STEP_DATA_3:=STEP_DATA_3+1;	
+END_IF
+
+
+IF NOT SORTER_VAR.LASER_HOME THEN //LASER_running THEN
+	IF  ID1_SVRE AND ID2_SVRE  AND  ID3_SVRE AND  ID4_SVRE AND  ID5_SVRE THEN
+		TMR1(IN:=TRUE,PT:=T#0.5S);
+		TMR4(IN:=TRUE,PT:=T#3S);
+		TMR5(IN:=TRUE,PT:=T#3.5S);
+		TMR6(IN:=TRUE,PT:=T#25S);
+		IF ID1_SVRE THEN
+			ID1_SETUP :=TMR5.Q;
+		ELSE
+			ID1_SVON :=TRUE;	
+		END_IF
+
+		IF ID2_SVRE THEN
+			ID2_SETUP :=TMR1.Q;
+		ELSE
+			ID2_SVON :=TRUE;	
+		END_IF
+	
+		IF ID3_SVRE THEN
+		ID3_SETUP :=TMR4.Q;
+		ELSE
+			ID3_SVON :=TRUE;	
+		END_IF
+		CASE SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		1:
+			TMR2(IN:=TRUE,PT:=T#1S);
+			IF ID4_SVRE THEN
+				ID4_SETUP :=TMR2.Q;
+			ELSE
+				ID4_SVON :=TRUE;	
+			END_IF
+		2:
+			TMR3(IN:=TRUE,PT:=T#1.5S);
+			IF ID5_SVRE THEN
+				ID5_SETUP :=TMR3.Q;
+			ELSE
+				ID5_SVON :=TRUE;	
+			END_IF
+		END_CASE
+
+	//IF TMR6.Q THEN
+	IF ID1_INP AND ID2_INP AND ID3_INP AND (ID4_INP OR ID5_INP) THEN
+		ID1_SETUP :=FALSE;
+		ID2_SETUP :=FALSE;
+		ID3_SETUP :=FALSE;
+		ID4_SETUP :=FALSE;
+		ID5_SETUP :=FALSE;
+	
+		TMR1(IN:=FALSE);
+		TMR2(IN:=FALSE);
+		TMR3(IN:=FALSE);
+		TMR4(IN:=FALSE);
+		TMR5(IN:=FALSE);
+	//ACTIVE_ID:=1;
+	//LASER_RUNNING:=TRUE;
+		SORTER_VAR.LASER_HOME:=TRUE;
+	END_IF
+	
+	ELSE
+				
+	ID1_SVON :=TRUE;
+	ID2_SVON :=TRUE;
+	ID3_SVON :=TRUE;
+	ID4_SVON :=TRUE;
+	ID5_SVON :=TRUE;
+
+	END_IF
+ELSE
+	TMR6(IN:=FALSE);
+
+	CASE SORTER_VAR.ACTIVE_ID OF
+	0:
+		SORTER_VAR.I_CASE:=SORTER_VAR.I_CASE+1;
+		//SORTER_VAR.I_LASER_RUNNING:=FALSE;
+		SORTER_VAR.ACTIVE_ID:=6;
+		
+	1:
+		IF STEP_DATA_1 = 0 THEN
+			SORTER_VAR.ACTIVE_ID:=2;
+		ELSE
+			IF ID1_ALARM THEN
+				Reset := TRUE;
+				TMR10(IN:=TRUE,PT:= PROCESS_DELAY);
+				IF TMR10.Q THEN
+					Reset := FALSE;
+				END_IF
+			ELSE
+				ID1_StepData :=STEP_DATA_1;
+				ID1_Drive := FALSE;
+				TMR11(IN:=TRUE,PT:= PROCESS_DELAY);
+				IF TMR11.Q THEN
+					ID1_Drive := TRUE;
+					TMR12(IN:=TMR11.Q,PT:= PROCESS_DELAY);
+					IF TMR12.Q THEN
+						ID1_Drive := FALSE;
+						SORTER_VAR.ACTIVE_ID:=2;
+						TMR10(IN:=FALSE);
+						TMR11(IN:=FALSE);
+						TMR12(IN:=FALSE);
+						SORTER_VAR.LASER_HOME:=TRUE;
+					END_IF
+				END_IF
+			END_IF
+		END_IF
+	//	SORTER_VAR.I_CASE:=SORTER_VAR.I_CASE+1;
+		//SORTER_VAR.I_LASER_RUNNING:=FALSE;
+	2:
+		IF STEP_DATA_2 = 0 THEN
+			SORTER_VAR.ACTIVE_ID:=3;
+		ELSE
+			
+			IF ID2_ALARM THEN
+				Reset := TRUE;
+				TMR20(IN:=TRUE,PT:= PROCESS_DELAY);
+				IF TMR20.Q THEN
+					Reset := FALSE;
+				END_IF
+			ELSE
+			ID2_StepData :=STEP_DATA_2;
+			TMR21(IN:=TRUE,PT:= PROCESS_DELAY);
+			IF TMR21.Q THEN
+				ID2_Drive := TRUE;
+				TMR22(IN:=TMR21.Q,PT:= PROCESS_DELAY);
+				IF TMR22.Q THEN
+		
+					ID2_Drive := FALSE;
+					SORTER_VAR.ACTIVE_ID:=3;
+					TMR20(IN:=FALSE);
+					TMR21(IN:=FALSE);
+					TMR22(IN:=FALSE);
+				END_IF
+			END_IF
+			END_IF
+		END_IF
+	3:
+		IF STEP_DATA_3 = 0 THEN
+			SORTER_VAR.ACTIVE_ID:=4;
+		ELSE
+			
+		IF ID3_ALARM THEN
+			Reset := TRUE;
+			TMR30(IN:=START_PROCESS,PT:= PROCESS_DELAY);
+			IF TMR30.Q THEN
+				Reset := FALSE;
+			END_IF
+		ELSE
+		
+		ID3_StepData :=STEP_DATA_3;
+		TMR31(IN:=TRUE,PT:= PROCESS_DELAY);
+		IF TMR31.Q THEN
+			ID3_DRIVE := TRUE;	
+			TMR32(IN:=TMR31.Q,PT:= PROCESS_DELAY);
+			
+			IF TMR32.Q THEN
+				ID3_Drive := FALSE;
+				SORTER_VAR.ACTIVE_ID:=4;
+				TMR30(IN:=FALSE);
+				TMR31(IN:=FALSE);
+				TMR32(IN:=FALSE);
+			END_IF
+		END_IF
+		END_IF
+	END_IF
+4:
+		IF STEP_DATA_4 = 0 THEN
+			SORTER_VAR.ACTIVE_ID:=5;
+		ELSE
+			IF ID4_ALARM THEN
+				Reset := TRUE;
+				TMR40(IN:=TRUE,PT:= PROCESS_DELAY);
+				IF TMR40.Q THEN
+					Reset := FALSE;
+				END_IF
+			ELSE
+			
+			ID4_StepData :=STEP_DATA_4;
+			TMR41(IN:=TRUE,PT:= PROCESS_DELAY);
+			IF TMR41.Q THEN
+				ID4_Drive := TRUE;
+				TMR42(IN:=TMR41.Q,PT:= PROCESS_DELAY);
+				
+				IF TMR42.Q THEN
+					ID4_Drive := FALSE;
+					SORTER_VAR.ACTIVE_ID:=5;
+					TMR40(IN:=FALSE);
+					TMR41(IN:=FALSE);
+					TMR42(IN:=FALSE);
+				END_IF
+			END_IF
+			END_IF
+		END_IF
+	5:
+		IF STEP_DATA_5 = 0 THEN
+			SORTER_VAR.ACTIVE_ID:=0;
+		ELSE
+			
+			IF ID5_ALARM THEN
+				Reset := TRUE;
+				TMR50(IN:=TRUE,PT:= PROCESS_DELAY);
+				IF TMR50.Q THEN
+					Reset := FALSE;
+				END_IF
+			ELSE
+			
+			ID5_StepData :=STEP_DATA_5;
+			TMR51(IN:=TRUE,PT:= PROCESS_DELAY);
+			IF TMR51.Q THEN
+				ID5_Drive := TRUE;	
+				TMR52(IN:=TMR51.Q,PT:= PROCESS_DELAY);
+				IF TMR52.Q THEN
+					ID5_Drive := FALSE;
+					SORTER_VAR.ACTIVE_ID:=0;
+					TMR50(IN:=FALSE);
+					TMR51(IN:=FALSE);
+					TMR52(IN:=FALSE);
+			
+				END_IF
+			END_IF
+			END_IF
+		END_IF
+		
+END_CASE 
+
+	//START_PROCESS := FALSE;
+END_IF
+TMR7(IN:=reset,PT:= T#1S);
+IF  tmr7.Q THEN
+	reset:=FALSE;
+END_IF
+IF ID1_ALARM OR ID2_ALARM OR ID3_ALARM OR ID4_ALARM OR ID5_ALARM THEN
+			reset:=TRUE;
+			ELSE
+				reset:=FALSE;
+			END_IF
+IF reset THEN
+	ID1_Reset := TRUE;
+	ID2_Reset := TRUE;
+	ID3_Reset := TRUE;
+	ID4_Reset := TRUE;
+	ID5_Reset := TRUE;
+	TMR_ACTIVATE_RESET(IN:=TRUE,PT:=T#10S);
+	IF TMR_ACTIVATE_RESET.Q THEN
+		TMR_RES_CARTSN(IN:=TRUE,PT:=T#0.5S);
+	END_IF
+	
+ELSE
+	TMR_ACTIVATE_RESET(IN:=FALSE);
+	TMR_RES_CARTSN(IN:=FALSE);
+	ID1_Reset := FALSE;
+	ID2_Reset := FALSE;
+	ID3_Reset := FALSE;
+	ID4_Reset := FALSE;
+	ID5_Reset := FALSE;
+END_IF
+SORTER_VAR.O_RESET_CARTESSIAN := TMR_RES_CARTSN.Q;]]></ST>
+    </Implementation>
+    <LineIds Name="LASER_MOVE">
+      <LineId Id="6" Count="0" />
+      <LineId Id="1320" Count="0" />
+      <LineId Id="1627" Count="0" />
+      <LineId Id="1629" Count="5" />
+      <LineId Id="1628" Count="0" />
+      <LineId Id="728" Count="0" />
+      <LineId Id="744" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="440" Count="0" />
+      <LineId Id="18" Count="3" />
+      <LineId Id="1590" Count="0" />
+      <LineId Id="1592" Count="2" />
+      <LineId Id="1591" Count="0" />
+      <LineId Id="1596" Count="11" />
+      <LineId Id="2228" Count="0" />
+      <LineId Id="2243" Count="0" />
+      <LineId Id="2230" Count="1" />
+      <LineId Id="2237" Count="1" />
+      <LineId Id="2236" Count="0" />
+      <LineId Id="2233" Count="0" />
+      <LineId Id="2244" Count="0" />
+      <LineId Id="2234" Count="0" />
+      <LineId Id="2239" Count="3" />
+      <LineId Id="2229" Count="0" />
+      <LineId Id="1608" Count="0" />
+      <LineId Id="704" Count="0" />
+      <LineId Id="713" Count="0" />
+      <LineId Id="705" Count="0" />
+      <LineId Id="707" Count="3" />
+      <LineId Id="716" Count="5" />
+      <LineId Id="727" Count="0" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="722" Count="0" />
+      <LineId Id="706" Count="0" />
+      <LineId Id="1930" Count="0" />
+      <LineId Id="1942" Count="0" />
+      <LineId Id="1949" Count="0" />
+      <LineId Id="1943" Count="0" />
+      <LineId Id="1935" Count="4" />
+      <LineId Id="1032" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="755" Count="0" />
+      <LineId Id="749" Count="0" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="754" Count="0" />
+      <LineId Id="753" Count="0" />
+      <LineId Id="752" Count="0" />
+      <LineId Id="37" Count="8" />
+      <LineId Id="2522" Count="0" />
+      <LineId Id="2517" Count="1" />
+      <LineId Id="2516" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="2515" Count="0" />
+      <LineId Id="1028" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="1023" Count="0" />
+      <LineId Id="55" Count="6" />
+      <LineId Id="2521" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="747" Count="1" />
+      <LineId Id="63" Count="3" />
+      <LineId Id="1646" Count="0" />
+      <LineId Id="67" Count="3" />
+      <LineId Id="1650" Count="0" />
+      <LineId Id="72" Count="7" />
+      <LineId Id="1024" Count="0" />
+      <LineId Id="80" Count="6" />
+      <LineId Id="2526" Count="0" />
+      <LineId Id="87" Count="4" />
+      <LineId Id="1645" Count="0" />
+      <LineId Id="92" Count="6" />
+      <LineId Id="1644" Count="0" />
+      <LineId Id="99" Count="5" />
+      <LineId Id="1025" Count="0" />
+      <LineId Id="105" Count="6" />
+      <LineId Id="2525" Count="0" />
+      <LineId Id="112" Count="11" />
+      <LineId Id="1640" Count="0" />
+      <LineId Id="124" Count="5" />
+      <LineId Id="1026" Count="0" />
+      <LineId Id="130" Count="6" />
+      <LineId Id="2524" Count="0" />
+      <LineId Id="137" Count="4" />
+      <LineId Id="1641" Count="0" />
+      <LineId Id="142" Count="5" />
+      <LineId Id="1642" Count="1" />
+      <LineId Id="149" Count="10" />
+      <LineId Id="1624" Count="0" />
+      <LineId Id="160" Count="1" />
+      <LineId Id="2523" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="1620" Count="1" />
+      <LineId Id="164" Count="3" />
+      <LineId Id="1652" Count="2" />
+      <LineId Id="1952" Count="1" />
+      <LineId Id="1955" Count="2" />
+      <LineId Id="168" Count="5" />
+      <LineId Id="2797" Count="0" />
+      <LineId Id="2802" Count="0" />
+      <LineId Id="2804" Count="1" />
+      <LineId Id="2798" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="2806" Count="0" />
+      <LineId Id="2801" Count="0" />
+      <LineId Id="175" Count="5" />
+      <LineId Id="700" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

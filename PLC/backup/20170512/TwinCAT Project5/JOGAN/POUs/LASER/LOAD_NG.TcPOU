@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LOAD_NG" Id="{2f23b999-c3ff-402f-a894-b44e03b27e70}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LOAD_NG
+VAR
+	DELAY: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT SORTER_VAR.I_NG_TRANSFER_AT_BACK THEN
+	SORTER_VAR.O_NG_DATA_OUTPUT2:=TRUE;
+ELSE
+	SORTER_VAR.O_NG_DATA_OUTPUT2:=FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="LOAD_NG">
+      <LineId Id="24" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

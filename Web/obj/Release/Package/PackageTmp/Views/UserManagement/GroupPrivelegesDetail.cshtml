@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "GroupPrivelegesDetail";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    DBProject.Models.Properties.GroupPriveleges data = Model.DataObject;
+}
+<div class="box">
+<div class="box-header">
+     
+        <label>Add or Edit User Access</label> 
+</div>
+<div class="box-body">
+    <form id="Form1" method="post" action="@Model.SetWebUrl("/UserManagement/GroupPrivelegesDetail")" class="form-horizontal" role="form" enctype="multipart/form-data">
+        @*<input type="hidden" name="ID" value="@data.Group" id="id" />*@ 
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-12"><label for="Name">User Access for : @data.Group_Name</label></div>
+            @*<div class="col-md-10"><input type="text" class="form-control" name="UserName" value="@data.UserName" id="UserName" required="required" style="width:350px" /></div>
+            <div class="help-block with-errors"></div>*@
+        </div>
+        <div class="row"> 
+            <div class="col-md-4" style="border: 1px solid black;text-align=center">Access Name</div>
+            <div class="col-md-2" style="border: 1px solid black;text-align=center">Allow Read</div>
+            <div class="col-md-2" style="border: 1px solid black;text-align=center">Allow Add</div>
+            <div class="col-md-2" style="border: 1px solid black;text-align=center">Allow Delete</div>
+            <div class="col-md-2" style="border: 1px solid black;text-align=center">Allow Edit</div>
+            <div class="help-block with-errors"></div>
+            <input type="hidden" name="Group_ID"  id="Group_ID" value="@data.Group_ID" />
+        </div>
+        @foreach (var item in data.Menus)
+        {
+            string chkread = "";
+            string chkadd = "";
+            string chkedit= "";
+            string chkdel = "";
+            string nmid = "";
+            string cd = item.Code.Replace(".", "");
+            string nma = "allowadd"+ cd;
+            string nme = "allowedit" + cd;
+            string nmd = "allowdelete" + cd;
+            string nmr = "allowread" + cd;
+            int det =  item.Detail ? 1:0;
+            if (!item.Detail )
+            {
+                if (item.Total_Child != 0) { chkread = "checked=checked"; chkadd = "checked=checked"; chkedit = "checked=checked"; chkdel = "checked=checked"; }
+            } else
+            {
+                if (item.Allow_Read ) { chkread = "checked=checked"; }
+                if (item.Allow_Add) { chkadd = "checked=checked"; }
+                if (item.Allow_Delete) { chkdel = "checked=checked"; }
+                if (item.Allow_Edit) { chkedit = "checked=checked"; }
+            }
+            <div class="row">
+                <input type="hidden" name="Menu_ID[]" data-ttl="@item.Total_Child" id="allowadd_@item.Code" value="@item.ID" />
+                @if (!item.Detail )
+                {
+                <div class="col-md-4 center-block" style="border: 1px solid black;text-align=center">@item.Name</div>
+                }
+                else
+                {
+                    <div class="col-md-4 center-block" style="border: 1px solid black;text-align=center">&nbsp;&nbsp;&nbsp;&nbsp;@item.Name</div>
+                }
+                <div class="col-md-2 center-block" style="border: 1px solid black;text-align=center">
+                    <input type="hidden" name="Allow_Read[]" data-ttl="@item.Total_Child" data-id="@item.ID" data-detail="@det" id="hdn_@nmr" value="@item.ID" />
+                    <input type="checkbox" id="@nmr" @chkread />
+                </div>
+                <div class="col-md-2 center-block" style="border: 1px solid black;text-align=center"> 
+                    <input type="hidden" name="Allow_Add[]" data-ttl="@item.Total_Child" data-id="@item.ID" data-detail="@det" id="hdn_@nma" value="@item.ID" />
+                    <input type="checkbox" id="@nma" @chkadd/>
+                </div>
+                <div class="col-md-2 center-block" style="border: 1px solid black;text-align=center">
+                    <input type="hidden" name="Allow_Delete[]" data-ttl="@item.Total_Child" data-id="@item.ID" data-detail="@det" id="hdn_@nmd" value="@item.ID" />
+                    <input type="checkbox" id="@nmd" @chkdel />
+                </div>
+                <div class="col-md-2 center-block" style="border: 1px solid black;text-align=center">
+                    <input type="hidden" name="Allow_Edit[]" data-ttl="@item.Total_Child" data-id="@item.ID" data-detail="@det" id="hdn_@nme" value="@item.ID" />
+                    <input type="checkbox" id="@nme" @chkedit />
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+        }
+        <div class="form-group"></div>
+        <div class="row">
+            @*<div class="col-md-2"></div>*@
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" id="FormSave">Save</button>
+                <button type="button" class="btn btn-primary" id="FormClose">Close</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#FormClose").click(function () {
+                window.location.href = "@Model.SetWebUrl("/UserManagement/GroupPriveleges")";
+            });
+            $("input[type='checkbox']").click(function () { 
+                var id = $(this)[0].id;
+                var id2 = $(this)[0].id;
+                var id_ = "";
+                var id__ = "";
+                if (id.indexOf("allowadd") != -1) { id_ = "allowadd"; }
+                if (id.indexOf("allowdelete") != -1) { id_ = "allowdelete"; }
+                if (id.indexOf("allowedit") != -1) { id_ = "allowedit"; }
+                if (id.indexOf("allowread") != -1) { id_ = "allowread"; }
+                id__ = id.replace(id_ + "", ""); 
+                //var res = id__.split(".");
+                //var idprnt = id_ + "" + res[0]; 
+                var idprnt = id_ + id__.substring(0, 2);
+                var cchs = $("#hdn_" + idprnt).attr("data-ttl");
+                var det = $("#hdn_" + id).attr("data-detail"); 
+                if (det == "0") {
+                    var checked = $("#" + id2).is(':checked');
+                    var cch2 = 0;
+                    $("#hdn_" + id).attr("data-ttl", 0);
+                    $("#hdn_" + id).val(0);
+                    $(":checkbox").each(function () {                      
+                        id = $(this)[0].id;
+                        
+                        if (id.indexOf(id2) != -1 && id != id2) {
+                            //console.log(checked);
+                            //console.log("#hdn_" + id);
+                            cch2 = cch2 + 1;
+                            $(this).prop("checked", checked);
+                            $("#hdn_" +  id).attr("data-ttl", checked ? 1 : 0);
+                            $("#hdn_" +  id).val(checked ? $("#hdn_" +  id).attr("data-id") : 0);
+                            //$("#hdn_allowadd0201").val("AAA");
+                        }
+                    }); 
+                    $("#hdn_" + id2).attr("data-ttl", checked ? cch2 : 0);
+                    $("#hdn_" + id2).val(checked ? $("#hdn_" + id2).attr("data-id") : 0);
+                } else {
+                    var cch = parseInt(cchs);
+                    id = $(this)[0].id;
+                    if ($(this).is(':checked')) {
+                        cch = cch + 1;
+                        $("#hdn_" + idprnt).attr("data-ttl", cch);
+                        $("#hdn_" + idprnt).val($("#hdn_" + idprnt).attr("data-id"));
+                        $("#hdn_" + id).attr("data-ttl", 1);
+                        $("#hdn_" + id).val($("#hdn_" + id).attr("data-id"));
+                        $("#" + idprnt).prop("checked", true);
+                    } else {
+                        cch = cch - 1;
+                        $("#hdn_" + idprnt).attr("data-ttl", cch);
+                        $("#hdn_" + id).attr("data-ttl", 0);
+                        $("#hdn_" + id).val(0);
+                        if (cch == 0) {
+                            $("#hdn_" + idprnt).val("0");
+                            $("#" + idprnt).prop("checked", false);
+                        }
+                    }
+                }//console.log("cch = " + cch);
+                //$("#estado_cat").prop("checked", true);
+            });
+        });
+    </script>
+</div>
+    </div>

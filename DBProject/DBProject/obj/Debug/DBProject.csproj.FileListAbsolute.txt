@@ -1,0 +1,78 @@
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\DBProject.dll.config
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\DBProject.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\DBProject.pdb
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\Commons.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\PWDTK.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\Newtonsoft.Json.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\Commons.pdb
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.xml
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.xml
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\PWDTK.pdb
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\bin\Debug\Newtonsoft.Json.xml
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject.resources
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\obj\Debug\DBProject.csproj.GenerateResource.Cache
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\obj\Debug\DBProject.dll
+D:\andri\C#\JOGAN\Desktop\JOGAN\DBProject\DBProject\obj\Debug\DBProject.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\DBProject.dll.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\DBProject.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\DBProject.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\Commons.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\PWDTK.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\Newtonsoft.Json.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\Commons.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\PWDTK.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\bin\Debug\Newtonsoft.Json.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.csprojResolveAssemblyReference.cache
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject.resources
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject1.resources
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.csproj.GenerateResource.Cache
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject2.resources
+D:\andri\C#\JOGAN\AllJogan\JOGAN\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject3.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\DBProject.dll.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\DBProject.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\DBProject.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\Commons.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\EntityFramework.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\PWDTK.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\Newtonsoft.Json.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\Commons.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\EntityFramework.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\PWDTK.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\bin\Debug\Newtonsoft.Json.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.csprojResolveAssemblyReference.cache
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject1.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject2.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject3.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject4.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject5.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject6.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject7.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject8.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject9.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject10.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject11.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject12.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject13.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject14.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject15.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject16.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject17.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject18.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject19.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject20.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject21.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.Migrations.DBProject22.resources
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.csproj.GenerateResource.Cache
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\DBProject\DBProject\obj\Debug\DBProject.pdb

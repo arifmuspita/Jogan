@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <DUT Name="T_MACHINE_POSITION" Id="{d994ce25-f1dc-4fa7-858d-011e46935bdb}">
+    <Declaration><![CDATA[TYPE T_MACHINE_POSITION :
+STRUCT
+	DESTINATION_COORDINATE:BYTE:=11;	
+	SUB_DESTINATION_COORDINATE:BYTE:=0;	
+	SOURCE_COORDINATE:BYTE:=0;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

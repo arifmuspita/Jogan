@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="TESTER_C8" Id="{0dcdbe04-b593-4d16-b09a-c3568efe4317}" SpecialFunc="None">
+    <Declaration><![CDATA[ PROGRAM TESTER_C8
+VAR
+	TMR11: TON;
+	TMR12: TON;
+	TMR10: TON;
+	TMR8: TON;
+	TMR9: TON;
+	TMR7: TON;
+	TMR3: TON;
+	TP1: TP;
+	TMR1: TON;
+	START_ROBOT: TP;
+	TP2: TP;
+	O_G6_HANG: BOOL;
+	I_G6_HANG: BOOL;
+	TMR2: TON;
+	GO_ROBOT: BOOL;
+	TP3: TP;
+	TMR4: TON;
+	CNT_CYCLE: CTU;
+	START_ROTATE: R_TRIG;
+	IN: INT;
+	TMR_RELEASE: TON;
+	TMR_OFF_MCAL: TON;
+	TMR_RLS_SCAN: TON;
+	AFTER_SCAN: BOOL;
+
+	AFTER_SCAN1: BOOL;
+	TMR_RLS_SCAN1: TON;
+	C8_SEQ: INT;
+	DLY1: TON;
+	DLY2: TON;
+	TMR_RLS: TON;
+	TMR_RST: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//GRIPPING CONTROL
+IF TESTER_C8_VAR.I_C8_GRIPPER THEN
+		TESTER_C8_VAR.O_C8_GRIPPER_CLOSE:=TRUE;
+		TESTER_C8_VAR.O_C8_GRIPPER_OPEN:=FALSE;
+ELSE
+		TESTER_C8_VAR.O_C8_GRIPPER_CLOSE:=FALSE;
+		TESTER_C8_VAR.O_C8_GRIPPER_OPEN:=TRUE;
+END_IF
+
+IF TESTER_C8_VAR.I_C8_SERROR THEN
+	POWER_CONTROL.O_PWR_CTRL_ROBOT_C8:=TRUE;
+	TMR_RELEASE(IN:=TRUE,PT:=T#0.5S);
+	IF TMR_RELEASE.Q THEN
+		POWER_CONTROL.O_PWR_CTRL_ROBOT_C8:=FALSE;
+	END_IF
+ELSE
+	TMR_RELEASE(IN:=FALSE);	
+END_IF
+
+//MCAL
+	IF TESTER_C8_VAR.I_C8_MCAL_REQUEST THEN
+		TESTER_C8_VAR.O_G6_SELROBOT_2:=TRUE;
+		IF TESTER_C8_VAR.O_G6_SELROBOT_2 THEN
+			DLY1(IN:=TRUE,PT:=T#1S);
+			IF DLY1.Q THEN
+				TESTER_C8_VAR.O_G6_SETMOTORON:=TRUE;
+			END_IF
+			IF TESTER_C8_VAR.I_C8_MOTORON THEN
+				DLY2(IN:=TRUE,PT:=T#1S);
+				IF DLY2.Q THEN
+					TESTER_C8_VAR.O_G6_MCAL:=TRUE;
+					TMR_OFF_MCAL(IN:=TRUE,PT:=T#2S);	
+				END_IF
+				IF TMR_OFF_MCAL.Q THEN
+					//TESTER_C8_VAR.O_G6_SELROBOT_2:=FALSE;
+					//TESTER_C8_VAR.O_G6_MCAL:=FALSE;
+				END_IF
+			END_IF
+		END_IF
+	ELSE
+		TESTER_C8_VAR.O_G6_SELROBOT_2:=FALSE;
+		TESTER_C8_VAR.O_G6_MCAL:=FALSE;
+		TMR_OFF_MCAL(IN:=FALSE);
+		DLY1(IN:=FALSE);
+		DLY2(IN:=FALSE);
+	END_IF
+	
+IF NOT TESTER_C8_VAR.I_C8_MCAL_REQUEST AND TESTER_C8_VAR.C8_ERROR_1 >0 OR (TESTER_C8_VAR.C8_ERROR_2 >0 AND TESTER_C8_VAR.C8_ERROR_2 <32) OR TESTER_C8_VAR.I_C8_ERROR THEN
+	TESTER_C8_VAR.O_G6_STOP:=TRUE;
+	TMR_RST(IN:=TESTER_C8_VAR.O_G6_STOP,PT:=T#1S);
+	IF TMR_RST.Q AND TESTER_C8_VAR.I_C8_READY THEN
+		TESTER_C8_VAR.O_G6_STOP:=FALSE;
+		TESTER_C8_VAR.O_G6_RESET:=TRUE;
+		TMR_RST(IN:=FALSE);
+	END_IF
+ELSE
+	TESTER_C8_VAR.O_G6_RESET:=FALSE;
+	IF NOT TESTER_C8_VAR.I_C8_MOTORON THEN
+		IF TESTER_C8_VAR.I_C8_READY AND NOT TESTER_C8_VAR.I_C8_ESTOPON AND NOT TESTER_C8_VAR.I_C8_SAFEGUARDON THEN
+			TESTER_C8_VAR.O_G6_SETMOTORON:=TRUE;
+			TESTER_C8_VAR.O_G6_SETMOTOROFF:=FALSE;	
+		END_IF
+	ELSE
+		TESTER_C8_VAR.O_G6_SETMOTORON:=FALSE;
+		TESTER_C8_VAR.O_G6_SETMOTOROFF:=FALSE;
+	END_IF 
+	IF TESTER_C8_VAR.O_C8_ENABLE AND NOT TESTER_C8_VAR.O_G6_MCAL THEN
+		//TESTER_C8_VAR.O_G6_SELROBOT_2:=FALSE;
+		IF NOT TESTER_C8_VAR.I_C8_ESTOPON AND NOT TESTER_C8_VAR.I_C8_SAFEGUARDON AND TESTER_C8_VAR.I_C8_READY THEN
+			TESTER_C8_VAR.O_G6_SETMOTORON:=TRUE;
+			TESTER_C8_VAR.O_G6_SETMOTOROFF:=FALSE;
+		END_IF
+		
+
+		IF FLAG_VAR.ALLOW_EXECUTE_C8 AND NOT TESTER_C8_VAR.C8_ONDUTY THEN
+			TESTER_C8_VAR.C8_START_MOVING:=TRUE;
+			IF TESTER_C8_VAR.I_C8_RUNNING THEN
+				TESTER_C8_VAR.O_G6_CONTINUE:=TRUE;
+			END_IF
+			IF TESTER_C8_VAR.I_C8_READY THEN
+				TESTER_C8_VAR.O_G6_START:=TRUE;
+			END_IF	 
+			C8_SEQ:=1;
+			ELSE
+			TESTER_C8_VAR.O_G6_CONTINUE:=FALSE;
+		END_IF
+//EXECUTE MOVEMENT	
+		IF TESTER_C8_VAR.I_C8_MOTORON AND  TESTER_C8_VAR.C8_START_MOVING AND NOT TESTER_C8_VAR.I_C8_ERROR THEN
+
+			IF TESTER_C8_VAR.I_C8_ROTATE_INDEXING_2  AND NOT LOADER_VAR.I_CARRIER_DETECT_2 THEN
+				TESTER_C8_VAR.READY_INDEXING:=TRUE;	
+			END_IF
+		
+			CASE  C8_SEQ OF	
+			1:
+				FLAG_VAR.ALLOW_EXECUTE_C8:=FALSE;
+				TESTER_C8_VAR.C8_MOVEMENT_SOURCE:=TESTER_C8_VAR.C8_MACHINE_POSITION.SOURCE_COORDINATE;
+				TESTER_C8_VAR.C8_MOVEMENT_DESTINATION:=TESTER_C8_VAR.C8_MACHINE_POSITION.DESTINATION_COORDINATE;
+				C8_SEQ:=2;
+				TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=FALSE;
+			2:
+//MOVEMENT TYPE
+				IF NOT TESTER_C8_VAR.C8_ONDUTY THEN
+					IF TESTER_C8_VAR.C8_MACHINE_POSITION.SOURCE_COORDINATE=0 AND TESTER_C8_VAR.C8_MACHINE_POSITION.DESTINATION_COORDINATE >0 THEN
+						TESTER_C8_VAR.C8_PUTON:=TRUE;
+						TESTER_C8_VAR.C8_TAKING:=FALSE;
+						TESTER_C8_VAR.C8_TRANSFER:=FALSE;
+						C8_SEQ:=3;
+					END_IF
+					 IF TESTER_C8_VAR.C8_MACHINE_POSITION.SOURCE_COORDINATE>0 AND TESTER_C8_VAR.C8_MACHINE_POSITION.DESTINATION_COORDINATE =0 THEN
+						TESTER_C8_VAR.C8_PUTON:=FALSE;
+						TESTER_C8_VAR.C8_TAKING:=TRUE;
+						TESTER_C8_VAR.C8_TRANSFER:=FALSE;
+						C8_SEQ:=3;
+					END_IF
+				 	IF TESTER_C8_VAR.C8_MACHINE_POSITION.SOURCE_COORDINATE>0 AND TESTER_C8_VAR.C8_MACHINE_POSITION.DESTINATION_COORDINATE >0 THEN
+						TESTER_C8_VAR.C8_PUTON:=FALSE;
+						TESTER_C8_VAR.C8_TAKING:=FALSE;
+						TESTER_C8_VAR.C8_TRANSFER:=TRUE;
+						C8_SEQ:=3;
+					END_IF
+				END_IF
+3:
+//ON DUTY CONTROL
+			IF TESTER_C8_VAR.C8_PUTON OR TESTER_C8_VAR.C8_TAKING OR TESTER_C8_VAR.C8_TRANSFER AND NOT TESTER_C8_VAR.I_C8_FREE THEN
+				TESTER_C8_VAR.C8_ONDUTY :=TRUE;
+			ELSE
+				TESTER_C8_VAR.C8_ONDUTY :=FALSE;
+			END_IF
+//MOVE CARRIER JIG FROM INDEXING TO MACHINE
+			IF TESTER_C8_VAR.C8_PUTON THEN
+				IF TESTER_C8_VAR.I_C8_READY THEN
+					TESTER_C8_VAR.O_G6_START :=TRUE;
+					TESTER_C8_VAR.O_G6_CONTINUE :=FALSE;
+				ELSE
+					TESTER_C8_VAR.O_G6_START :=FALSE;
+				END_IF
+				
+				(*IF TESTER_C8_VAR.I_C8_READY_SCAN THEN
+					TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=TRUE;
+					AFTER_SCAN:=TRUE ;
+				END_IF*)
+				//TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=TESTER_C8_VAR.I_C8_READY_SCAN;
+				IF TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE THEN
+					AFTER_SCAN:=TRUE;
+				END_IF
+				IF TESTER_C8_VAR.I_C8_RUNNING  AND NOT AFTER_SCAN AND NOT TESTER_C8_VAR.I_C8_FREE THEN
+					TESTER_C8_VAR.O_G6_START :=FALSE;
+				//	TESTER_C8_VAR.O_G6_CONTINUE :=TRUE;
+				END_IF
+				
+				TMR_RLS_SCAN(IN:=AFTER_SCAN,PT:=T#1S);
+				IF TMR_RLS_SCAN.Q THEN
+						TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=FALSE;
+						TESTER_C8_VAR.O_G6_CONTINUE :=FALSE;
+						TESTER_C8_VAR.C8_PUTON:=FALSE;
+						AFTER_SCAN:=FALSE;
+						TMR_RLS_SCAN(IN:=FALSE);
+						C8_SEQ:=4;
+						
+				END_IF
+			END_IF
+//RETURN CARRIER JIG TO INDEXING				
+			IF TESTER_C8_VAR.C8_TAKING THEN
+				IF TESTER_C8_VAR.I_C8_RUNNING  AND NOT AFTER_SCAN1 THEN
+					TESTER_C8_VAR.O_G6_START :=FALSE;
+					TESTER_C8_VAR.O_G6_CONTINUE :=TRUE;
+				END_IF
+				(*IF TESTER_C8_VAR.I_C8_READY_SCAN THEN
+					TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=TRUE;
+					AFTER_SCAN1:=TRUE;
+				END_IF*)
+				//TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=TESTER_C8_VAR.I_C8_READY_SCAN;
+				IF TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE THEN
+					AFTER_SCAN1:=TRUE;
+				END_IF
+				TMR_RLS_SCAN1(IN:=AFTER_SCAN1,PT:=T#1S);
+				IF TMR_RLS_SCAN1.Q THEN
+						TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=FALSE;
+						TESTER_C8_VAR.O_G6_CONTINUE :=FALSE;
+						TESTER_C8_VAR.C8_TAKING:=FALSE;
+						AFTER_SCAN1:=FALSE;
+						TMR_RLS_SCAN1(IN:=FALSE);
+						C8_SEQ:=4;
+				END_IF
+			END_IF
+4:		
+		IF TESTER_C8_VAR.I_C8_FREE THEN
+			TESTER_C8_VAR.C8_START_MOVING:=FALSE;
+			TESTER_C8_VAR.C8_ONDUTY:=FALSE;
+			FLAG_VAR.ALLOW_EXECUTE_C8:=FALSE;
+			TESTER_C8_VAR.O_G6_CONTINUE:=FALSE;
+			TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=FALSE;
+			C8_SEQ:=0;
+		ELSE
+			TESTER_C8_VAR.O_G6_FINISH_SCANBARCODE :=TRUE;
+		END_IF
+END_CASE	
+//AUTO RESET CONTINUE	
+TMR_RLS(IN:=TESTER_C8_VAR.O_G6_CONTINUE,PT:=T#1S);
+IF TMR_RLS.Q THEN
+	TESTER_C8_VAR.O_G6_CONTINUE:=FALSE;
+	TMR_RLS(IN:=FALSE);
+END_IF
+END_IF		
+	ELSE
+		IF NOT TESTER_C8_VAR.O_G6_MCAL THEN
+			TESTER_C8_VAR.O_G6_SETMOTORON:=FALSE;
+			TESTER_C8_VAR.O_G6_SETMOTOROFF:=TRUE;
+			TESTER_C8_VAR.O_G6_SELROBOT_2:=FALSE;
+		END_IF
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="TESTER_C8">
+      <LineId Id="23" Count="2" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="415" Count="0" />
+      <LineId Id="417" Count="1" />
+      <LineId Id="420" Count="3" />
+      <LineId Id="416" Count="0" />
+      <LineId Id="396" Count="0" />
+      <LineId Id="690" Count="27" />
+      <LineId Id="397" Count="1" />
+      <LineId Id="834" Count="0" />
+      <LineId Id="836" Count="0" />
+      <LineId Id="840" Count="0" />
+      <LineId Id="837" Count="0" />
+      <LineId Id="839" Count="0" />
+      <LineId Id="838" Count="0" />
+      <LineId Id="400" Count="2" />
+      <LineId Id="827" Count="1" />
+      <LineId Id="830" Count="0" />
+      <LineId Id="829" Count="0" />
+      <LineId Id="718" Count="0" />
+      <LineId Id="831" Count="1" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="431" Count="1" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="824" Count="0" />
+      <LineId Id="826" Count="0" />
+      <LineId Id="825" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="559" Count="0" />
+      <LineId Id="599" Count="1" />
+      <LineId Id="809" Count="0" />
+      <LineId Id="811" Count="4" />
+      <LineId Id="636" Count="0" />
+      <LineId Id="798" Count="1" />
+      <LineId Id="601" Count="0" />
+      <LineId Id="560" Count="1" />
+      <LineId Id="630" Count="0" />
+      <LineId Id="759" Count="0" />
+      <LineId Id="761" Count="1" />
+      <LineId Id="760" Count="0" />
+      <LineId Id="627" Count="0" />
+      <LineId Id="632" Count="1" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="563" Count="0" />
+      <LineId Id="613" Count="0" />
+      <LineId Id="822" Count="0" />
+      <LineId Id="614" Count="0" />
+      <LineId Id="605" Count="0" />
+      <LineId Id="602" Count="0" />
+      <LineId Id="564" Count="1" />
+      <LineId Id="574" Count="1" />
+      <LineId Id="615" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="567" Count="0" />
+      <LineId Id="570" Count="0" />
+      <LineId Id="579" Count="0" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="616" Count="0" />
+      <LineId Id="571" Count="0" />
+      <LineId Id="581" Count="0" />
+      <LineId Id="577" Count="1" />
+      <LineId Id="573" Count="0" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="566" Count="0" />
+      <LineId Id="603" Count="0" />
+      <LineId Id="611" Count="0" />
+      <LineId Id="591" Count="0" />
+      <LineId Id="585" Count="0" />
+      <LineId Id="583" Count="0" />
+      <LineId Id="595" Count="0" />
+      <LineId Id="587" Count="0" />
+      <LineId Id="584" Count="0" />
+      <LineId Id="593" Count="0" />
+      <LineId Id="572" Count="0" />
+      <LineId Id="521" Count="0" />
+      <LineId Id="467" Count="0" />
+      <LineId Id="442" Count="2" />
+      <LineId Id="441" Count="0" />
+      <LineId Id="528" Count="0" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="525" Count="2" />
+      <LineId Id="808" Count="0" />
+      <LineId Id="639" Count="1" />
+      <LineId Id="642" Count="0" />
+      <LineId Id="454" Count="1" />
+      <LineId Id="457" Count="0" />
+      <LineId Id="801" Count="0" />
+      <LineId Id="458" Count="0" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="474" Count="1" />
+      <LineId Id="478" Count="0" />
+      <LineId Id="510" Count="0" />
+      <LineId Id="517" Count="0" />
+      <LineId Id="519" Count="0" />
+      <LineId Id="619" Count="0" />
+      <LineId Id="618" Count="0" />
+      <LineId Id="476" Count="0" />
+      <LineId Id="482" Count="0" />
+      <LineId Id="484" Count="1" />
+      <LineId Id="523" Count="0" />
+      <LineId Id="496" Count="6" />
+      <LineId Id="807" Count="0" />
+      <LineId Id="643" Count="2" />
+      <LineId Id="503" Count="3" />
+      <LineId Id="512" Count="0" />
+      <LineId Id="518" Count="0" />
+      <LineId Id="520" Count="0" />
+      <LineId Id="620" Count="0" />
+      <LineId Id="507" Count="0" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="438" Count="0" />
+      <LineId Id="626" Count="0" />
+      <LineId Id="623" Count="0" />
+      <LineId Id="637" Count="0" />
+      <LineId Id="624" Count="0" />
+      <LineId Id="797" Count="0" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="629" Count="0" />
+      <LineId Id="816" Count="1" />
+      <LineId Id="625" Count="0" />
+      <LineId Id="622" Count="0" />
+      <LineId Id="833" Count="0" />
+      <LineId Id="610" Count="0" />
+      <LineId Id="819" Count="2" />
+      <LineId Id="638" Count="0" />
+      <LineId Id="609" Count="0" />
+      <LineId Id="446" Count="0" />
+      <LineId Id="721" Count="1" />
+      <LineId Id="724" Count="1" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="447" Count="0" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="334" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

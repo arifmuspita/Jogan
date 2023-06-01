@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ChangeProfile";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+
+    DBProject.Models.Properties.UserRightAccess userright = Model.UserRightAccess;
+    DBProject.Models.V_UserUserGroup data = Model.DataObject;
+}
+
+<div class="box-body">
+    <form id="Form1" method="post" action="/UserManagement/ChangeProfile" class="form-horizontal" role="form" enctype="multipart/form-data">
+        <input type="hidden" name="ID" value="@data.ID" id="id" />
+        <input type="hidden" name="Salt" value="@data.Salt" id="Salt" /> 
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-2"><label for="Password">New Password * :</label></div> 
+            <div class="col-md-10"><input   type="password" class="form-control" name="NewPassword" value="" id="NewPassword" style="width:350px" placeholder="Leave blank if don't want change password'" /></div>
+            <div class="help-block with-errors"></div>
+        </div>
+        
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-2"><label for="Name">Name * :</label></div>
+            <div class="col-md-10"><input type="text" class="form-control" name="Name" value="@data.Name" id="Name" required="required" style="width:350px" /></div>
+            <div class="help-block with-errors"></div>
+        </div> 
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-2"><label for="Name">Email * :</label></div>
+            <div class="col-md-10"><input type="email" class="form-control" name="Email" value="@data.Email" id="Email" required="required" style="width:350px" /></div>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-2"><label for="Password">Current Password * :</label></div>
+            <div class="col-md-10"><input type="password" class="form-control" name="Password" value="" id="Password" required="required" style="width:350px" placeholder="Enter old password to save data" /></div>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group"></div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-primary" id="FormSave">Save</button>
+                <button type="button" class="btn btn-primary" id="FormClose">Close</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#FormClose").click(function () {
+                window.location.href = "/UserManagement/ChangeProfile";
+            });
+        });
+    </script>
+</div>
+
+
+

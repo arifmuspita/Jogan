@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0ED8BA7E-FB1F-4738-B905-488FAC63281E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Desktop</RootNamespace>
+    <AssemblyName>Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LP_DigiPyro.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TwinCAT.Ads, Version=4.2.109.0, Culture=neutral, PublicKeyToken=180016cd49e5e8c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TwinCAT\AdsApi\.NET\v4.0.30319\TwinCAT.Ads.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseComponents\CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaseComponents\PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaseControls\01_Base_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\01_Base_Control.Designer.cs">
+      <DependentUpon>01_Base_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseComponents\PanelMessage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaseControls\BaseTestingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\BaseTestingControl.Designer.cs">
+      <DependentUpon>BaseTestingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseControls\BaseTestingItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\BaseTestingItemControl.Designer.cs">
+      <DependentUpon>BaseTestingItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\0101010301_frmBaseCalibration02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\0101010301_frmBaseCalibration02.Designer.cs">
+      <DependentUpon>0101010301_frmBaseCalibration02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\0101010301_frmBaseCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\0101010301_frmBaseCalibration.Designer.cs">
+      <DependentUpon>0101010301_frmBaseCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl.Designer.cs">
+      <DependentUpon>CalibrationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl02.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl02.Designer.cs">
+      <DependentUpon>CalibrationControl02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalibrationValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationValueControl.Designer.cs">
+      <DependentUpon>CalibrationValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalibrationValueControl02.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationValueControl02.Designer.cs">
+      <DependentUpon>CalibrationValueControl02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseControls\frmAuthCancelTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseControls\frmAuthCancelTest.Designer.cs">
+      <DependentUpon>frmAuthCancelTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\01_frmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\01_frmBase.Designer.cs">
+      <DependentUpon>01_frmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\0101_frmBaseDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\0101_frmBaseDB.Designer.cs">
+      <DependentUpon>0101_frmBaseDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\01010101_frmBaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\01010101_frmBaseList.Designer.cs">
+      <DependentUpon>01010101_frmBaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\01010102_frmBaseEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\01010102_frmBaseEntry.Designer.cs">
+      <DependentUpon>01010102_frmBaseEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\010101_frmBaseTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\010101_frmBaseTransactions.Designer.cs">
+      <DependentUpon>010101_frmBaseTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\01010103_frmBaseTwinCAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\01010103_frmBaseTwinCAT.Designer.cs">
+      <DependentUpon>01010103_frmBaseTwinCAT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\010102_frmAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\010102_frmAuthentication.Designer.cs">
+      <DependentUpon>010102_frmAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl01.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl01.Designer.cs">
+      <DependentUpon>CalibrationControl01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\frmAuthChangeParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmAuthChangeParameters.Designer.cs">
+      <DependentUpon>frmAuthChangeParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FukudaAQLTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FukudaAQLTestControl.Designer.cs">
+      <DependentUpon>FukudaAQLTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FukudaDowngradeTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FukudaDowngradeTestControl.Designer.cs">
+      <DependentUpon>FukudaDowngradeTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InfoTestingItemControlCollection.cs" />
+    <Compile Include="BaseControls\BaseInfoTestingItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\BaseInfoTestingItemControl.Designer.cs">
+      <DependentUpon>BaseInfoTestingItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Info\InfoG8Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Info\InfoG8Control.Designer.cs">
+      <DependentUpon>InfoG8Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Info\InfoMessageItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Info\InfoMessageItemControl.Designer.cs">
+      <DependentUpon>InfoMessageItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LaserNormalTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LaserNormalTestControl.Designer.cs">
+      <DependentUpon>LaserNormalTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NGConfiguraionItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NGConfiguraionItem.Designer.cs">
+      <DependentUpon>NGConfiguraionItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NGConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NGConfiguration.Designer.cs">
+      <DependentUpon>NGConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Testing\FukudaTestingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Testing\FukudaTestingControl.Designer.cs">
+      <DependentUpon>FukudaTestingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Testing\InfoTestingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Testing\InfoTestingControl.Designer.cs">
+      <DependentUpon>InfoTestingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Testing\LaserTestingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Testing\LaserTestingControl.Designer.cs">
+      <DependentUpon>LaserTestingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Testing\MachineTesterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Testing\MachineTesterControl.Designer.cs">
+      <DependentUpon>MachineTesterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Testing\TestingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Testing\TestingControl.Designer.cs">
+      <DependentUpon>TestingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopProperties\DesktopProperties.cs" />
+    <Compile Include="Forms\Calibration\frmCalibration02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmCalibration02.Designer.cs">
+      <DependentUpon>frmCalibration02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmNoiseCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmNoiseCalibration.Designer.cs">
+      <DependentUpon>frmNoiseCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmResistanceCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmResistanceCalibration.Designer.cs">
+      <DependentUpon>frmResistanceCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmSignalCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calibration\frmSignalCalibration.Designer.cs">
+      <DependentUpon>frmSignalCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Configuration\frmNGConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Configuration\frmNGConfiguration.Designer.cs">
+      <DependentUpon>frmNGConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Maintenance\frmMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\frmMaintenance.Designer.cs">
+      <DependentUpon>frmMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Class\CalenderCell.cs" />
+    <Compile Include="Forms\Trial\Class\CalibrationCell.cs" />
+    <Compile Include="Controls\CalibrationValueControl01.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationValueControl01.Designer.cs">
+      <DependentUpon>CalibrationValueControl01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\BaseAreaLoader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\BaseAreaLoader.Designer.cs">
+      <DependentUpon>BaseAreaLoader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigCarrier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigCarrier.Designer.cs">
+      <DependentUpon>JigCarrier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigOnStorage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigOnStorage.Designer.cs">
+      <DependentUpon>JigOnStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigStorage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\JigStorage.Designer.cs">
+      <DependentUpon>JigStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\MachineTester.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\AreaLoader\MachineTester.Designer.cs">
+      <DependentUpon>MachineTester.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSearchDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSearchDevice.Designer.cs">
+      <DependentUpon>frmSearchDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FukudaNormalTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FukudaNormalTestControl.Designer.cs">
+      <DependentUpon>FukudaNormalTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntryData\frmEntryData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntryData\frmEntryData.Designer.cs">
+      <DependentUpon>frmEntryData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test\frmCancelList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test\frmCancelList.Designer.cs">
+      <DependentUpon>frmCancelList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test\frmInputTestData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test\frmInputTestData.Designer.cs">
+      <DependentUpon>frmInputTestData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test\frmInputTestData2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test\frmInputTestData2.Designer.cs">
+      <DependentUpon>frmInputTestData2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test\frmListPONumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test\frmListPONumber.Designer.cs">
+      <DependentUpon>frmListPONumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test\frmSorterTestData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test\frmSorterTestData.Designer.cs">
+      <DependentUpon>frmSorterTestData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\LotboxFukuda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Controls\LotboxFukuda.Designer.cs">
+      <DependentUpon>LotboxFukuda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form5.Designer.cs">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form6.Designer.cs">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form7.Designer.cs">
+      <DependentUpon>Form7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trial\Form8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trial\Form8.Designer.cs">
+      <DependentUpon>Form8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TurnOnOff\frmTurnOnOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TurnOnOff\frmTurnOnOff.Designer.cs">
+      <DependentUpon>frmTurnOnOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmGroupAccessEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmGroupAccessEntry.Designer.cs">
+      <DependentUpon>frmGroupAccessEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmGroupAccessList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmGroupAccessList.Designer.cs">
+      <DependentUpon>frmGroupAccessList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserEntry.Designer.cs">
+      <DependentUpon>frmUserEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserGroupEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserGroupEntry.Designer.cs">
+      <DependentUpon>frmUserGroupEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserGroupList.Designer.cs">
+      <DependentUpon>frmUserGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAccesses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAccesses.Designer.cs">
+      <DependentUpon>frmAccesses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserManagement\frmUserList.Designer.cs">
+      <DependentUpon>frmUserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="BaseControls\01_Base_Control.resx">
+      <DependentUpon>01_Base_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseControls\BaseTestingItemControl.resx">
+      <DependentUpon>BaseTestingItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\0101010301_frmBaseCalibration02.resx">
+      <DependentUpon>0101010301_frmBaseCalibration02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\0101010301_frmBaseCalibration.resx">
+      <DependentUpon>0101010301_frmBaseCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationControl.resx">
+      <DependentUpon>CalibrationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationControl02.resx">
+      <DependentUpon>CalibrationControl02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationValueControl.resx">
+      <DependentUpon>CalibrationValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationValueControl02.resx">
+      <DependentUpon>CalibrationValueControl02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseControls\frmAuthCancelTest.resx">
+      <DependentUpon>frmAuthCancelTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\01010101_frmBaseList.resx">
+      <DependentUpon>01010101_frmBaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\01010102_frmBaseEntry.resx">
+      <DependentUpon>01010102_frmBaseEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\01010103_frmBaseTwinCAT.resx">
+      <DependentUpon>01010103_frmBaseTwinCAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\010101_frmBaseTransactions.resx">
+      <DependentUpon>010101_frmBaseTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\010102_frmAuthentication.resx">
+      <DependentUpon>010102_frmAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\0101_frmBaseDB.resx">
+      <DependentUpon>0101_frmBaseDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\01_frmBase.resx">
+      <DependentUpon>01_frmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationControl01.resx">
+      <DependentUpon>CalibrationControl01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmAuthChangeParameters.resx">
+      <DependentUpon>frmAuthChangeParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FukudaAQLTestControl.resx">
+      <DependentUpon>FukudaAQLTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FukudaDowngradeTestControl.resx">
+      <DependentUpon>FukudaDowngradeTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Info\InfoG8Control.resx">
+      <DependentUpon>InfoG8Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Info\InfoMessageItemControl.resx">
+      <DependentUpon>InfoMessageItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LaserNormalTestControl.resx">
+      <DependentUpon>LaserNormalTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NGConfiguraionItem.resx">
+      <DependentUpon>NGConfiguraionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NGConfiguration.resx">
+      <DependentUpon>NGConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Testing\FukudaTestingControl.resx">
+      <DependentUpon>FukudaTestingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Testing\InfoTestingControl.resx">
+      <DependentUpon>InfoTestingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Testing\LaserTestingControl.resx">
+      <DependentUpon>LaserTestingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Testing\MachineTesterControl.resx">
+      <DependentUpon>MachineTesterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Testing\TestingControl.resx">
+      <DependentUpon>TestingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calibration\frmCalibration02.resx">
+      <DependentUpon>frmCalibration02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calibration\frmNoiseCalibration.resx">
+      <DependentUpon>frmNoiseCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calibration\frmResistanceCalibration.resx">
+      <DependentUpon>frmResistanceCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calibration\frmSignalCalibration.resx">
+      <DependentUpon>frmSignalCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Configuration\frmNGConfiguration.resx">
+      <DependentUpon>frmNGConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSearchDevice.resx">
+      <DependentUpon>frmSearchDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FukudaNormalTestControl.resx">
+      <DependentUpon>FukudaNormalTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntryData\frmEntryData.resx">
+      <DependentUpon>frmEntryData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAccesses.resx">
+      <DependentUpon>frmAccesses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\frmMaintenance.resx">
+      <DependentUpon>frmMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test\frmCancelList.resx">
+      <DependentUpon>frmCancelList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test\frmInputTestData.resx">
+      <DependentUpon>frmInputTestData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test\frmInputTestData2.resx">
+      <DependentUpon>frmInputTestData2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test\frmListPONumber.resx">
+      <DependentUpon>frmListPONumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test\frmSorterTestData.resx">
+      <DependentUpon>frmSorterTestData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CalibrationValueControl01.resx">
+      <DependentUpon>CalibrationValueControl01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\AreaLoader\BaseAreaLoader.resx">
+      <DependentUpon>BaseAreaLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\AreaLoader\JigCarrier.resx">
+      <DependentUpon>JigCarrier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\AreaLoader\JigOnStorage.resx">
+      <DependentUpon>JigOnStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\AreaLoader\JigStorage.resx">
+      <DependentUpon>JigStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\AreaLoader\MachineTester.resx">
+      <DependentUpon>MachineTester.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Controls\LotboxFukuda.resx">
+      <DependentUpon>LotboxFukuda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form5.resx">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form6.resx">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form7.resx">
+      <DependentUpon>Form7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Form8.resx">
+      <DependentUpon>Form8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trial\Report1.rdlc" />
+    <EmbeddedResource Include="Forms\TurnOnOff\frmTurnOnOff.resx">
+      <DependentUpon>frmTurnOnOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmGroupAccessEntry.resx">
+      <DependentUpon>frmGroupAccessEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmGroupAccessList.resx">
+      <DependentUpon>frmGroupAccessList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmUserEntry.resx">
+      <DependentUpon>frmUserEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmUserGroupEntry.resx">
+      <DependentUpon>frmUserGroupEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmUserGroupList.resx">
+      <DependentUpon>frmUserGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserManagement\frmUserList.resx">
+      <DependentUpon>frmUserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reports\rptTestResult.rdlc" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commons\Commons.csproj">
+      <Project>{59c381c4-3d96-4eb8-a997-f453ab210c15}</Project>
+      <Name>Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBProject\DBProject\DBProject.csproj">
+      <Project>{74168017-62f1-42ce-9ccc-818c925e9a58}</Project>
+      <Name>DBProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities\Utilities.csproj">
+      <Project>{D4866D55-E5F1-4D86-A4EF-ABF31F6058A3}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Top Exelitas.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Top Exelitas 2.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\machine-empty-01.png" />
+    <None Include="Images\machine-empty-02.png" />
+    <None Include="Images\machine-filled-01.png" />
+    <None Include="Images\machine-filled-02.png" />
+    <None Include="Images\logout2 24x24.png" />
+    <None Include="Images\login2 24x24.png" />
+    <None Include="Images\exit 22x22.png" />
+    <None Include="Images\login 32x32.png" />
+    <None Include="Images\logout 32x32.png" />
+    <None Include="Images\logout 32x32%281%29.png" />
+    <None Include="Images\exit 32x32.png" />
+    <None Include="Images\save 32x32.png" />
+    <None Include="Images\add 32x32.png" />
+    <None Include="Images\edit 32x32.png" />
+    <None Include="Images\delete 32x32.png" />
+    <None Include="Images\close 32x32.png" />
+    <Content Include="LP_DigiPyro.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

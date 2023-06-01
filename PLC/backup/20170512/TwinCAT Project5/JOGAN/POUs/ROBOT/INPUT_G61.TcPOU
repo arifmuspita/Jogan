@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="INPUT_G61" Id="{0dcdbe04-b593-4d16-b09a-c3568efe4317}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM INPUT_G61
+VAR
+(*	
+ROBOT_I_GRIPPER_1 AT %IX100.0 : BOOL;
+	ROBOT_I_GRIPPER_2 AT %IX100.1 : BOOL;
+	ROBOT_I_GRIPPER_3 AT %IX100.2 : BOOL;
+	ROBOT_I_GRIPPER_4 AT %IX100.3 : BOOL;
+	
+	ROBOT_I_GRIPPER_EXT_1 AT %IX100.4 : BOOL;
+	ROBOT_I_GRIPPER_EXT_2 AT %IX100.5 : BOOL;
+	ROBOT_I_GRIPPER_EXT_3 AT %IX100.6 : BOOL;
+	ROBOT_I_GRIPPER_EXT_4 AT %IX100.7 : BOOL;
+	
+	ROBOT_O_GRIPPER_1 AT %IX101.0 : BOOL;
+	ROBOT_O_GRIPPER_2 AT %IX101.1 : BOOL;
+	ROBOT_O_GRIPPER_3 AT %IX101.2 : BOOL;
+	ROBOT_O_GRIPPER_4 AT %IX101.3 : BOOL;
+		
+	ROBOT_O_GRIPPER_EXT_1 AT %IX101.4 : BOOL;
+	ROBOT_O_GRIPPER_EXT_2 AT %IX101.5 : BOOL;
+	ROBOT_O_GRIPPER_EXT_3 AT %IX101.6 : BOOL;
+	ROBOT_O_GRIPPER_EXT_4 AT %IX101.7 : BOOL;
+	
+	*)
+	TMR11: TON;
+	TMR12: TON;
+	TMR10: TON;
+	TMR8: TON;
+	TMR9: TON;
+	TMR7: TON;
+	TMR3: TON;
+	TP1: TP;
+	TMR1: TON;
+	START_ROBOT: TP;
+	TP2: TP;
+	O_G6_HANG: BOOL;
+	I_G6_HANG: BOOL;
+	TMR2: TON;
+	GO_ROBOT: BOOL;
+	TP3: TP;
+	TMR4: TON;
+	CNT_CYCLE: CTU;
+	START_ROTATE: R_TRIG;
+	IN: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF INPUT_G6_VAR.I_G6_ENABLE  THEN
+//GRIPPING 
+IF INPUT_G6_VAR.IX_G6_GRIPPER_1 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_1:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_1:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_1:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_1:=TRUE;
+END_IF
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_2 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_2:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_2:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_2:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_2:=TRUE;
+END_IF 
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_3 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_3:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_3:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_3:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_3:=TRUE;
+END_IF
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_4 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_4:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_4:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_CLOSE_4:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_OPEN_4:=TRUE;
+END_IF
+
+//EXTENDER DOWN
+IF INPUT_G6_VAR.IX_G6_GRIPPER_EXT_1 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_1:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_1:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_1:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_1:=TRUE;
+END_IF
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_EXT_2 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_2:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_2:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_2:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_2:=TRUE;
+END_IF
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_EXT_3 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_3:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_3:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_3:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_3:=TRUE;
+END_IF
+
+IF INPUT_G6_VAR.IX_G6_GRIPPER_EXT_4 THEN
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_4:=TRUE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_4:=FALSE;
+ELSE
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_DOWN_4:=FALSE;
+	INPUT_G6_VAR.O_G6_GRIPPER_EXT_UP_4:=TRUE;
+END_IF
+
+
+
+
+
+IF INPUT_VAR.ACTIVE_PROGRAM=2 THEN
+	 INPUT_G6_VAR.O_G6_SELECT_FUKUDA_A:=TRUE;
+ELSE
+	INPUT_G6_VAR.O_G6_SELECT_FUKUDA_A:=FALSE;
+END_IF
+
+INPUT_VAR.I_STOPPER_TRANSFER_ON_A:= INPUT_VAR.O_STOPPER_TRANSFER_A;
+IF INPUT_VAR.I_STOPPER_TRANSFER_ON_A OR INPUT_VAR.I_STOPPER_TRANSFER_ON_B THEN
+
+INPUT_G6_VAR.O_G6_SETMOTORON:=TRUE;
+TMR1(IN:=INPUT_G6_VAR.O_G6_SETMOTORON ,PT:=T#0.5S);
+IF TMR1.Q THEN
+	TP2(IN:=TMR1.Q,PT:=T#1S);
+	INPUT_G6_VAR.O_G6_STOP:=TP2.Q;
+	IF INPUT_G6_VAR.I_G6_READY THEN
+		TP3(IN:=INPUT_G6_VAR.O_G6_SETMOTORON,PT:=T#0.1S);
+		INPUT_G6_VAR.O_G6_HOME:=TP3.Q;
+	END_IF
+END_IF
+
+IF INPUT_G6_VAR.O_G6_SETMOTORON AND INDEXING_1_VAR.I_INDEXING_1_ROTATION_DONE AND INDEXING_1_VAR.I_INDEXING_1_HOME THEN
+	IF INPUT_G6_VAR.I_G6_READY OR INPUT_G6_VAR.I_G6_RUNNING THEN
+
+// ERROR OVERRIDE
+		IF 	INPUT_G6_VAR.I_G6_ERROR THEN
+			TMR10(IN:=INPUT_G6_VAR.I_G6_ERROR,PT:=T#0.5S);
+			IF NOT TMR10.Q THEN
+				INPUT_G6_VAR.O_G6_RESET :=TRUE;	
+				INPUT_G6_VAR.O_G6_START :=FALSE ;
+				INPUT_G6_VAR.O_G6_CONTINUE :=FALSE;
+			ELSE
+				INPUT_G6_VAR.O_G6_RESET :=FALSE;		
+			END_IF
+		END_IF
+	 
+		//TMR8(IN:=INPUT_G6_VAR.O_G6_SELECT_FUKUDA_A,PT:=T#5S);
+		//TMR9(IN:=INPUT_G6_VAR.O_G6_START,PT:=T#2S);
+		
+//START FOR 1ST TIME
+		IF INPUT_G6_VAR.I_G6_READY AND NOT INPUT_G6_VAR.I_G6_ERROR AND NOT INPUT_G6_VAR.I_G6_RUNNING THEN
+			TMR7(IN:=INPUT_G6_VAR.I_G6_READY,PT:=T#1S);
+			START_ROBOT(IN:=TMR7.Q,PT:=T#2S);
+			INPUT_G6_VAR.O_G6_START :=TMR7.Q ;
+			INPUT_G6_VAR.O_G6_STOP:=FALSE;
+		ELSE
+			TMR7(IN:=FALSE);
+		END_IF
+		IF  NOT INPUT_G6_VAR.I_G6_READY THEN
+			INPUT_G6_VAR.O_G6_START :=FALSE ;
+		END_IF
+		
+//STOP 
+		IF INPUT_G6_VAR.I_G6_END_FUKUDA AND NOT INPUT_G6_VAR.I_G6_READY AND NOT INPUT_G6_VAR.I_G6_RUNNING THEN
+			TMR8(IN:=FALSE);
+			TMR9(IN:=FALSE);
+		//	INPUT_G6_VAR.O_G6_STOP:=TRUE;
+		END_IF
+		TMR2(IN:=INPUT_G6_VAR.O_G6_STOP,PT:=T#1S);
+		IF TMR2.Q THEN
+			INPUT_G6_VAR.I_G6_HANG:=FALSE;
+			INPUT_G6_VAR.O_G6_STOP:=FALSE;
+			TMR1(IN:=FALSE);
+		END_IF
+		
+//CONTINUE	
+		GO_ROBOT:=(INPUT_G6_VAR.I_G6_READY_PLACING  AND (LOADER_RS4_VAR.I_LOADER_RS4_READY_TAKEUP OR NOT LOADER_RS4_VAR.I_LOADER_RS4_ENABLE)  AND INDEXING_2_VAR.O_ROTATION_DONE );	
+		IF INPUT_G6_VAR.I_G6_RUNNING AND  INDEXING_1_VAR.I_INDEXING_1_ROTATION_DONE AND GO_ROBOT AND INPUT_VAR.STRAIGHTEN_DONE AND NOT INPUT_G6_VAR.I_G6_END_FUKUDA AND INPUT_G6_VAR.I_G6_RUNNING AND NOT LOADER_RS4_VAR.I_LOADER_RS4_END_CARRIER THEN
+				TMR3(IN:=GO_ROBOT ,PT:=T#0.5S);
+				TP1(IN:=GO_ROBOT,PT:=T#0.1S);
+		ELSE
+			TMR3(IN:=FALSE);
+			TP1(IN:=FALSE);
+		END_IF
+		INPUT_G6_VAR.O_G6_CONTINUE :=TMR3.Q;
+
+//
+		CNT_CYCLE(CU:=INPUT_G6_VAR.I_G6_START_TAKEUP,RESET:=INPUT_G6_VAR.I_G6_DISABLE,PV:=4);
+		IF CNT_CYCLE.CV >=3 THEN
+			LOADER_RS4_VAR.I_LOADER_RS4_ENABLE:=TRUE;
+ 		END_IF
+		IF NOT LOADER_RS4_VAR.I_LOADER_RS4_ENABLE AND INPUT_G6_VAR.I_G6_END_CYCLE THEN
+			START_ROTATE(CLK:=TRUE);
+			//INDEXING_1_VAR.O_ROTATION_START:= START_ROTATE.Q;	
+			ELSE
+			START_ROTATE(CLK:=FALSE);
+		END_IF
+
+	END_IF
+END_IF
+END_IF
+
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="INPUT_G61">
+      <LineId Id="23" Count="2" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="165" Count="22" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="66" Count="3" />
+      <LineId Id="188" Count="2" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="191" Count="23" />
+      <LineId Id="336" Count="3" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="345" Count="3" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="507" Count="0" />
+      <LineId Id="510" Count="0" />
+      <LineId Id="508" Count="0" />
+      <LineId Id="608" Count="0" />
+      <LineId Id="611" Count="0" />
+      <LineId Id="609" Count="1" />
+      <LineId Id="509" Count="0" />
+      <LineId Id="505" Count="0" />
+      <LineId Id="246" Count="1" />
+      <LineId Id="560" Count="0" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="462" Count="0" />
+      <LineId Id="390" Count="0" />
+      <LineId Id="388" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="562" Count="1" />
+      <LineId Id="250" Count="2" />
+      <LineId Id="389" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="255" Count="2" />
+      <LineId Id="463" Count="0" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="450" Count="0" />
+      <LineId Id="435" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="427" Count="0" />
+      <LineId Id="474" Count="2" />
+      <LineId Id="428" Count="0" />
+      <LineId Id="409" Count="0" />
+      <LineId Id="273" Count="2" />
+      <LineId Id="397" Count="0" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="489" Count="0" />
+      <LineId Id="491" Count="0" />
+      <LineId Id="493" Count="2" />
+      <LineId Id="492" Count="0" />
+      <LineId Id="464" Count="0" />
+      <LineId Id="516" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="514" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="442" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="565" Count="0" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="654" Count="0" />
+      <LineId Id="656" Count="3" />
+      <LineId Id="666" Count="0" />
+      <LineId Id="665" Count="0" />
+      <LineId Id="669" Count="1" />
+      <LineId Id="664" Count="0" />
+      <LineId Id="662" Count="0" />
+      <LineId Id="660" Count="0" />
+      <LineId Id="506" Count="0" />
+      <LineId Id="716" Count="1" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="334" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LOAD_LASER" Id="{ed8e2b66-0fd3-4437-8ee5-0030e16f334b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LOAD_LASER
+VAR_INPUT
+
+END_VAR
+
+VAR
+	TMR_DELAY: TON;
+	TMR1:TON;
+	TMR_STOPPER_A: TON;
+	TMR_STOPPER_B: TON;
+	TMR_DLY: TON;
+	TMR_DLY2: TON;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE SORTER_VAR.I_CASE OF
+0: //standby near lotbox
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.TRANSPORT_IDX:=		SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX;
+	SORTER_VAR.STATION_LOAD_IDX:=	SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD;
+	SORTER_VAR.JIG_LOAD_IDX:=		SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD;
+	
+	IF SORTER_VAR.TRANSPORT_IDX=0 AND SORTER_VAR.STATION_LOAD_IDX=0 AND SORTER_VAR.JIG_LOAD_IDX=0 THEN
+		SORTER_VAR.TRANSPORT_IDX:=		SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX;
+		SORTER_VAR.STATION_LOAD_IDX:=	SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD;
+		SORTER_VAR.JIG_LOAD_IDX:=		SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD;
+	ELSE
+		
+	CASE SORTER_VAR.TRANSPORT_IDX OF
+		2 : LASER_MOVE(STEP_DATA_1:=SORTER_VAR.STATION_LOAD_IDX,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=SORTER_VAR.JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=1);
+				SORTER_VAR.O_STOPPER_TRANSFER_B:=FALSE;
+				//SORTER_VAR.I_LOADING_DONE_B:=FALSE;
+		1 : LASER_MOVE(STEP_DATA_1:=SORTER_VAR.STATION_LOAD_IDX,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=SORTER_VAR.JIG_LOAD_IDX,
+				STEP_DATA_4:=1,
+				STEP_DATA_5:=0);
+				SORTER_VAR.O_STOPPER_TRANSFER_A:=FALSE;
+				//SORTER_VAR.I_LOADING_DONE_A:=FALSE;
+	END_CASE
+END_IF			
+	SORTER_VAR.O_VACUUM_On:=FALSE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;	
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=FALSE;
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=TRUE;
+	TMR_DLY(IN:=FALSE);
+			
+1: //standby near lotbox
+	
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.STATION_LOAD_IDX,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=SORTER_VAR.JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+		CASE SORTER_VAR.TRANSPORT_IDX OF
+		1:
+			SORTER_VAR.I_LOADING_DONE_A:=FALSE;
+		
+		2:
+			SORTER_VAR.I_LOADING_DONE_B:=FALSE;
+		END_CASE
+			
+2://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.I_CASE:=SORTER_VAR.I_CASE+1;
+3://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1; 
+	END_IF
+	SORTER_VAR.I_CASE:=SORTER_VAR.I_CASE+1;
+
+4://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.O_VACUUM_ON:=TRUE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;
+
+	//CHECK JIG LASER PRESENCE	
+LASER_MOVE(STEP_DATA_1:=SORTER_VAR.STATION_LOAD_IDX,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=13,///JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+(*		
+	IF  SORTER_VAR.O_VACUUM_ON THEN
+		TMR1(IN:=TRUE,PT:=T#2S);
+		IF TMR1.Q THEN
+			IF  SORTER_VAR.I_VACUUM_ON AND SORTER_VAR.O_VACUUM_ON THEN
+				SORTER_VAR.JIG_LASER_PRESENCE :=TRUE;
+				
+				LASER_MOVE(STEP_DATA_1:=7,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+			ELSE
+				SORTER_VAR.JIG_LASER_PRESENCE :=FALSE;	
+				LASER_MOVE(STEP_DATA_1:=STATION_LOAD_IDX,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+				LASER_MOVE(STEP_DATA_1:=STATION_LOAD_IDX,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+				TMR_DELAY(IN:=TRUE,PT:=T#2S);
+				IF TMR_DELAY.Q THEN
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER:=FALSE;
+					JIG_LOAD_IDX:=JIG_LOAD_IDX+0;
+					SORTER_VAR.I_CASE:=0;
+					TMR1(IN:=FALSE);
+					SORTER_VAR.O_VACUUM_ON:=FALSE;
+					SORTER_VAR.O_VACUUM_OFF:=FALSE;
+				END_IF
+			END_IF
+		END_IF 
+	END_IF
+*)
+				
+
+5://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=TRUE;
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=FALSE;
+	TMR_DLY2(IN:=TRUE,PT:=T#2S);
+	IF TMR_DLY2.Q THEN
+		
+		IF SORTER_VAR.I_CARTESSIAN_GRIPPER_ON THEN
+			LASER_MOVE(STEP_DATA_1:=SORTER_VAR.STATION_LOAD_IDX,//9,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=9,//JIG_LOAD_IDX,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+			TMR_DLY(IN:=FALSE);
+		ELSE
+			TMR_DLY(IN:=TRUE,PT:=T#3S);
+			IF TMR_DLY.Q THEN
+				SORTER_VAR.I_CASE:=50;
+				TMR_DLY(IN:=FALSE);
+			END_IF
+		END_IF
+	END_IF	
+
+6://gripping position
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.TRANSPORT_IDX+5,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+
+7://placing onto LASER transport
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.TRANSPORT_IDX+5,
+				STEP_DATA_2:=6,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	
+8://homing
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=FALSE;
+	SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=TRUE;
+	IF SORTER_VAR.I_CARTESSIAN_GRIPPER_OFF THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.TRANSPORT_IDX+5,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=18,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	END_IF			
+9://homing
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.TRANSPORT_IDX+5,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=10,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	
+10://pusH LASER transport
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;
+
+	CASE SORTER_VAR.TRANSPORT_IDX OF
+		2 :
+			//IF  SORTER_VAR.I_LASER_TRANSFER_AT_FRONT_B THEN
+				LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=2);
+			//END_IF
+				 
+		1 : 
+			//IF  SORTER_VAR.I_LASER_TRANSFER_AT_FRONT_A THEN
+				LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=2,
+				STEP_DATA_5:=0);
+			//END_IF
+	END_CASE	
+
+11:
+		TMR_DLY(IN:=FALSE);
+		SORTER_VAR.O_NG_BUFFER_ON:=FALSE;
+		SORTER_VAR.O_NG_BUFFER_OFF:=FALSE;
+		CASE SORTER_VAR.TRANSPORT_IDX OF
+		1:	
+			IF SORTER_VAR.I_LASER_TRANSFER_AT_FRONT_A THEN
+				TMR_STOPPER_A(IN:=TRUE,PT:=T#1S);
+				IF TMR_STOPPER_A.Q THEN
+					SORTER_VAR.O_STOPPER_TRANSFER_A:=TRUE;
+					SORTER_VAR.I_LOADING_DONE_A:=TRUE;
+					TMR1(IN:=FALSE);
+					TMR_DELAY(IN:=FALSE);
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER:=FALSE;	
+					SORTER_VAR.I_CASE:=100;
+					SORTER_VAR.O_VACUUM_On:=FALSE;
+					SORTER_VAR.O_VACUUM_OFF:=FALSE;
+				END_IF
+			END_IF
+	
+			2:
+			IF SORTER_VAR.I_LASER_TRANSFER_AT_FRONT_B THEN
+				
+				TMR_STOPPER_B(IN:=TRUE,PT:=T#1S);
+				IF TMR_STOPPER_B.Q THEN
+					SORTER_VAR.O_STOPPER_TRANSFER_B:=TRUE;	
+					SORTER_VAR.I_LOADING_DONE_B:=TRUE;
+					TMR1(IN:=FALSE);
+					TMR_DELAY(IN:=FALSE);
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER:=FALSE;	
+					SORTER_VAR.I_CASE:=100;
+					SORTER_VAR.O_VACUUM_On:=FALSE;
+					SORTER_VAR.O_VACUUM_OFF:=FALSE;
+				END_IF
+			END_IF
+	END_CASE
+	
+50:
+LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+		
+51:
+	FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER:=FALSE;
+	SORTER_VAR.I_CASE:=100;
+100:
+	SORTER_VAR.O_VACUUM_On:=FALSE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;
+	TMR1(IN:=FALSE);
+	TMR_DELAY(IN:=FALSE);
+	FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER:=FALSE;								
+								
+END_CASE 
+(*ELSE
+	LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+END_IF*)]]></ST>
+    </Implementation>
+    <LineIds Name="LOAD_LASER">
+      <LineId Id="6" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="1580" Count="2" />
+      <LineId Id="1603" Count="0" />
+      <LineId Id="1583" Count="4" />
+      <LineId Id="1602" Count="0" />
+      <LineId Id="838" Count="1" />
+      <LineId Id="858" Count="1" />
+      <LineId Id="842" Count="1" />
+      <LineId Id="1175" Count="0" />
+      <LineId Id="1551" Count="0" />
+      <LineId Id="844" Count="0" />
+      <LineId Id="860" Count="1" />
+      <LineId Id="847" Count="1" />
+      <LineId Id="1177" Count="0" />
+      <LineId Id="1552" Count="0" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="1588" Count="0" />
+      <LineId Id="850" Count="0" />
+      <LineId Id="856" Count="0" />
+      <LineId Id="1397" Count="1" />
+      <LineId Id="1539" Count="0" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="752" Count="0" />
+      <LineId Id="633" Count="0" />
+      <LineId Id="635" Count="2" />
+      <LineId Id="1381" Count="0" />
+      <LineId Id="1383" Count="0" />
+      <LineId Id="1385" Count="11" />
+      <LineId Id="1384" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="1222" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="800" Count="2" />
+      <LineId Id="1227" Count="0" />
+      <LineId Id="1141" Count="0" />
+      <LineId Id="768" Count="3" />
+      <LineId Id="1225" Count="1" />
+      <LineId Id="1400" Count="0" />
+      <LineId Id="782" Count="0" />
+      <LineId Id="1351" Count="4" />
+      <LineId Id="1403" Count="0" />
+      <LineId Id="1356" Count="0" />
+      <LineId Id="1097" Count="4" />
+      <LineId Id="1130" Count="5" />
+      <LineId Id="1102" Count="13" />
+      <LineId Id="1117" Count="1" />
+      <LineId Id="1120" Count="2" />
+      <LineId Id="1138" Count="2" />
+      <LineId Id="1123" Count="2" />
+      <LineId Id="1136" Count="0" />
+      <LineId Id="1129" Count="0" />
+      <LineId Id="1074" Count="0" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="823" Count="3" />
+      <LineId Id="1414" Count="0" />
+      <LineId Id="1521" Count="3" />
+      <LineId Id="827" Count="4" />
+      <LineId Id="1494" Count="0" />
+      <LineId Id="1487" Count="2" />
+      <LineId Id="1491" Count="0" />
+      <LineId Id="1493" Count="0" />
+      <LineId Id="1492" Count="0" />
+      <LineId Id="1061" Count="0" />
+      <LineId Id="1525" Count="1" />
+      <LineId Id="547" Count="10" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="337" Count="0" />
+      <LineId Id="366" Count="3" />
+      <LineId Id="372" Count="3" />
+      <LineId Id="666" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="1359" Count="0" />
+      <LineId Id="1433" Count="1" />
+      <LineId Id="1360" Count="4" />
+      <LineId Id="1418" Count="0" />
+      <LineId Id="1365" Count="0" />
+      <LineId Id="1435" Count="3" />
+      <LineId Id="1442" Count="4" />
+      <LineId Id="49" Count="3" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="1419" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="1518" Count="2" />
+      <LineId Id="1152" Count="3" />
+      <LineId Id="1468" Count="0" />
+      <LineId Id="1505" Count="8" />
+      <LineId Id="1516" Count="1" />
+      <LineId Id="653" Count="0" />
+      <LineId Id="1503" Count="0" />
+      <LineId Id="1541" Count="1" />
+      <LineId Id="1243" Count="0" />
+      <LineId Id="1288" Count="2" />
+      <LineId Id="1292" Count="2" />
+      <LineId Id="1338" Count="2" />
+      <LineId Id="1333" Count="0" />
+      <LineId Id="1366" Count="1" />
+      <LineId Id="1334" Count="0" />
+      <LineId Id="1483" Count="1" />
+      <LineId Id="1310" Count="6" />
+      <LineId Id="1335" Count="2" />
+      <LineId Id="1332" Count="0" />
+      <LineId Id="1368" Count="1" />
+      <LineId Id="1317" Count="0" />
+      <LineId Id="1457" Count="0" />
+      <LineId Id="1318" Count="0" />
+      <LineId Id="1470" Count="1" />
+      <LineId Id="1473" Count="5" />
+      <LineId Id="1472" Count="0" />
+      <LineId Id="1482" Count="0" />
+      <LineId Id="1479" Count="0" />
+      <LineId Id="656" Count="1" />
+      <LineId Id="660" Count="0" />
+      <LineId Id="1238" Count="4" />
+      <LineId Id="1579" Count="0" />
+      <LineId Id="1496" Count="0" />
+      <LineId Id="1498" Count="3" />
+      <LineId Id="1497" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

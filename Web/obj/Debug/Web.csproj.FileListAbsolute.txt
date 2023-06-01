@@ -1,0 +1,150 @@
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\ApplicationInsights.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\csc.exe
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\csc.exe.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\csc.rsp
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\csi.exe
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\csi.rsp
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.AppContext.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.Collections.Immutable.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.IO.FileSystem.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\vbc.exe
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\vbc.exe.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\vbc.rsp
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\VBCSCompiler.exe
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\roslyn\VBCSCompiler.exe.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Web.dll.config
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Web.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Web.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Commons.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\DataTables.Mvc.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\DBProject.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\EntityFramework.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\EntityFramework.SqlServer.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.Web.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.WindowsServer.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.ApplicationInsights.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.Web.Infrastructure.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\RazorEngine.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\RazorJS.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Helpers.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Mvc.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Razor.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.Deployment.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.Razor.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\PWDTK.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Newtonsoft.Json.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Commons.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\DBProject.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\EntityFramework.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\EntityFramework.SqlServer.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.Web.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.AI.WindowsServer.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.ApplicationInsights.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Razor.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.Deployment.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Webpages.Razor.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Helpers.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\System.Web.Mvc.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\PWDTK.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\bin\Newtonsoft.Json.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\obj\Debug\Web.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Web\obj\Debug\Web.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\ApplicationInsights.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\csc.exe
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\csc.exe.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\csc.rsp
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\csi.exe
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\csi.rsp
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.AppContext.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.Collections.Immutable.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.IO.FileSystem.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\System.Reflection.Metadata.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\vbc.exe
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\vbc.exe.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\vbc.rsp
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\VBCSCompiler.exe
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\roslyn\VBCSCompiler.exe.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Web.dll.config
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Web.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Web.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Commons.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\DataTables.Mvc.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\DBProject.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\EntityFramework.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\EntityFramework.SqlServer.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.DependencyCollector.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.Web.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.WindowsServer.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.ApplicationInsights.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.Web.Infrastructure.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\RazorEngine.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\RazorJS.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Helpers.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Mvc.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Razor.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.Deployment.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.Razor.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\PWDTK.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Newtonsoft.Json.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Commons.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\DBProject.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\EntityFramework.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\EntityFramework.SqlServer.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.DependencyCollector.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.Web.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.AI.WindowsServer.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.ApplicationInsights.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Razor.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.Deployment.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Webpages.Razor.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Helpers.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\System.Web.Mvc.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\PWDTK.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\bin\Newtonsoft.Json.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\obj\Debug\Web.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Web\obj\Debug\Web.pdb

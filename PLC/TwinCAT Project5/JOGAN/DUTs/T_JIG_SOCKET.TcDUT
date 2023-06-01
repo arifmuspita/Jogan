@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <DUT Name="T_JIG_SOCKET" Id="{48dab071-1d94-4960-a93e-d7057a9a2c3e}">
+    <Declaration><![CDATA[TYPE T_JIG_SOCKET :
+STRUCT
+	STATION_NUMBER:BYTE:=0;
+	CURRENT_DEVICE_COUNT : BYTE :=0;
+	MAX_DEVICE_COUNT : BYTE :=0;
+	AVAILABLE_SOCKET : ARRAY[0..4] OF BYTE;
+	LASER_DESTINATION: ARRAY[0..4] OF BYTE;
+	PO_NUMBER : STRING[255] := '';
+	
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

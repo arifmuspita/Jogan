@@ -1,0 +1,310 @@
+﻿
+@{
+    ViewBag.Title = "SignalDeviceParameter";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    DBProject.Models.Properties.UserRightAccess userright = Model.UserRightAccess;
+    DBProject.Models.V_DEVICE_DEVICE_SIGNAL_PARAMETER data = Model.DataObject;
+}
+
+@if (Model.Method == "list")
+{<div class="box">
+    <div class="box-header with-border">
+        @if (userright.Allow_Add)
+        {
+            <div class="form-group"></div>
+            <a href="#" class="btn btn-primary " id="btnAdd"><i class="fa fa-plus"></i> Add Signal Device Parameter</a>
+            <div class="form-group"></div>
+        }
+        <table id="SignalDeviceParameter_table" class="table table-bordered table-hover" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Device ID</th>
+                    <th>Device Name</th>
+                    <th>Response_Grp_Max</th>
+                    <th>Offset_Min</th>
+                    <th>Offset_Max</th>
+                    @*<th>Offset_Grp_Min</th>
+                    <th>Offset_Grp_Max</th>
+                    <th>No_Response</th>
+                    <th>Response_Min</th>
+                    <th>Response_Max</th>*@ 
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#btnAdd").click(function (e) {
+                e.preventDefault();
+                window.location.href = "@Model.SetWebUrl("/DataMaster/SignalDeviceParameter/add")";
+            });
+            var columndefs = [];
+            var columns = [];
+            columndefs = [{
+                "targets": 0,
+                "orderable": false,
+                "data": "Action",
+                "render": function (data, type, full, meta) {
+                    var str = "";
+                    //str = str + '<a href="/' + modul + '/' + submodul + '/edit/' + full.ID + '" data-modul="' + submodul + '" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    @if(Model.UserRightAccess.Allow_Edit) {
+                            @:str = str + '<a href="@Model.SetWebUrl("/DataMaster/SignalDeviceParameter/edit/")' + full.ID + '" data -modul="SignalDeviceParameter" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    }
+                    @if(Model.UserRightAccess.Allow_Delete) {
+                            @:str = str + '<a href="@Model.SetWebUrl("/DataMaster/SignalDeviceParameter/delete/")' + full.ID + '" data -modul="SignalDeviceParameter" data-action="delete" class="btn btn-xs default"><i class="fa fa-eraser"></i> Delete</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    }
+                    //return '' + '<a href="/' + modul + '/' + submodul + '/edit/' + full.ID + '" data-modul="' + submodul + '" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>'
+                    return str;
+                }
+            }]; 
+            columns = [
+                { "data": "Action" },
+                { "data": "Device_ID" },
+                { "data": "Device_Name" },
+                { "data": "Response_Grp_Max" },
+                { "data": "Offset_Min" },
+                { "data": "Offset_Max" },
+                //{ "data": "Offset_Grp_Min" },
+                //{ "data": "Offset_Grp_Max" },
+                //{ "data": "No_Response" },
+                //{ "data": "Response_Min" },
+                //{ "data": "Response_Max" },
+            ];
+            DataTableJS.CreateDataTables2("@Model.WebRoot","DataMaster", "SignalDeviceParameter", 0, "", false, columndefs, columns);
+        });
+    </script></div>
+}
+else
+{<div class="box">
+    <div class="box-header">
+        @if (data.ID == 0)
+        {
+            <label>Add Signal Device Parameter</label>
+        }
+        else
+        {
+            <label>Edit Signal Device Parameter</label>
+        }
+    </div>
+    <div class="box-body">
+        <form id="Form1" method="post" action="@Model.SetWebUrl("/DataMaster/SignalDeviceParameter")" class="form-horizontal" role="form" enctype="multipart/form-data">
+            @*<input type="hidden" name="ID" value="@data.Group_ID" id="Group_ID" />*@
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Search Device :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" id="SrcDevice" style="width:200px" placeholder="Type here to search device"/></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Device Name  :</label></div>
+                <div class="col-md-10">
+                    @*<input type="hidden" name="Device_ID" value="@data.Device_ID" />*@
+                    <input type="text" readonly class="form-control" name="Device_ID" value="@data.Device_ID" id="Device_ID" style="width:250px" />
+                    <input type="text" readonly class="form-control" name="Device_Name" value="@data.Device_Name" id="Device_Name" style="width:250px" />
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">No DUT Offset * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Response_Grp_Max" value="@data.No_DUT_Offset" id="Response_Grp_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Offset Min * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Offset_Min" value="@data.Offset_Min" id="Offset_Min" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Offset Max * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Offset_Max" value="@data.Offset_Max" id="Offset_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Offset H Limit * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Offset_Max" value="@data.Offset_HLimit" id="Offset_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Offset Grp Min * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Offset_Grp_Min" value="@data.Offset_Grp_Min" id="Offset_Grp_Min" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Offset Grp Max * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Offset_Grp_Max" value="@data.Offset_Grp_Max" id="Offset_Grp_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">No Response * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="No_Response" value="@data.No_Response" id="No_Response" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Response Min * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Response_Min" value="@data.Response_Min" id="Response_Min" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Response Max * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Response_Max" value="@data.Response_Max" id="Response_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Response Grp Min * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Response_Grp_Min" value="@data.Response_Grp_Min" id="Response_Grp_Min" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Response Grp Max * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Response_Grp_Max" value="@data.Response_Grp_Max" id="Response_Grp_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Match Signal Max * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Match_Signal_Max" value="@data.Match_Signal_Max" id="Match_Signal_Max" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Resistance Min * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Resistance_Min" value="@data.Resistance_Min" id="Resistance_Min" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">First Soak Time * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="First_Soak_Time" value="@data.First_Soak_Time" id="First_Soak_Time" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div> 
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Code">Second Soak Time * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Second_Soak_Time" value="@data.Second_Soak_Time" id="Second_Soak_Time" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Lauda Setting * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Lauda_Setting" value="@data.Lauda_Setting" id="Lauda_Setting" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">BB Setting * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="BB_Setting" value="@data.BB_Setting" id="BB_Setting" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">BB Temperature HL * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="BB_Temperature_HL" value="@data.BB_Temperature_HL" id="BB_Temperature_HL" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">BB Temperature LL * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="BB_Temperature_LL" value="@data.BB_Temperature_LL" id="BB_Temperature_LL" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Sample Rate * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Sample_Rate" value="@data.Sample_Rate" id="Sample_Rate" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">BB Setting * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="BB_Setting" value="@data.BB_Setting" id="BB_Setting" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">High Cutof Frequency * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="High_Cutof_Frequency" value="@data.High_Cutof_Frequency" id="High_Cutof_Frequency" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Low Cutof Frequency * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Low_Cutof_Frequency" value="@data.Low_Cutof_Frequency" id="Low_Cutof_Frequency" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Measurement Duration * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Measurement_Duration" value="@data.Measurement_Duration" id="Measurement_Duration" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Measurement Duration 2 * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Measurement_Duration_2" value="@data.Measurement_Duration_2" id="Measurement_Duration_2" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Temperature Coe * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Temperature_Coe" value="@data.Temperature_Coe" id="Temperature_Coe" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Testing Voltage * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Testing_Voltage" value="@data.Testing_Voltage" id="Testing_Voltage" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"><label for="Name">Resistance * :</label></div>
+                <div class="col-md-10"><input type="text" class="form-control" name="Resistance" value="@data.Resistance" id="Resistance" required="required" style="width:60px" /></div>
+                <div class="help-block with-errors"></div>
+            </div> 
+            <div class="form-group"></div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-primary" id="FormSave">Save</button>
+                    <button type="button" class="btn btn-primary" id="FormClose">Close</button>
+                </div>
+            </div>
+        </form>
+        <script>
+        $(document).ready(function () {
+            $("#FormClose").click(function () {
+                window.location.href = "@Model.SetWebUrl("/DataMaster/SignalDeviceParameter")";
+            });
+            $("#SrcDevice").autocomplete({
+                source: "@Model.SetWebUrl("/Ajax/AutoComplete/SearchDevice/get/all")",
+                minLength: 1,
+                select: function (event, ui) {
+                    //console.log(ui.item);
+                    $("#Device_Name").val(ui.item.Device_Name);
+                    $("#Device_ID").val(ui.item.Device_ID);
+                    $("#SrcDevice").val(ui.item.Device_ID);
+                    //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                }
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                //console.log(item);
+                return $("<li>")
+                  .append("<div>" + item.Device_ID + "<br>" + item.Device_Name + "</div>")
+                  .appendTo(ul);
+            };
+        });
+        </script>
+    </div></div>
+                        }

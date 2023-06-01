@@ -1,0 +1,26 @@
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\Commons.dll
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\Commons.pdb
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\Newtonsoft.Json.dll
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\PWDTK.dll
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\Newtonsoft.Json.xml
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\bin\Debug\PWDTK.pdb
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\obj\Debug\Commons.dll
+D:\Jobs\psi\DotNET\NEWPAIBPOS2\NEWPAIBPOS\Commons\obj\Debug\Commons.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\Commons.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\Commons.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\Newtonsoft.Json.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\PWDTK.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\Newtonsoft.Json.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\bin\Debug\PWDTK.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\obj\Debug\Commons.csprojResolveAssemblyReference.cache
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\obj\Debug\Commons.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Commons\obj\Debug\Commons.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\Commons.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\Commons.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\Newtonsoft.Json.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\PWDTK.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\Newtonsoft.Json.xml
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\bin\Debug\PWDTK.pdb
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\obj\Debug\Commons.csprojResolveAssemblyReference.cache
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\obj\Debug\Commons.dll
+E:\Project\Poltek-Exelitas\JOGAN 20170710 (dev r1)\Commons\obj\Debug\Commons.pdb

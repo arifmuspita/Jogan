@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="MAIN" Id="{7c8980ea-33fa-43d8-a78f-e548a5c87807}" SpecialFunc="None">
+    <Declaration><![CDATA[ PROGRAM MAIN
+
+VAR
+
+	EKE: BOOL; 
+	STEP: INT :=1;
+	
+	TMR100: TON;
+	stage: INT :=0;
+	IC_CASE: INT :=0;
+	
+	START_STR: F_TRIG;
+	START_G6: R_TRIG;
+	I_RS4_PICKING_DONE: BOOL;
+	START_STRAIGHTENER: R_TRIG;
+	READY_1: BOOL;
+	READY_2: BOOL;
+	RR: BOOL;
+	RX: R_TRIG;
+	TRIG_IND2: R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//INPUT_CARTESSIAN(); 
+INPUT_G6();
+INDEXING();
+INDEXING_2();
+INPUT_PROG();
+LOADER_RS4();
+SORTER_RS4();
+STRAIGHTENING_PROG_1();
+
+(*
+//EXECUTE_FUNCTION(INPUT_VAR.I_FUNCTION_NAME);
+
+//LOAD_FUKUDA();
+//MOVE STATION & JIG INDEX 
+
+
+(************.::INDEXING 1 OPERATION::.***********) 
+//LOADER_RS4_VAR.I_LOADER_RS4_READY_TAKEUP AND INPUT_G6_VAR.I_G6_READY_PLACING 
+(*
+IF INPUT_G6_VAR.I_G6_START_TAKEUP  THEN
+	READY_1 :=TRUE;	
+END_IF
+IF LOADER_RS4_VAR.I_LOADER_RS4_START_PLACING  THEN
+	READY_2 :=TRUE;
+END_IF
+*)
+
+//START ROTATION INDEXING 1
+READY_1 :=INPUT_G6_VAR.I_G6_START_TAKEUP;
+READY_2 :=LOADER_RS4_VAR.I_LOADER_RS4_START_PLACING;
+IF INDEXING_1_VAR.READY_STRAIGTHEN THEN
+	READY_1 :=FALSE;	
+	READY_2 :=FALSE;	
+END_IF
+
+IF READY_1 AND READY_2 AND INDEXING_1_VAR.I_INDEXING_1_ROTATION_DONE THEN//READY_PLACING THEN
+	RR:=TRUE;
+	RX(CLK:=RR);
+	INDEXING_1_VAR.O_ROTATION_START:=RX.Q;
+ELSE
+	RR:=FALSE;
+//RX(IN:=FALSE);
+	RX(CLK:=FALSE);
+END_IF
+
+
+//START ROTATION INDEXING 2
+IF SORTER_RS4_VAR.I_SORTER_RS4_END_CARRIER AND LOADER_RS4_VAR.I_LOADER_RS4_END_CARRIER THEN
+	TRIG_IND2(CLK:=TRUE);
+	INDEXING_2_VAR.O_ROTATION_START:=TRIG_IND2.Q;
+	SORTER_RS4_VAR.I_SORTER_RS4_END_CARRIER:=FALSE;
+	LOADER_RS4_VAR.I_LOADER_RS4_END_CARRIER:=FALSE;
+	ELSE
+	TRIG_IND2(CLK:=FALSE);
+END_IF
+*)
+//CARTESSIAN INPUT
+IF FLAG_VAR.ALLOW_EXECUTE_LOAD_FUKUDA THEN 
+	IF INPUT_VAR.I_CASE=100 THEN
+		INPUT_VAR.I_CASE:=0;
+		IC_CASE:=0;	
+		END_IF			
+	LOAD_FUKUDA();
+END_IF
+IF FLAG_VAR.ALLOW_EXECUTE_RETURN_FUKUDA THEN 
+	IF INPUT_VAR.I_CASE=100 THEN
+		INPUT_VAR.I_CASE:=0;
+		IC_CASE:=0;
+	END_IF	
+	RETURN_FUKUDA();	
+END_IF
+
+IF FLAG_VAR.ALLOW_EXECUTE_LOAD_LASER THEN 
+	IF SORTER_VAR.I_CASE=100 THEN
+		SORTER_VAR.I_CASE:=0;
+		IC_CASE:=0;	
+		END_IF			 
+	LOAD_LASER();
+END_IF
+IF FLAG_VAR.ALLOW_EXECUTE_RETURN_LASER THEN 
+	IF SORTER_VAR.I_CASE=100 THEN
+		SORTER_VAR.I_CASE:=0;
+		IC_CASE:=0;
+	END_IF	
+	RETURN_LASER();	
+END_IF
+
+IF FLAG_VAR.ALLOW_EXECUTE_LOAD_NG THEN 
+	LOAD_NG();	
+END_IF
+
+IF FLAG_VAR.ALLOW_EXECUTE_RETURN_NG THEN 
+	RETURN_NG();	
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="472" Count="0" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="413" Count="0" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="552" Count="0" />
+      <LineId Id="494" Count="0" />
+      <LineId Id="9" Count="4" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="362" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="388" Count="0" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="348" Count="1" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="434" Count="1" />
+      <LineId Id="389" Count="1" />
+      <LineId Id="357" Count="1" />
+      <LineId Id="360" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="361" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="381" Count="1" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="385" Count="1" />
+      <LineId Id="391" Count="1" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="312" Count="0" />
+      <LineId Id="436" Count="3" />
+      <LineId Id="441" Count="0" />
+      <LineId Id="447" Count="1" />
+      <LineId Id="444" Count="1" />
+      <LineId Id="440" Count="0" />
+      <LineId Id="443" Count="0" />
+      <LineId Id="449" Count="1" />
+      <LineId Id="314" Count="12" />
+      <LineId Id="516" Count="14" />
+      <LineId Id="308" Count="0" />
+      <LineId Id="574" Count="1" />
+      <LineId Id="580" Count="4" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

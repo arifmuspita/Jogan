@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="INDEXING_2" Id="{55c1d41c-bec4-4f85-b013-949698a43a00}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM INDEXING_2
+VAR
+	bStartInput : BOOL;
+	bServoOn : BOOL;
+	bProgram0_On : BOOL;
+	bProgram1_On : BOOL :=TRUE;
+	bProgram2_On : BOOL :=FALSE;
+	bProgram3_On : BOOL:=FALSE;
+	bProgram4_On : BOOL:=FALSE;	
+	bHomePositionReturn : BOOL;
+	bResetInput : BOOL;
+	bEmergencyInput : BOOL := TRUE;
+	
+	IN_POSITION_INPUT: BOOL;
+	IN_POSITIONING_COMPLETION: BOOL;
+	IN_START_INPUT_WAIT: BOOL;
+	IN_ALARM1: BOOL;
+	IN_ALARM2: BOOL;
+	IN_READY_STATE: BOOL;
+	T1: TON;
+	TMR1: TON;
+	TMR2: TON;
+	TMR3: TON;
+	TMR4: TON;
+	TMR5: TON;
+	TMR6: TON;
+	TMR7: TON;
+	IN_SERVO_STATUS: BOOL;
+	CNT1: CTU;
+	ENABLE_TIMER: INT;
+	ResetCount: BOOL;
+	CNT_INDEX: CTU;
+	
+	RESET_CNT_INDEX: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[INDEXING_2_VAR.DataByteOutput2[0].0 := bProgram0_On;
+INDEXING_2_VAR.DataByteOutput2[0].1 := bProgram1_On;
+INDEXING_2_VAR.DataByteOutput2[0].2 := bProgram2_On;
+INDEXING_2_VAR.DataByteOutput2[0].3 := bProgram3_On;
+INDEXING_2_VAR.DataByteOutput2[0].4 := bProgram4_On;
+INDEXING_2_VAR.DataByteOutput2[0].6 := bResetInput;
+INDEXING_2_VAR.DataByteOutput2[0].7 := bHomePositionReturn;
+INDEXING_2_VAR.DataByteOutput2[1].0 := bStartInput;
+INDEXING_2_VAR.DataByteOutput2[1].1 := bServoOn;
+INDEXING_2_VAR.DataByteOutput2[1].4 := bEmergencyInput;
+
+IN_POSITION_INPUT := INDEXING_2_VAR.DataByteInput2 [1].0;
+IN_POSITIONING_COMPLETION := INDEXING_2_VAR.DataByteInput2 [1].1;
+IN_START_INPUT_WAIT := INDEXING_2_VAR.DataByteInput2 [1].2;
+IN_ALARM1 := INDEXING_2_VAR.DataByteInput2 [1].3;
+IN_ALARM2 := INDEXING_2_VAR.DataByteInput2 [1].4;
+IN_READY_STATE :=INDEXING_2_VAR.DataByteInput2 [1].7;
+IN_SERVO_STATUS :=INDEXING_2_VAR.DataByteInput2 [1].6; 
+
+//ALARM RESET
+IF IN_ALARM1 OR IN_ALARM2 THEN
+	bResetInput := TRUE;
+	TMR4(IN:=bResetInput,PT:=T#0.5S);
+	IF TMR4.Q THEN
+		bResetInput := FALSE;
+	END_IF
+ELSE
+	TMR4(IN:=FALSE);
+END_IF
+
+IF NOT INDEXING_2_VAR.I_INDEXING_2_HOME THEN
+ 	INDEXING_2_VAR.O_INDEXING_HOME:=TRUE;
+ 	IF IN_POSITIONING_COMPLETION THEN
+		INDEXING_2_VAR.I_INDEXING_2_HOME:=TRUE;
+	END_IF
+END_IF
+ 
+IF INDEXING_2_VAR.O_INDEXING_HOME THEN
+	bHomePositionReturn:=TRUE;
+	ResetCount:=TRUE;
+	INDEXING_2_VAR.O_ROTATION_START:=FALSE;
+	RESET_CNT_INDEX:=TRUE;
+	IF IN_POSITIONING_COMPLETION THEN
+		INDEXING_2_VAR.O_INDEXING_HOME:=FALSE;
+		bHomePositionReturn:=FALSE;
+			
+	END_IF
+ELSE
+	RESET_CNT_INDEX:=FALSE;
+END_IF
+
+IF 	INDEXING_2_VAR.O_ROTATION_START AND IN_START_INPUT_WAIT AND NOT INDEXING_2_VAR.O_INDEXING_HOME THEN
+	bprogram0_on:=TRUE;
+	INDEXING_2_VAR.O_ROTATION_DONE:=FALSE;
+END_IF
+
+//select Program No.
+IF bprogram0_on THEN
+	INDEXING_2_VAR.O_ROTATION_START:=FALSE;
+	TMR1(IN:=bprogram0_on,PT:=T#15MS);
+	bStartInput:=tmr1.Q ;
+	IF tmr1.Q THEN
+		TMR2(in:=TRUE,pt:=T#25MS);
+	END_IF
+	
+	IF tmr2.Q THEN
+		tmr1(in:=FALSE);
+		bStartInput:=FALSE;
+	END_IF
+	tmr3(in:=tmr2.Q,pt:=T#5MS);
+	IF tmr3.Q THEN
+		bprogram0_on:= FALSE;
+		tmr2(in:=FALSE);
+		tmr3(in:=FALSE);
+	END_IF
+END_IF
+IF  INDEXING_2_VAR.I_INDEXING_2_HOME THEN
+	CNT_INDEX(CU:=bprogram0_on,RESET:=CNT_INDEX.Q,PV:=4);
+	ELSE
+	CNT_INDEX(CU:=FALSE);
+	INDEXING_2_VAR.CARRIER_INDEX :=100;
+END_IF
+
+CASE CNT_INDEX.CV OF
+	0:
+	INDEXING_2_VAR.CARRIER_INDEX :=0;
+	RESET_CNT_INDEX:=FALSE;
+	1:
+	INDEXING_2_VAR.CARRIER_INDEX :=1;
+	2:
+	INDEXING_2_VAR.CARRIER_INDEX :=2;
+	3:
+	INDEXING_2_VAR.CARRIER_INDEX :=3;
+ELSE
+	INDEXING_2_VAR.CARRIER_INDEX :=0;
+END_CASE
+
+IF RESET_CNT_INDEX THEN
+	CNT_INDEX(CU:=FALSE);
+END_IF
+IF 	IN_POSITIONING_COMPLETION THEN
+	INDEXING_2_VAR.O_ROTATION_DONE:=TRUE;
+	INDEXING_2_VAR.O_ROTATION_START:=FALSE;
+	LOADER_RS4_VAR.I_LOADER_RS4_END_CARRIER:=FALSE;
+END_IF
+(*
+CNT1(CU:=IN_POSITIONING_COMPLETION,RESET:=ResetCount,PV:=4);
+TMR5(IN:=CNT1.Q,PT:=T#0.5S);
+
+IF TMR5.Q THEN
+	INDEXING_2_VAR.O_ROTATION_START:=TRUE;
+	ResetCount:=TRUE;
+	TMR5(IN:=FALSE);
+ELSE
+		ResetCount:=FALSE;
+END_IF
+ *)                           	]]></ST>
+    </Implementation>
+    <LineIds Name="INDEXING_2">
+      <LineId Id="3" Count="16" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="99" Count="5" />
+      <LineId Id="276" Count="1" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="203" Count="1" />
+      <LineId Id="207" Count="1" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="107" Count="1" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="109" Count="2" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="298" Count="1" />
+      <LineId Id="113" Count="1" />
+      <LineId Id="117" Count="24" />
+      <LineId Id="311" Count="1" />
+      <LineId Id="315" Count="1" />
+      <LineId Id="318" Count="0" />
+      <LineId Id="313" Count="1" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="309" Count="0" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="286" Count="0" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="288" Count="2" />
+      <LineId Id="294" Count="1" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="307" Count="1" />
+      <LineId Id="143" Count="2" />
+      <LineId Id="243" Count="0" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="199" Count="3" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

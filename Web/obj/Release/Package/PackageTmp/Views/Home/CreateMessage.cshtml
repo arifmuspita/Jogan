@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "CreateMessage";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    DBProject.Models.Message msg = Model.DataObject;
+}
+
+<div class="callout callout-danger">
+    <h4>Error :</h4>
+    <p>@Html.Raw(msg.MessageText)</p>
+</div>

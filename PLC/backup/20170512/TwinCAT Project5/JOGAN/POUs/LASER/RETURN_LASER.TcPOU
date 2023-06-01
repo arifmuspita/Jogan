@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="RETURN_LASER" Id="{1114e93a-06c3-45fb-a632-c3bb59274df1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM RETURN_LASER
+VAR_INPUT
+
+END_VAR
+
+VAR
+	TMR_DELAY: TON;
+	TMR_DELAY1: TON;
+	TMR_DELAY2: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE SORTER_VAR.I_CASE OF
+0: //standby near lotbox
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+
+	CASE SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		2 : 
+			SORTER_VAR.O_STOPPER_TRANSFER_B:=FALSE;			
+			LASER_MOVE(STEP_DATA_1:=0,//3,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=1);
+		1 : 
+			SORTER_VAR.O_STOPPER_TRANSFER_A:=FALSE;
+			LASER_MOVE(STEP_DATA_1:=0,//3,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=1,
+				STEP_DATA_5:=0);
+	END_CASE			
+	SORTER_VAR.O_VACUUM_On:=FALSE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;	
+	TMR_DELAY(IN:=FALSE);
+
+1://ready for picking up
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+
+		CASE SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		1:
+			SORTER_VAR.I_RETURN_DONE_A:=FALSE;
+		
+		2:
+			SORTER_VAR.I_RETURN_DONE_B:=FALSE;
+	END_CASE
+	LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);	
+			
+2://ready for picking up
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	TMR_DELAY(IN:=TRUE,PT:=T#1S);
+	IF TMR_DELAY.Q THEN
+	CASE SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+	1:		
+		//IF SORTER_VAR.I_LASER_TRANSFER_AT_BACK_A THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+		//END_IF
+	2:
+		//IF SORTER_VAR.I_LASER_TRANSFER_AT_BACK_B THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	//END_IF
+	END_CASE
+	END_IF
+		
+3://VACUUM AND TAKEUP
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=5,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	SORTER_VAR.O_VACUUM_On:=TRUE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;
+	
+4://MOVE BACK 10MM
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+5://MOVE UP 16MM
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_RETURN,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	(*
+	IF NOT SORTER_VAR.I_VACUUM_On THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	ELSE
+		SORTER_VAR.O_VACUUM_On:=TRUE;
+		SORTER_VAR.O_VACUUM_OFF:=FALSE;
+	END_IF
+	*)
+				
+6://WAIT THEN MOVE TO NEAR BOX
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	TMR_DELAY1(IN:=TRUE,PT:=T#3S);
+	IF TMR_DELAY1.Q THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=14,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	END_IF
+	
+				
+7://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	SORTER_VAR.I_CASE:=SORTER_VAR.I_CASE+1;
+	(*
+	TMR_DELAY(IN:=TRUE,PT:=T#1S);
+	IF TMR_DELAY.Q THEN
+			LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=14,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	END_IF
+		*)		
+8://INSERT INTO LOTBOX
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	TMR_DELAY(IN:=FALSE);
+	LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=16,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+9://MOVE BACK
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	TMR_DELAY2 (IN:=TRUE,PT:=T#2S);
+	IF TMR_DELAY2.Q THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_RETURN,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	END_IF
+	SORTER_VAR.O_VACUUM_On:=FALSE;
+	SORTER_VAR.O_VACUUM_OFF:=TRUE;
+10: //standby near lotbox
+	
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_RETURN,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	(*
+	IF SORTER_VAR.I_VACUUM_ON THEN
+		LASER_MOVE(STEP_DATA_1:=SORTER_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_RETURN,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_RETURN,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	ELSE
+		SORTER_VAR.O_VACUUM_ON:=FALSE;
+		SORTER_VAR.O_VACUUM_OFF:=TRUE;			
+	END_IF
+	*)
+				
+11://vacuum position 
+	IF SORTER_VAR.ACTIVE_ID=6 THEN
+		SORTER_VAR.ACTIVE_ID:=1;
+	END_IF
+	LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=4,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	IF SORTER_VAR.ACTIVE_ID=3 THEN
+		SORTER_VAR.O_VACUUM_ON:=FALSE;
+		SORTER_VAR.O_VACUUM_OFF:=FALSE;	
+	END_IF
+	
+			
+		
+100:
+	
+	SORTER_VAR.O_VACUUM_On:=FALSE;
+	SORTER_VAR.O_VACUUM_OFF:=FALSE;
+END_CASE 
+IF SORTER_VAR.I_CASE=12 THEN
+			CASE SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		1:
+			SORTER_VAR.I_RETURN_DONE_A:=TRUE;
+		
+		2:
+			SORTER_VAR.I_RETURN_DONE_B:=TRUE;
+	END_CASE
+	IF SORTER_VAR.I_RETURN_DONE_A OR SORTER_VAR.I_RETURN_DONE_B THEN
+		FLAG_VAR.ALLOW_EXECUTE_RETURN_LASER:=FALSE;
+		TMR_DELAY(IN:=FALSE);
+		TMR_DELAY1(IN:=FALSE);
+		TMR_DELAY2(IN:=FALSE);
+		
+		SORTER_VAR.I_CASE:=100;
+	END_IF
+END_IF	]]></ST>
+    </Implementation>
+    <LineIds Name="RETURN_LASER">
+      <LineId Id="963" Count="3" />
+      <LineId Id="1355" Count="0" />
+      <LineId Id="967" Count="1" />
+      <LineId Id="1301" Count="1" />
+      <LineId Id="969" Count="4" />
+      <LineId Id="1303" Count="1" />
+      <LineId Id="974" Count="8" />
+      <LineId Id="1113" Count="3" />
+      <LineId Id="1270" Count="0" />
+      <LineId Id="1117" Count="0" />
+      <LineId Id="1252" Count="5" />
+      <LineId Id="1118" Count="4" />
+      <LineId Id="1206" Count="0" />
+      <LineId Id="983" Count="0" />
+      <LineId Id="1197" Count="2" />
+      <LineId Id="1358" Count="0" />
+      <LineId Id="1376" Count="0" />
+      <LineId Id="1315" Count="1" />
+      <LineId Id="1324" Count="0" />
+      <LineId Id="1318" Count="5" />
+      <LineId Id="1325" Count="1" />
+      <LineId Id="1328" Count="5" />
+      <LineId Id="1317" Count="0" />
+      <LineId Id="1200" Count="1" />
+      <LineId Id="1123" Count="0" />
+      <LineId Id="1127" Count="3" />
+      <LineId Id="1132" Count="4" />
+      <LineId Id="1377" Count="1" />
+      <LineId Id="1276" Count="0" />
+      <LineId Id="1124" Count="0" />
+      <LineId Id="1220" Count="9" />
+      <LineId Id="1126" Count="0" />
+      <LineId Id="1142" Count="3" />
+      <LineId Id="1371" Count="4" />
+      <LineId Id="1281" Count="1" />
+      <LineId Id="1284" Count="6" />
+      <LineId Id="1283" Count="0" />
+      <LineId Id="1146" Count="0" />
+      <LineId Id="1196" Count="0" />
+      <LineId Id="1139" Count="0" />
+      <LineId Id="1151" Count="3" />
+      <LineId Id="1379" Count="0" />
+      <LineId Id="1381" Count="0" />
+      <LineId Id="1383" Count="3" />
+      <LineId Id="1382" Count="0" />
+      <LineId Id="1155" Count="0" />
+      <LineId Id="1160" Count="4" />
+      <LineId Id="1400" Count="1" />
+      <LineId Id="1165" Count="0" />
+      <LineId Id="1341" Count="1" />
+      <LineId Id="1344" Count="3" />
+      <LineId Id="1343" Count="0" />
+      <LineId Id="1166" Count="0" />
+      <LineId Id="1140" Count="0" />
+      <LineId Id="1177" Count="8" />
+      <LineId Id="1231" Count="5" />
+      <LineId Id="1387" Count="0" />
+      <LineId Id="1389" Count="0" />
+      <LineId Id="1391" Count="3" />
+      <LineId Id="1390" Count="0" />
+      <LineId Id="1237" Count="0" />
+      <LineId Id="1395" Count="0" />
+      <LineId Id="1230" Count="0" />
+      <LineId Id="984" Count="3" />
+      <LineId Id="1171" Count="0" />
+      <LineId Id="1366" Count="4" />
+      <LineId Id="1291" Count="1" />
+      <LineId Id="1294" Count="6" />
+      <LineId Id="1293" Count="0" />
+      <LineId Id="988" Count="0" />
+      <LineId Id="993" Count="13" />
+      <LineId Id="1175" Count="0" />
+      <LineId Id="1007" Count="0" />
+      <LineId Id="1017" Count="0" />
+      <LineId Id="1107" Count="4" />
+      <LineId Id="1258" Count="8" />
+      <LineId Id="1271" Count="0" />
+      <LineId Id="1396" Count="0" />
+      <LineId Id="1398" Count="1" />
+      <LineId Id="1397" Count="0" />
+      <LineId Id="1267" Count="2" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

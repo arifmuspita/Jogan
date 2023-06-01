@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LASER_PROG" Id="{75fe02f6-a49e-4e26-8a2d-398290aedd0e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LASER_PROG
+VAR
+	
+	PULS1: TON;
+	PULS2: TON;
+	CNT1: CTU;
+	LOTBOX_ACC: INT;
+	LOTBOX_ACC1: INT;
+	LOTBOX_TEMP1: INT;
+	LOTBOX_TEMP2: INT;
+	LOTBOX_TEMP3: INT;
+	LOTBOX_TEMP4: INT;
+	NGBOX_TEMP: INT;
+	NGBOX_TEMP1: INT;
+	NGBOX_TEMP2: INT;
+	NGBOX_TEMP3: INT;
+	NGBOX_TEMP4: INT;
+	NGBOX_ACC: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+PULS1(IN:=NOT PULS2.Q,PT:=T#0.5S);
+PULS2(IN:=PULS1.Q,PT:=T#1S);
+CNT1(CU:=PULS1.Q,RESET:=CNT1.Q,PV:=9);
+(*
+IF CNT1.CV=1 THEN
+	SORTER_VAR.O_NG_BOX_INDICATOR_4:=TRUE;
+END_IF
+IF CNT1.CV=2 THEN
+	SORTER_VAR.O_NG_BOX_INDICATOR_3:=TRUE;
+END_IF
+IF CNT1.CV=3 THEN
+	SORTER_VAR.O_NG_BOX_INDICATOR_2:=TRUE;
+END_IF
+IF CNT1.CV=4 THEN
+	SORTER_VAR.O_NG_BOX_INDICATOR_1:=TRUE;
+END_IF
+IF CNT1.CV=5 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_4:=TRUE;
+END_IF
+IF CNT1.CV=6 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_3:=TRUE;
+END_IF
+IF CNT1.CV=7 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_2:=TRUE;
+END_IF
+IF CNT1.CV=8 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_1:=TRUE;
+END_IF
+IF CNT1.Q THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_1:=FALSE;
+	SORTER_VAR.O_LOT_BOX_INDICATOR_2:=FALSE;
+	SORTER_VAR.O_LOT_BOX_INDICATOR_3:=FALSE;
+	SORTER_VAR.O_LOT_BOX_INDICATOR_4:=FALSE;
+	SORTER_VAR.O_NG_BOX_INDICATOR_1:=FALSE;
+	SORTER_VAR.O_NG_BOX_INDICATOR_2:=FALSE;
+	SORTER_VAR.O_NG_BOX_INDICATOR_3:=FALSE;
+	SORTER_VAR.O_NG_BOX_INDICATOR_4:=FALSE;
+END_IF
+*)
+IF SORTER_VAR.I_LOTBOX_DETECT_1 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_1:=PULS1.Q;
+	LOTBOX_TEMP1:=1;
+ELSE
+	SORTER_VAR.O_LOT_BOX_INDICATOR_1:=FALSE;
+	LOTBOX_TEMP1:=0;
+END_IF
+
+IF SORTER_VAR.I_LOTBOX_DETECT_2 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_2:=PULS1.Q;
+	LOTBOX_TEMP2:=1;
+	ELSE
+	LOTBOX_TEMP2:=0;
+	SORTER_VAR.O_LOT_BOX_INDICATOR_2:=FALSE;
+END_IF
+
+IF SORTER_VAR.I_LOTBOX_DETECT_3 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_3:=PULS1.Q;
+	LOTBOX_TEMP3:=1;
+	ELSE
+	SORTER_VAR.O_LOT_BOX_INDICATOR_3:=FALSE;
+	LOTBOX_TEMP3:=0;
+END_IF
+
+IF SORTER_VAR.I_LOTBOX_DETECT_4 THEN
+	SORTER_VAR.O_LOT_BOX_INDICATOR_4:=PULS1.Q;
+	LOTBOX_TEMP4:=1;
+	ELSE
+	SORTER_VAR.O_LOT_BOX_INDICATOR_4:=FALSE;
+	LOTBOX_TEMP4:=0;
+END_IF
+LOTBOX_ACC:=LOTBOX_TEMP1 +LOTBOX_TEMP2+LOTBOX_TEMP3+LOTBOX_TEMP4;
+
+IF LOTBOX_ACC >=3 THEN
+	//SORTER_VAR.O_TOWER_LAMP_BUZZER :=TRUE;
+	ELSE
+	SORTER_VAR.O_TOWER_LAMP_BUZZER :=FALSE;
+END_IF
+
+IF NOT SORTER_VAR.I_NG_BOX_DETECT_1 THEN
+		SORTER_VAR.O_NG_BOX_INDICATOR_1:=PULS1.Q;
+		NGBOX_TEMP1:=1;
+		ELSE
+		SORTER_VAR.O_NG_BOX_INDICATOR_1:=FALSE;
+		NGBOX_TEMP1:=0;
+END_IF
+
+IF NOT SORTER_VAR.I_NG_BOX_DETECT_2 THEN
+		SORTER_VAR.O_NG_BOX_INDICATOR_2:=PULS1.Q;
+		NGBOX_TEMP2:=1;
+		ELSE
+		SORTER_VAR.O_NG_BOX_INDICATOR_2:=FALSE;
+		NGBOX_TEMP2:=0;
+END_IF
+
+IF NOT SORTER_VAR.I_NG_BOX_DETECT_3 THEN
+		SORTER_VAR.O_NG_BOX_INDICATOR_3:=PULS1.Q;
+		NGBOX_TEMP3:=1;
+		ELSE
+		SORTER_VAR.O_NG_BOX_INDICATOR_3:=FALSE;
+		NGBOX_TEMP3:=0;
+END_IF
+
+IF NOT SORTER_VAR.I_NG_BOX_DETECT_4 THEN
+		SORTER_VAR.O_NG_BOX_INDICATOR_4:=PULS1.Q;
+		NGBOX_TEMP4:=1;
+		ELSE
+		SORTER_VAR.O_NG_BOX_INDICATOR_4:=FALSE;
+		NGBOX_TEMP4:=0;
+END_IF
+NGBOX_ACC:=NGBOX_TEMP1+NGBOX_TEMP2+NGBOX_TEMP3+NGBOX_TEMP4;
+IF NGBOX_ACC >=3 THEN
+	//SORTER_VAR.O_TOWER_LAMP_BUZZER :=TRUE;
+	ELSE
+	SORTER_VAR.O_TOWER_LAMP_BUZZER :=FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="LASER_PROG">
+      <LineId Id="63" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="26" />
+      <LineId Id="44" Count="2" />
+      <LineId Id="40" Count="3" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="71" Count="1" />
+      <LineId Id="140" Count="1" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="73" Count="3" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="77" Count="3" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="120" Count="1" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="81" Count="3" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="122" Count="1" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="159" Count="1" />
+      <LineId Id="162" Count="1" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="124" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="102" Count="3" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="127" Count="1" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="106" Count="3" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="129" Count="1" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="110" Count="3" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="131" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="183" Count="1" />
+      <LineId Id="186" Count="1" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

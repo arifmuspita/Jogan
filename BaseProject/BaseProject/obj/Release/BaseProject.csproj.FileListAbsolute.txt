@@ -1,0 +1,9 @@
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\bin\Release\BaseProject.exe.config
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\bin\Release\BaseProject.exe
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\bin\Release\BaseProject.pdb
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.csprojResolveAssemblyReference.cache
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.frmBase.resources
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.Properties.Resources.resources
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.csproj.GenerateResource.Cache
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.exe
+D:\andri\C#\JOGAN\Desktop\JOGAN\BaseProject\BaseProject\obj\Release\BaseProject.pdb

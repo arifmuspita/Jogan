@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "GoldenSample";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    DBProject.Models.Properties.UserRightAccess userright = Model.UserRightAccess;
+    DBProject.Models.M_GOLDEN_SAMPLE data = Model.DataObject;
+    int cch =1;
+}
+
+@if (Model.Method == "list")
+{
+    <div class="box">
+        <div class="box-header with-border">
+            @if (userright.Allow_Add)
+            {
+                <div class="form-group"></div>
+                <a href="#" class="btn btn-primary " id="btnAdd"><i class="fa fa-plus"></i> Add Golden Sample</a>
+                <div class="form-group"></div>
+            }
+            <table id="GoldenSample_table" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Group ID</th>
+                        <th>Group Name</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <script>
+        $(document).ready(function () {
+            $("#btnAdd").click(function (e) {
+                e.preventDefault();
+                window.location.href = "@Model.SetWebUrl("/DataMaster/GoldenSample/add")";
+            });
+            var columndefs = [];
+            var columns = [];
+            columndefs = [{
+                "targets": 0,
+                "orderable": false,
+                "data": "Action",
+                "render": function (data, type, full, meta) {
+                    var str = "";
+                    //str = str + '<a href="/' + modul + '/' + submodul + '/edit/' + full.ID + '" data-modul="' + submodul + '" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    @if(Model.UserRightAccess.Allow_Edit) {
+                            @:str = str + '<a href="@Model.SetWebUrl("/DataMaster/GoldenSample/edit/")' + full.Group_ID + '" data -modul="GoldenSample" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    }
+                    @if(Model.UserRightAccess.Allow_Delete) {
+                            @:str = str + '<a href="@Model.SetWebUrl("/DataMaster/GoldenSample/delete/")' + full.Group_ID + '" data -modul="GoldenSample" data-action="delete" class="btn btn-xs default"><i class="fa fa-eraser"></i> Delete</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>';
+                    }
+                    //return '' + '<a href="/' + modul + '/' + submodul + '/edit/' + full.ID + '" data-modul="' + submodul + '" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> Edit</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>'
+                    return str;
+                }
+            }];
+            columns = [
+                { "data": "Action" },
+                { "data": "Group_ID" },
+                { "data": "Group_Name" },
+            ];
+            DataTableJS.CreateDataTables2("@Model.WebRoot","DataMaster", "GoldenSample", 0, "", false, columndefs, columns);
+        });
+        </script>
+    </div>
+}
+else
+{<div class="box">
+        @*<div class="box-header">
+            @if (data.Group_ID == "")
+            {
+                <label>Add Golden Sample</label>
+            }
+            else
+            {
+                <label>Edit Golden Sample</label>
+            }
+        </div>*@
+        <div class="box-body">
+            <form id="Form1" method="post" action="@Model.SetWebUrl("/DataMaster/GoldenSampleDetail")" class="form-horizontal" role="form" enctype="multipart/form-data">
+                @*<input type="hidden" name="ID" value="@data.Group_ID" id="Group_ID" />*@
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                    <div class="col-md-8"><label for="Name">Golden Sample For : @data.Device_Test_Ref.ToUpper()</label></div>
+                    <div><input type="hidden" name="Device_Test_Ref" value="@data.Device_Test_Ref" /></div>
+                    <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                </div>
+                <div class="form-group"></div>
+                @using (var db = new DBProjectEntities())
+                {
+                    var list = db.M_GOLDEN_SAMPLES.Where(x => x.Device_Test_Ref == data.Device_Test_Ref).OrderBy(x => x.Golden_Sample_Type);
+                    foreach (var x in list)
+                    {
+                        <div class="row">
+                            <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                            <div class="col-md-8"><label for="Name">@x.Golden_Sample_Type.ToUpper()</label></div>
+                            <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                        </div>
+                        <div><input type="hidden" name="Golden_Sample_Type[]" value="@x.Golden_Sample_Type" /></div>
+                        
+                                    cch = 1;
+                                    for (int i = 1; i <= 8; i++)
+                                    {
+                    <div class="row">
+                        <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                        @for (int j = 1; j <= 8; j++)
+                        {
+                            string sockect = "Socket_" + (cch).ToString();
+                        string nmsockect = "Socket_" + (cch).ToString() + "[]";
+                        string sockectlbl = "Socket " + (cch).ToString();
+                        object valobj = Commons.Commons.GetValueFromProperty(x, sockect);
+                        double val = (double)valobj; 
+                            <div class="col-md-1">
+                                <div class="row" style="text-align:center; "><input type="text" name="@nmsockect" value="@val" style="width: 70px;" /></div>
+                                <div class="row" style="text-align:center;">@sockectlbl</div>
+                                <div class="row" style="text-align:center;">&nbsp</div>
+                            </div>
+                            cch++;
+                        }
+                        <div class="col-md-2"><label for="Name">&nbsp;</label></div>
+                    </div>
+                        }
+                    }
+                }
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <button type="submit" class="btn btn-primary" id="FormSave">Save</button>
+                        <button type="button" class="btn btn-primary" id="FormClose">Close</button>
+                    </div>
+                </div>
+            </form>
+            <script>
+        $(document).ready(function () {
+            $("#FormClose").click(function () {
+                window.location.href = "@Model.SetWebUrl("/DataMaster/GoldenSample")";
+            });
+        });
+            </script>
+        </div>
+    </div>
+}
+

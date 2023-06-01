@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NEWJOGANDBModelStoreContainer" CdmEntityContainer="NEWJOGANDBEntities6">
+    <EntitySetMapping Name="V_ERROR_LIST">
+      <EntityTypeMapping TypeName="NEWJOGANDBModel.V_ERROR_LIST">
+        <MappingFragment StoreEntitySet="V_ERROR_LIST">
+          <ScalarProperty Name="Error_Code" ColumnName="Error_Code" />
+          <ScalarProperty Name="Hardware_ID" ColumnName="Hardware_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Error_Name" ColumnName="Error_Name" />
+          <ScalarProperty Name="Impact" ColumnName="Impact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

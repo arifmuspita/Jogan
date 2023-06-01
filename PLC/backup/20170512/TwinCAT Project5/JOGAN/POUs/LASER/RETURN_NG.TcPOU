@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="RETURN_NG" Id="{328747e1-e495-488a-9c33-4bfcba7f10d1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM RETURN_NG
+VAR
+	DELAY: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT SORTER_VAR.I_NG_TRANSFER_AT_FRONT THEN
+	SORTER_VAR.O_NG_DATA_OUTPUT1:=TRUE;
+ELSE
+	SORTER_VAR.O_NG_DATA_OUTPUT1:=FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="RETURN_NG">
+      <LineId Id="12" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

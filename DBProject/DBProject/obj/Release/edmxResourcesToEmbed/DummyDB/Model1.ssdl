@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NEWJOGANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NEWJOGANDB.dbo.V_ERROR_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_ERROR_LIST">
+    <Key>
+      <PropertyRef Name="Error_Name" />
+      <PropertyRef Name="Impact" />
+    </Key>
+    <Property Name="Error_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hardware_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created_Date" Type="datetime" />
+    <Property Name="Error_Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Impact" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="NEWJOGANDBModelStoreContainer">
+    <EntitySet Name="V_ERROR_LIST" EntityType="Self.V_ERROR_LIST" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_ERROR_LIST].[Error_Code] AS [Error_Code], 
+    [V_ERROR_LIST].[Hardware_ID] AS [Hardware_ID], 
+    [V_ERROR_LIST].[Status] AS [Status], 
+    [V_ERROR_LIST].[Created_Date] AS [Created_Date], 
+    [V_ERROR_LIST].[Error_Name] AS [Error_Name], 
+    [V_ERROR_LIST].[Impact] AS [Impact]
+    FROM [dbo].[V_ERROR_LIST] AS [V_ERROR_LIST]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

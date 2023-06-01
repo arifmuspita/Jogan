@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LOAD_FUKUDA" Id="{4ece86f8-7a37-4f62-b8e7-f3ac9027245d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LOAD_FUKUDA
+VAR_INPUT
+
+END_VAR
+
+VAR
+	TMR_DELAY: TON;
+	TMR1:TON;
+	TMR_STOPPER_A: TON;
+	TMR_STOPPER_B: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE INPUT_VAR.I_CASE OF
+0: //standby near lotbox
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	CASE INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		2 : FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=1);
+				INPUT_VAR.O_STOPPER_TRANSFER_B:=FALSE;
+		1 : FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=1,
+				STEP_DATA_5:=0);
+				INPUT_VAR.O_STOPPER_TRANSFER_A:=FALSE;
+	END_CASE			
+	input_var.O_VACUUM_On:=FALSE;
+	input_var.O_VACUUM_OFF:=FALSE;	
+	
+			
+1: //standby near lotbox
+	
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+		FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+		CASE INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		1:
+			INPUT_VAR.I_LOADING_DONE_A:=FALSE;
+		
+		2:
+			INPUT_VAR.I_LOADING_DONE_B:=FALSE;
+	END_CASE
+	
+				
+2://vacuum position 
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	INPUT_VAR.I_CASE:=INPUT_VAR.I_CASE+1;
+	(*FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	IF INPUT_VAR.ACTIVE_ID=3 THEN
+		input_var.O_VACUUM_ON:=TRUE;
+		input_var.O_VACUUM_OFF:=FALSE;	
+	END_IF
+	*)
+
+3://vacuum position 
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1; 
+	END_IF
+	//INPUT_VAR.I_CASE:=INPUT_VAR.I_CASE+1;
+	//IF INPUT_VAR.O_VACUUM_ON THEN
+		FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	//ELSE
+		
+	//END_IF
+4://vacuum position 
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	input_var.O_VACUUM_ON:=TRUE;
+	input_var.O_VACUUM_OFF:=FALSE;
+	 
+	//CHECK JIG FUKUDA PRESENCE			
+//	IF  input_var.O_VACUUM_ON THEN
+//		TMR1(IN:=TRUE,PT:=T#2S);
+//		IF TMR1.Q THEN
+			//IF NOT INPUT_VAR.I_VACUUM_ON AND input_var.O_VACUUM_ON THEN
+			//	INPUT_VAR.JIG_FUKUDA_PRESENCE :=TRUE;
+				
+				(*FUKUDA_MOVE(STEP_DATA_1:=7,
+				STEP_DATA_2:=4,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);*)
+			//ELSE
+				INPUT_VAR.JIG_FUKUDA_PRESENCE :=FALSE;	
+				FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+(*				FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+				TMR_DELAY(IN:=TRUE,PT:=T#2S);
+				IF TMR_DELAY.Q THEN
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_FUKUDA:=FALSE;
+					INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD+0;
+					INPUT_VAR.I_CASE:=0;
+					TMR1(IN:=FALSE);
+					input_var.O_VACUUM_ON:=FALSE;
+					input_var.O_VACUUM_OFF:=FALSE;
+				END_IF
+			//END_IF
+		END_IF 
+	END_IF 
+*)
+				
+
+5://vacuum position 
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	
+	FUKUDA_MOVE(STEP_DATA_1:=8,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	
+6://gripping position
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+
+	FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+4,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+
+7://placing onto fukuda transport
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+4,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+8://placing onto fukuda transport
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	
+	FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+4,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	(*IF INPUT_VAR.ACTIVE_ID=3 THEN
+		input_var.O_VACUUM_On:=FALSE;
+		input_var.O_VACUUM_OFF:=TRUE;	
+	END_IF
+	*)
+	
+9://homing
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	IF INPUT_VAR.I_VACUUM_ON THEN
+		FUKUDA_MOVE(STEP_DATA_1:=INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+4,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=13,//11
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	ELSE
+		input_var.O_VACUUM_On:=FALSE;
+		input_var.O_VACUUM_OFF:=TRUE;
+	END_IF	
+				
+10://pusH fukuda transport
+	IF INPUT_VAR.ACTIVE_ID=6 THEN
+		INPUT_VAR.ACTIVE_ID:=1;
+	END_IF
+	input_var.O_VACUUM_OFF:=FALSE;
+	CASE INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		2 :
+			IF NOT INPUT_VAR.I_FUKUDA_TRANSFER_AT_FRONT_B THEN
+				FUKUDA_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=2);
+			END_IF
+				 
+		1 : 
+			IF NOT INPUT_VAR.I_FUKUDA_TRANSFER_AT_FRONT_A THEN
+				FUKUDA_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=2,
+				STEP_DATA_5:=0);
+			END_IF
+	END_CASE			 
+11:
+				CASE INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX OF
+		1:	
+			IF INPUT_VAR.I_FUKUDA_TRANSFER_AT_FRONT_A THEN
+				TMR_STOPPER_A(IN:=TRUE,PT:=T#0.8S);
+				IF TMR_STOPPER_A.Q THEN 
+					INPUT_VAR.O_STOPPER_TRANSFER_A:=TRUE;
+					INPUT_VAR.I_LOADING_DONE_A:=TRUE;
+					TMR1(IN:=FALSE);
+					TMR_DELAY(IN:=FALSE);
+					input_var.O_VACUUM_On:=FALSE;
+					input_var.O_VACUUM_OFF:=TRUE;
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_FUKUDA:=FALSE;
+					INPUT_G6_VAR.I_G6_ENABLE:=TRUE;
+					INPUT_VAR.I_CASE:=100;
+				END_IF
+				
+			ELSE
+				TMR_STOPPER_A(IN:=FALSE);
+				FUKUDA_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=2,
+				STEP_DATA_5:=0);
+			END_IF 
+			
+			2:
+			IF INPUT_VAR.I_FUKUDA_TRANSFER_AT_FRONT_B THEN
+				
+				TMR_STOPPER_B(IN:=TRUE,PT:=T#0.8S);
+				IF TMR_STOPPER_B.Q THEN
+					INPUT_VAR.O_STOPPER_TRANSFER_B:=TRUE;	
+					INPUT_VAR.I_LOADING_DONE_B:=TRUE;
+					TMR1(IN:=FALSE);
+					TMR_DELAY(IN:=FALSE);
+					input_var.O_VACUUM_On:=FALSE;
+					input_var.O_VACUUM_OFF:=TRUE;
+					FLAG_VAR.ALLOW_EXECUTE_LOAD_FUKUDA:=FALSE;
+					INPUT_G6_VAR.I_G6_ENABLE:=TRUE;
+					INPUT_VAR.I_CASE:=100;
+				END_IF
+			ELSE
+				TMR_STOPPER_B(IN:=FALSE);
+				FUKUDA_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=0,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=2);
+			END_IF
+			
+	END_CASE
+100:
+	
+	FLAG_VAR.ALLOW_EXECUTE_LOAD_FUKUDA:=FALSE;								
+								
+END_CASE 
+]]></ST>
+    </Implementation>
+    <LineIds Name="LOAD_FUKUDA">
+      <LineId Id="6" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="838" Count="1" />
+      <LineId Id="858" Count="1" />
+      <LineId Id="842" Count="1" />
+      <LineId Id="1175" Count="0" />
+      <LineId Id="844" Count="0" />
+      <LineId Id="860" Count="1" />
+      <LineId Id="847" Count="1" />
+      <LineId Id="1177" Count="0" />
+      <LineId Id="849" Count="1" />
+      <LineId Id="856" Count="0" />
+      <LineId Id="952" Count="0" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="752" Count="0" />
+      <LineId Id="633" Count="0" />
+      <LineId Id="635" Count="2" />
+      <LineId Id="902" Count="4" />
+      <LineId Id="897" Count="0" />
+      <LineId Id="877" Count="6" />
+      <LineId Id="638" Count="0" />
+      <LineId Id="643" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="1222" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="97" Count="3" />
+      <LineId Id="221" Count="1" />
+      <LineId Id="588" Count="0" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="1221" Count="0" />
+      <LineId Id="1053" Count="0" />
+      <LineId Id="589" Count="0" />
+      <LineId Id="800" Count="2" />
+      <LineId Id="1227" Count="0" />
+      <LineId Id="1141" Count="0" />
+      <LineId Id="803" Count="4" />
+      <LineId Id="1142" Count="1" />
+      <LineId Id="919" Count="0" />
+      <LineId Id="768" Count="3" />
+      <LineId Id="1225" Count="1" />
+      <LineId Id="1351" Count="0" />
+      <LineId Id="782" Count="0" />
+      <LineId Id="1097" Count="4" />
+      <LineId Id="1130" Count="5" />
+      <LineId Id="1102" Count="13" />
+      <LineId Id="1117" Count="1" />
+      <LineId Id="1120" Count="2" />
+      <LineId Id="1138" Count="2" />
+      <LineId Id="1123" Count="2" />
+      <LineId Id="1136" Count="0" />
+      <LineId Id="1129" Count="0" />
+      <LineId Id="1074" Count="0" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="823" Count="8" />
+      <LineId Id="1061" Count="0" />
+      <LineId Id="547" Count="10" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="337" Count="0" />
+      <LineId Id="366" Count="3" />
+      <LineId Id="372" Count="3" />
+      <LineId Id="666" Count="0" />
+      <LineId Id="704" Count="3" />
+      <LineId Id="735" Count="0" />
+      <LineId Id="708" Count="4" />
+      <LineId Id="863" Count="1" />
+      <LineId Id="866" Count="0" />
+      <LineId Id="865" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="376" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="739" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="133" Count="3" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="1145" Count="2" />
+      <LineId Id="714" Count="0" />
+      <LineId Id="49" Count="3" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="1149" Count="1" />
+      <LineId Id="1152" Count="3" />
+      <LineId Id="1151" Count="0" />
+      <LineId Id="1148" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="1161" Count="0" />
+      <LineId Id="1163" Count="0" />
+      <LineId Id="157" Count="3" />
+      <LineId Id="1164" Count="0" />
+      <LineId Id="652" Count="1" />
+      <LineId Id="1243" Count="0" />
+      <LineId Id="1288" Count="2" />
+      <LineId Id="1292" Count="1" />
+      <LineId Id="1371" Count="0" />
+      <LineId Id="1338" Count="2" />
+      <LineId Id="1353" Count="0" />
+      <LineId Id="1356" Count="0" />
+      <LineId Id="1372" Count="0" />
+      <LineId Id="1354" Count="0" />
+      <LineId Id="1334" Count="0" />
+      <LineId Id="1296" Count="1" />
+      <LineId Id="1301" Count="1" />
+      <LineId Id="1304" Count="12" />
+      <LineId Id="1335" Count="1" />
+      <LineId Id="1357" Count="2" />
+      <LineId Id="1373" Count="0" />
+      <LineId Id="1360" Count="0" />
+      <LineId Id="1337" Count="0" />
+      <LineId Id="1318" Count="0" />
+      <LineId Id="1322" Count="1" />
+      <LineId Id="1325" Count="6" />
+      <LineId Id="656" Count="1" />
+      <LineId Id="1240" Count="2" />
+      <LineId Id="884" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

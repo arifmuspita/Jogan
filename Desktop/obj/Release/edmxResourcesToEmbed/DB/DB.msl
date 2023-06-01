@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="DBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxNGs">
+      <EntityTypeMapping TypeName="DBModel.BoxNG">
+        <MappingFragment StoreEntitySet="BoxNGs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BoxNGID" ColumnName="BoxNGID" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceNGs">
+      <EntityTypeMapping TypeName="DBModel.DeviceNG">
+        <MappingFragment StoreEntitySet="DeviceNGs">
+          <ScalarProperty Name="DeviceNGID" ColumnName="DeviceNGID" />
+          <ScalarProperty Name="DeviceNGType" ColumnName="DeviceNGType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceNoiseConfigGroups">
+      <EntityTypeMapping TypeName="DBModel.DeviceNoiseConfigGroup">
+        <MappingFragment StoreEntitySet="DeviceNoiseConfigGroups">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeviceConfigGroupID" ColumnName="DeviceConfigGroupID" />
+          <ScalarProperty Name="DeviceConfigGroupName" ColumnName="DeviceConfigGroupName" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceNoiseTestParameters">
+      <EntityTypeMapping TypeName="DBModel.DeviceNoiseTestParameter">
+        <MappingFragment StoreEntitySet="DeviceNoiseTestParameters">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="DeviceNoiseTestParameterTypeID" ColumnName="DeviceNoiseTestParameterTypeID" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceNoiseTestParameterTypes">
+      <EntityTypeMapping TypeName="DBModel.DeviceNoiseTestParameterType">
+        <MappingFragment StoreEntitySet="DeviceNoiseTestParameterTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeviceNoiseConfigGroupID" ColumnName="DeviceNoiseConfigGroupID" />
+          <ScalarProperty Name="NoiseLimit" ColumnName="NoiseLimit" />
+          <ScalarProperty Name="SoakTime" ColumnName="SoakTime" />
+          <ScalarProperty Name="MeasurementDuration" ColumnName="MeasurementDuration" />
+          <ScalarProperty Name="LaudaSetting" ColumnName="LaudaSetting" />
+          <ScalarProperty Name="BBTemperatureHL" ColumnName="BBTemperatureHL" />
+          <ScalarProperty Name="BBTemperatureLL" ColumnName="BBTemperatureLL" />
+          <ScalarProperty Name="UpperTempTolerance" ColumnName="UpperTempTolerance" />
+          <ScalarProperty Name="LowerTempTolearance" ColumnName="LowerTempTolearance" />
+          <ScalarProperty Name="SampleRate" ColumnName="SampleRate" />
+          <ScalarProperty Name="NoDUTOffset" ColumnName="NoDUTOffset" />
+          <ScalarProperty Name="OffsetHLimit" ColumnName="OffsetHLimit" />
+          <ScalarProperty Name="OffsetLLimit" ColumnName="OffsetLLimit" />
+          <ScalarProperty Name="CutOffFreq" ColumnName="CutOffFreq" />
+          <ScalarProperty Name="MovingWindow" ColumnName="MovingWindow" />
+          <ScalarProperty Name="TestingVoltage" ColumnName="TestingVoltage" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="DBModel.Device">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+          <ScalarProperty Name="DeviceGroup" ColumnName="DeviceGroup" />
+          <ScalarProperty Name="DeviceStatus" ColumnName="DeviceStatus" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeviceSignalTestParameters">
+      <EntityTypeMapping TypeName="DBModel.DeviceSignalTestParameter">
+        <MappingFragment StoreEntitySet="DeviceSignalTestParameters">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="NoDUTOffset" ColumnName="NoDUTOffset" />
+          <ScalarProperty Name="OffsetMin" ColumnName="OffsetMin" />
+          <ScalarProperty Name="OffsetMax" ColumnName="OffsetMax" />
+          <ScalarProperty Name="OffsetGrpMin" ColumnName="OffsetGrpMin" />
+          <ScalarProperty Name="OffsetGrpMax" ColumnName="OffsetGrpMax" />
+          <ScalarProperty Name="NoResponse" ColumnName="NoResponse" />
+          <ScalarProperty Name="ResponseMin" ColumnName="ResponseMin" />
+          <ScalarProperty Name="ResponseMax" ColumnName="ResponseMax" />
+          <ScalarProperty Name="ResponseGrpMin" ColumnName="ResponseGrpMin" />
+          <ScalarProperty Name="ResponseGrpMax" ColumnName="ResponseGrpMax" />
+          <ScalarProperty Name="MatchSignalMax" ColumnName="MatchSignalMax" />
+          <ScalarProperty Name="ResistanceMin" ColumnName="ResistanceMin" />
+          <ScalarProperty Name="C1stSoakTime" ColumnName="C1stSoakTime" />
+          <ScalarProperty Name="C2ndSoakTime" ColumnName="C2ndSoakTime" />
+          <ScalarProperty Name="LaudaSetting" ColumnName="LaudaSetting" />
+          <ScalarProperty Name="BBSetting" ColumnName="BBSetting" />
+          <ScalarProperty Name="BBTemperatureHL" ColumnName="BBTemperatureHL" />
+          <ScalarProperty Name="BBTemperatureLL" ColumnName="BBTemperatureLL" />
+          <ScalarProperty Name="SampleRate" ColumnName="SampleRate" />
+          <ScalarProperty Name="HighCutOfFrequency" ColumnName="HighCutOfFrequency" />
+          <ScalarProperty Name="LowCutOfFrequency" ColumnName="LowCutOfFrequency" />
+          <ScalarProperty Name="MeasurementDureation" ColumnName="MeasurementDureation" />
+          <ScalarProperty Name="MeasurementDureation2" ColumnName="MeasurementDureation2" />
+          <ScalarProperty Name="TemperatureCoe" ColumnName="TemperatureCoe" />
+          <ScalarProperty Name="TestingVoltage" ColumnName="TestingVoltage" />
+          <ScalarProperty Name="Resistance" ColumnName="Resistance" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JIGCarriers">
+      <EntityTypeMapping TypeName="DBModel.JIGCarrier">
+        <MappingFragment StoreEntitySet="JIGCarriers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JigCarrierID" ColumnName="JigCarrierID" />
+          <ScalarProperty Name="JigDescription" ColumnName="JigDescription" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LotBoxes">
+      <EntityTypeMapping TypeName="DBModel.LotBox">
+        <MappingFragment StoreEntitySet="LotBoxes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LotBoxID" ColumnName="LotBoxID" />
+          <ScalarProperty Name="LotBoxDescription" ColumnName="LotBoxDescription" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineCalibrations">
+      <EntityTypeMapping TypeName="DBModel.MachineCalibration">
+        <MappingFragment StoreEntitySet="MachineCalibrations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="CalibrationType" ColumnName="CalibrationType" />
+          <ScalarProperty Name="Socket1" ColumnName="Socket1" />
+          <ScalarProperty Name="Socket2" ColumnName="Socket2" />
+          <ScalarProperty Name="Socket3" ColumnName="Socket3" />
+          <ScalarProperty Name="Socket4" ColumnName="Socket4" />
+          <ScalarProperty Name="Socket5" ColumnName="Socket5" />
+          <ScalarProperty Name="Socket6" ColumnName="Socket6" />
+          <ScalarProperty Name="Socket7" ColumnName="Socket7" />
+          <ScalarProperty Name="Socket8" ColumnName="Socket8" />
+          <ScalarProperty Name="Socket9" ColumnName="Socket9" />
+          <ScalarProperty Name="Socket10" ColumnName="Socket10" />
+          <ScalarProperty Name="Socket11" ColumnName="Socket11" />
+          <ScalarProperty Name="Socket12" ColumnName="Socket12" />
+          <ScalarProperty Name="Socket13" ColumnName="Socket13" />
+          <ScalarProperty Name="Socket14" ColumnName="Socket14" />
+          <ScalarProperty Name="Socket15" ColumnName="Socket15" />
+          <ScalarProperty Name="Socket16" ColumnName="Socket16" />
+          <ScalarProperty Name="Socket17" ColumnName="Socket17" />
+          <ScalarProperty Name="Socket18" ColumnName="Socket18" />
+          <ScalarProperty Name="Socket19" ColumnName="Socket19" />
+          <ScalarProperty Name="Socket20" ColumnName="Socket20" />
+          <ScalarProperty Name="Socket21" ColumnName="Socket21" />
+          <ScalarProperty Name="Socket22" ColumnName="Socket22" />
+          <ScalarProperty Name="Socket23" ColumnName="Socket23" />
+          <ScalarProperty Name="Socket24" ColumnName="Socket24" />
+          <ScalarProperty Name="Socket25" ColumnName="Socket25" />
+          <ScalarProperty Name="Socket26" ColumnName="Socket26" />
+          <ScalarProperty Name="Socket27" ColumnName="Socket27" />
+          <ScalarProperty Name="Socket28" ColumnName="Socket28" />
+          <ScalarProperty Name="Socket29" ColumnName="Socket29" />
+          <ScalarProperty Name="Socket30" ColumnName="Socket30" />
+          <ScalarProperty Name="Socket31" ColumnName="Socket31" />
+          <ScalarProperty Name="Socket32" ColumnName="Socket32" />
+          <ScalarProperty Name="Socket33" ColumnName="Socket33" />
+          <ScalarProperty Name="Socket34" ColumnName="Socket34" />
+          <ScalarProperty Name="Socket35" ColumnName="Socket35" />
+          <ScalarProperty Name="Socket36" ColumnName="Socket36" />
+          <ScalarProperty Name="Socket37" ColumnName="Socket37" />
+          <ScalarProperty Name="Socket38" ColumnName="Socket38" />
+          <ScalarProperty Name="Socket39" ColumnName="Socket39" />
+          <ScalarProperty Name="Socket40" ColumnName="Socket40" />
+          <ScalarProperty Name="Socket41" ColumnName="Socket41" />
+          <ScalarProperty Name="Socket42" ColumnName="Socket42" />
+          <ScalarProperty Name="Socket43" ColumnName="Socket43" />
+          <ScalarProperty Name="Socket44" ColumnName="Socket44" />
+          <ScalarProperty Name="Socket45" ColumnName="Socket45" />
+          <ScalarProperty Name="Socket46" ColumnName="Socket46" />
+          <ScalarProperty Name="Socket47" ColumnName="Socket47" />
+          <ScalarProperty Name="Socket48" ColumnName="Socket48" />
+          <ScalarProperty Name="Socket49" ColumnName="Socket49" />
+          <ScalarProperty Name="Socket50" ColumnName="Socket50" />
+          <ScalarProperty Name="Socket51" ColumnName="Socket51" />
+          <ScalarProperty Name="Socket52" ColumnName="Socket52" />
+          <ScalarProperty Name="Socket53" ColumnName="Socket53" />
+          <ScalarProperty Name="Socket54" ColumnName="Socket54" />
+          <ScalarProperty Name="Socket55" ColumnName="Socket55" />
+          <ScalarProperty Name="Socket56" ColumnName="Socket56" />
+          <ScalarProperty Name="Socket57" ColumnName="Socket57" />
+          <ScalarProperty Name="Socket58" ColumnName="Socket58" />
+          <ScalarProperty Name="Socket59" ColumnName="Socket59" />
+          <ScalarProperty Name="Socket60" ColumnName="Socket60" />
+          <ScalarProperty Name="Socket61" ColumnName="Socket61" />
+          <ScalarProperty Name="Socket62" ColumnName="Socket62" />
+          <ScalarProperty Name="Socket63" ColumnName="Socket63" />
+          <ScalarProperty Name="Socket64" ColumnName="Socket64" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineNoiseCalibrations">
+      <EntityTypeMapping TypeName="DBModel.MachineNoiseCalibration">
+        <MappingFragment StoreEntitySet="MachineNoiseCalibrations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="ScaleSignal" ColumnName="ScaleSignal" />
+          <ScalarProperty Name="ScaleOffset" ColumnName="ScaleOffset" />
+          <ScalarProperty Name="NoiseCorrFactor" ColumnName="NoiseCorrFactor" />
+          <ScalarProperty Name="PT100BBCorrFactor" ColumnName="PT100BBCorrFactor" />
+          <ScalarProperty Name="PT100LaudaCorrFactor" ColumnName="PT100LaudaCorrFactor" />
+          <ScalarProperty Name="PT100CorrFactor" ColumnName="PT100CorrFactor" />
+          <ScalarProperty Name="Socket1" ColumnName="Socket1" />
+          <ScalarProperty Name="Socket2" ColumnName="Socket2" />
+          <ScalarProperty Name="Socket3" ColumnName="Socket3" />
+          <ScalarProperty Name="Socket4" ColumnName="Socket4" />
+          <ScalarProperty Name="Socket5" ColumnName="Socket5" />
+          <ScalarProperty Name="Socket6" ColumnName="Socket6" />
+          <ScalarProperty Name="Socket7" ColumnName="Socket7" />
+          <ScalarProperty Name="Socket8" ColumnName="Socket8" />
+          <ScalarProperty Name="Socket9" ColumnName="Socket9" />
+          <ScalarProperty Name="Socket10" ColumnName="Socket10" />
+          <ScalarProperty Name="Socket11" ColumnName="Socket11" />
+          <ScalarProperty Name="Socket12" ColumnName="Socket12" />
+          <ScalarProperty Name="Socket13" ColumnName="Socket13" />
+          <ScalarProperty Name="Socket14" ColumnName="Socket14" />
+          <ScalarProperty Name="Socket15" ColumnName="Socket15" />
+          <ScalarProperty Name="Socket16" ColumnName="Socket16" />
+          <ScalarProperty Name="Socket17" ColumnName="Socket17" />
+          <ScalarProperty Name="Socket18" ColumnName="Socket18" />
+          <ScalarProperty Name="Socket19" ColumnName="Socket19" />
+          <ScalarProperty Name="Socket20" ColumnName="Socket20" />
+          <ScalarProperty Name="Socket21" ColumnName="Socket21" />
+          <ScalarProperty Name="Socket22" ColumnName="Socket22" />
+          <ScalarProperty Name="Socket23" ColumnName="Socket23" />
+          <ScalarProperty Name="Socket24" ColumnName="Socket24" />
+          <ScalarProperty Name="Socket25" ColumnName="Socket25" />
+          <ScalarProperty Name="Socket26" ColumnName="Socket26" />
+          <ScalarProperty Name="Socket27" ColumnName="Socket27" />
+          <ScalarProperty Name="Socket28" ColumnName="Socket28" />
+          <ScalarProperty Name="Socket29" ColumnName="Socket29" />
+          <ScalarProperty Name="Socket30" ColumnName="Socket30" />
+          <ScalarProperty Name="Socket31" ColumnName="Socket31" />
+          <ScalarProperty Name="Socket32" ColumnName="Socket32" />
+          <ScalarProperty Name="Socket33" ColumnName="Socket33" />
+          <ScalarProperty Name="Socket34" ColumnName="Socket34" />
+          <ScalarProperty Name="Socket35" ColumnName="Socket35" />
+          <ScalarProperty Name="Socket36" ColumnName="Socket36" />
+          <ScalarProperty Name="Socket37" ColumnName="Socket37" />
+          <ScalarProperty Name="Socket38" ColumnName="Socket38" />
+          <ScalarProperty Name="Socket39" ColumnName="Socket39" />
+          <ScalarProperty Name="Socket40" ColumnName="Socket40" />
+          <ScalarProperty Name="Socket41" ColumnName="Socket41" />
+          <ScalarProperty Name="Socket42" ColumnName="Socket42" />
+          <ScalarProperty Name="Socket43" ColumnName="Socket43" />
+          <ScalarProperty Name="Socket44" ColumnName="Socket44" />
+          <ScalarProperty Name="Socket45" ColumnName="Socket45" />
+          <ScalarProperty Name="Socket46" ColumnName="Socket46" />
+          <ScalarProperty Name="Socket47" ColumnName="Socket47" />
+          <ScalarProperty Name="Socket48" ColumnName="Socket48" />
+          <ScalarProperty Name="Socket49" ColumnName="Socket49" />
+          <ScalarProperty Name="Socket50" ColumnName="Socket50" />
+          <ScalarProperty Name="Socket51" ColumnName="Socket51" />
+          <ScalarProperty Name="Socket52" ColumnName="Socket52" />
+          <ScalarProperty Name="Socket53" ColumnName="Socket53" />
+          <ScalarProperty Name="Socket54" ColumnName="Socket54" />
+          <ScalarProperty Name="Socket55" ColumnName="Socket55" />
+          <ScalarProperty Name="Socket56" ColumnName="Socket56" />
+          <ScalarProperty Name="Socket57" ColumnName="Socket57" />
+          <ScalarProperty Name="Socket58" ColumnName="Socket58" />
+          <ScalarProperty Name="Socket59" ColumnName="Socket59" />
+          <ScalarProperty Name="Socket60" ColumnName="Socket60" />
+          <ScalarProperty Name="Socket61" ColumnName="Socket61" />
+          <ScalarProperty Name="Socket62" ColumnName="Socket62" />
+          <ScalarProperty Name="Socket63" ColumnName="Socket63" />
+          <ScalarProperty Name="Socket64" ColumnName="Socket64" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Machines">
+      <EntityTypeMapping TypeName="DBModel.Machine">
+        <MappingFragment StoreEntitySet="Machines">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineSignalCalibrations">
+      <EntityTypeMapping TypeName="DBModel.MachineSignalCalibration">
+        <MappingFragment StoreEntitySet="MachineSignalCalibrations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="ScaleSignal" ColumnName="ScaleSignal" />
+          <ScalarProperty Name="ScaleOffset" ColumnName="ScaleOffset" />
+          <ScalarProperty Name="ScaleResistance" ColumnName="ScaleResistance" />
+          <ScalarProperty Name="MatchCorrFactor" ColumnName="MatchCorrFactor" />
+          <ScalarProperty Name="Gain" ColumnName="Gain" />
+          <ScalarProperty Name="PT100CorrFactor" ColumnName="PT100CorrFactor" />
+          <ScalarProperty Name="Socket1" ColumnName="Socket1" />
+          <ScalarProperty Name="Socket2" ColumnName="Socket2" />
+          <ScalarProperty Name="Socket3" ColumnName="Socket3" />
+          <ScalarProperty Name="Socket4" ColumnName="Socket4" />
+          <ScalarProperty Name="Socket5" ColumnName="Socket5" />
+          <ScalarProperty Name="Socket6" ColumnName="Socket6" />
+          <ScalarProperty Name="Socket7" ColumnName="Socket7" />
+          <ScalarProperty Name="Socket8" ColumnName="Socket8" />
+          <ScalarProperty Name="Socket9" ColumnName="Socket9" />
+          <ScalarProperty Name="Socket10" ColumnName="Socket10" />
+          <ScalarProperty Name="Socket11" ColumnName="Socket11" />
+          <ScalarProperty Name="Socket12" ColumnName="Socket12" />
+          <ScalarProperty Name="Socket13" ColumnName="Socket13" />
+          <ScalarProperty Name="Socket14" ColumnName="Socket14" />
+          <ScalarProperty Name="Socket15" ColumnName="Socket15" />
+          <ScalarProperty Name="Socket16" ColumnName="Socket16" />
+          <ScalarProperty Name="Socket17" ColumnName="Socket17" />
+          <ScalarProperty Name="Socket18" ColumnName="Socket18" />
+          <ScalarProperty Name="Socket19" ColumnName="Socket19" />
+          <ScalarProperty Name="Socket20" ColumnName="Socket20" />
+          <ScalarProperty Name="Socket21" ColumnName="Socket21" />
+          <ScalarProperty Name="Socket22" ColumnName="Socket22" />
+          <ScalarProperty Name="Socket23" ColumnName="Socket23" />
+          <ScalarProperty Name="Socket24" ColumnName="Socket24" />
+          <ScalarProperty Name="Socket25" ColumnName="Socket25" />
+          <ScalarProperty Name="Socket26" ColumnName="Socket26" />
+          <ScalarProperty Name="Socket27" ColumnName="Socket27" />
+          <ScalarProperty Name="Socket28" ColumnName="Socket28" />
+          <ScalarProperty Name="Socket29" ColumnName="Socket29" />
+          <ScalarProperty Name="Socket30" ColumnName="Socket30" />
+          <ScalarProperty Name="Socket31" ColumnName="Socket31" />
+          <ScalarProperty Name="Socket32" ColumnName="Socket32" />
+          <ScalarProperty Name="Socket33" ColumnName="Socket33" />
+          <ScalarProperty Name="Socket34" ColumnName="Socket34" />
+          <ScalarProperty Name="Socket35" ColumnName="Socket35" />
+          <ScalarProperty Name="Socket36" ColumnName="Socket36" />
+          <ScalarProperty Name="Socket37" ColumnName="Socket37" />
+          <ScalarProperty Name="Socket38" ColumnName="Socket38" />
+          <ScalarProperty Name="Socket39" ColumnName="Socket39" />
+          <ScalarProperty Name="Socket40" ColumnName="Socket40" />
+          <ScalarProperty Name="Socket41" ColumnName="Socket41" />
+          <ScalarProperty Name="Socket42" ColumnName="Socket42" />
+          <ScalarProperty Name="Socket43" ColumnName="Socket43" />
+          <ScalarProperty Name="Socket44" ColumnName="Socket44" />
+          <ScalarProperty Name="Socket45" ColumnName="Socket45" />
+          <ScalarProperty Name="Socket46" ColumnName="Socket46" />
+          <ScalarProperty Name="Socket47" ColumnName="Socket47" />
+          <ScalarProperty Name="Socket48" ColumnName="Socket48" />
+          <ScalarProperty Name="Socket49" ColumnName="Socket49" />
+          <ScalarProperty Name="Socket50" ColumnName="Socket50" />
+          <ScalarProperty Name="Socket51" ColumnName="Socket51" />
+          <ScalarProperty Name="Socket52" ColumnName="Socket52" />
+          <ScalarProperty Name="Socket53" ColumnName="Socket53" />
+          <ScalarProperty Name="Socket54" ColumnName="Socket54" />
+          <ScalarProperty Name="Socket55" ColumnName="Socket55" />
+          <ScalarProperty Name="Socket56" ColumnName="Socket56" />
+          <ScalarProperty Name="Socket57" ColumnName="Socket57" />
+          <ScalarProperty Name="Socket58" ColumnName="Socket58" />
+          <ScalarProperty Name="Socket59" ColumnName="Socket59" />
+          <ScalarProperty Name="Socket60" ColumnName="Socket60" />
+          <ScalarProperty Name="Socket61" ColumnName="Socket61" />
+          <ScalarProperty Name="Socket62" ColumnName="Socket62" />
+          <ScalarProperty Name="Socket63" ColumnName="Socket63" />
+          <ScalarProperty Name="Socket64" ColumnName="Socket64" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="DBModel.Menu">
+        <MappingFragment StoreEntitySet="Menus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Module" ColumnName="Module" />
+          <ScalarProperty Name="ModuleParent" ColumnName="ModuleParent" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoiseTestDataDetails">
+      <EntityTypeMapping TypeName="DBModel.NoiseTestDataDetail">
+        <MappingFragment StoreEntitySet="NoiseTestDataDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NoiseTestDataID" ColumnName="NoiseTestDataID" />
+          <ScalarProperty Name="TypeTest" ColumnName="TypeTest" />
+          <ScalarProperty Name="LotBoxID" ColumnName="LotBoxID" />
+          <ScalarProperty Name="JIGCarrierID" ColumnName="JIGCarrierID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BBTemperature" ColumnName="BBTemperature" />
+          <ScalarProperty Name="Socket1" ColumnName="Socket1" />
+          <ScalarProperty Name="Socket2" ColumnName="Socket2" />
+          <ScalarProperty Name="Socket3" ColumnName="Socket3" />
+          <ScalarProperty Name="Socket4" ColumnName="Socket4" />
+          <ScalarProperty Name="Socket5" ColumnName="Socket5" />
+          <ScalarProperty Name="Socket6" ColumnName="Socket6" />
+          <ScalarProperty Name="Socket7" ColumnName="Socket7" />
+          <ScalarProperty Name="Socket8" ColumnName="Socket8" />
+          <ScalarProperty Name="Socket9" ColumnName="Socket9" />
+          <ScalarProperty Name="Socket10" ColumnName="Socket10" />
+          <ScalarProperty Name="Socket11" ColumnName="Socket11" />
+          <ScalarProperty Name="Socket12" ColumnName="Socket12" />
+          <ScalarProperty Name="Socket13" ColumnName="Socket13" />
+          <ScalarProperty Name="Socket14" ColumnName="Socket14" />
+          <ScalarProperty Name="Socket15" ColumnName="Socket15" />
+          <ScalarProperty Name="Socket16" ColumnName="Socket16" />
+          <ScalarProperty Name="Socket17" ColumnName="Socket17" />
+          <ScalarProperty Name="Socket18" ColumnName="Socket18" />
+          <ScalarProperty Name="Socket19" ColumnName="Socket19" />
+          <ScalarProperty Name="Socket20" ColumnName="Socket20" />
+          <ScalarProperty Name="Socket21" ColumnName="Socket21" />
+          <ScalarProperty Name="Socket22" ColumnName="Socket22" />
+          <ScalarProperty Name="Socket23" ColumnName="Socket23" />
+          <ScalarProperty Name="Socket24" ColumnName="Socket24" />
+          <ScalarProperty Name="Socket25" ColumnName="Socket25" />
+          <ScalarProperty Name="Socket26" ColumnName="Socket26" />
+          <ScalarProperty Name="Socket27" ColumnName="Socket27" />
+          <ScalarProperty Name="Socket28" ColumnName="Socket28" />
+          <ScalarProperty Name="Socket29" ColumnName="Socket29" />
+          <ScalarProperty Name="Socket30" ColumnName="Socket30" />
+          <ScalarProperty Name="Socket31" ColumnName="Socket31" />
+          <ScalarProperty Name="Socket32" ColumnName="Socket32" />
+          <ScalarProperty Name="Socket33" ColumnName="Socket33" />
+          <ScalarProperty Name="Socket34" ColumnName="Socket34" />
+          <ScalarProperty Name="Socket35" ColumnName="Socket35" />
+          <ScalarProperty Name="Socket36" ColumnName="Socket36" />
+          <ScalarProperty Name="Socket37" ColumnName="Socket37" />
+          <ScalarProperty Name="Socket38" ColumnName="Socket38" />
+          <ScalarProperty Name="Socket39" ColumnName="Socket39" />
+          <ScalarProperty Name="Socket40" ColumnName="Socket40" />
+          <ScalarProperty Name="Socket41" ColumnName="Socket41" />
+          <ScalarProperty Name="Socket42" ColumnName="Socket42" />
+          <ScalarProperty Name="Socket43" ColumnName="Socket43" />
+          <ScalarProperty Name="Socket44" ColumnName="Socket44" />
+          <ScalarProperty Name="Socket45" ColumnName="Socket45" />
+          <ScalarProperty Name="Socket46" ColumnName="Socket46" />
+          <ScalarProperty Name="Socket47" ColumnName="Socket47" />
+          <ScalarProperty Name="Socket48" ColumnName="Socket48" />
+          <ScalarProperty Name="Socket49" ColumnName="Socket49" />
+          <ScalarProperty Name="Socket50" ColumnName="Socket50" />
+          <ScalarProperty Name="Socket51" ColumnName="Socket51" />
+          <ScalarProperty Name="Socket52" ColumnName="Socket52" />
+          <ScalarProperty Name="Socket53" ColumnName="Socket53" />
+          <ScalarProperty Name="Socket54" ColumnName="Socket54" />
+          <ScalarProperty Name="Socket55" ColumnName="Socket55" />
+          <ScalarProperty Name="Socket56" ColumnName="Socket56" />
+          <ScalarProperty Name="Socket57" ColumnName="Socket57" />
+          <ScalarProperty Name="Socket58" ColumnName="Socket58" />
+          <ScalarProperty Name="Socket59" ColumnName="Socket59" />
+          <ScalarProperty Name="Socket60" ColumnName="Socket60" />
+          <ScalarProperty Name="Socket61" ColumnName="Socket61" />
+          <ScalarProperty Name="Socket62" ColumnName="Socket62" />
+          <ScalarProperty Name="Socket63" ColumnName="Socket63" />
+          <ScalarProperty Name="Socket64" ColumnName="Socket64" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoiseTestDatas">
+      <EntityTypeMapping TypeName="DBModel.NoiseTestData">
+        <MappingFragment StoreEntitySet="NoiseTestDatas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StartTest" ColumnName="StartTest" />
+          <ScalarProperty Name="EndTest" ColumnName="EndTest" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutputResultDetails">
+      <EntityTypeMapping TypeName="DBModel.OutputResultDetail">
+        <MappingFragment StoreEntitySet="OutputResultDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OutputResultID" ColumnName="OutputResultID" />
+          <ScalarProperty Name="JIGCarrierID" ColumnName="JIGCarrierID" />
+          <ScalarProperty Name="GoodQty" ColumnName="GoodQty" />
+          <ScalarProperty Name="RejectNG1Qty" ColumnName="RejectNG1Qty" />
+          <ScalarProperty Name="RejectNG2Qty" ColumnName="RejectNG2Qty" />
+          <ScalarProperty Name="RejectNG3Qty" ColumnName="RejectNG3Qty" />
+          <ScalarProperty Name="RejectNG4Qty" ColumnName="RejectNG4Qty" />
+          <ScalarProperty Name="RejectNG5Qty" ColumnName="RejectNG5Qty" />
+          <ScalarProperty Name="NODQty" ColumnName="NODQty" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutputResultRejectDetails">
+      <EntityTypeMapping TypeName="DBModel.OutputResultRejectDetail">
+        <MappingFragment StoreEntitySet="OutputResultRejectDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OutputResultID" ColumnName="OutputResultID" />
+          <ScalarProperty Name="JIGCarrierID" ColumnName="JIGCarrierID" />
+          <ScalarProperty Name="SocketNumber" ColumnName="SocketNumber" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutputResults">
+      <EntityTypeMapping TypeName="DBModel.OutputResult">
+        <MappingFragment StoreEntitySet="OutputResults">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TotalGoodQty" ColumnName="TotalGoodQty" />
+          <ScalarProperty Name="TotalRejectQty" ColumnName="TotalRejectQty" />
+          <ScalarProperty Name="LotBoxID" ColumnName="LotBoxID" />
+          <ScalarProperty Name="BoxNGID" ColumnName="BoxNGID" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SignalTestDataDetails">
+      <EntityTypeMapping TypeName="DBModel.SignalTestDataDetail">
+        <MappingFragment StoreEntitySet="SignalTestDataDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SignalTestDataID" ColumnName="SignalTestDataID" />
+          <ScalarProperty Name="TypeTest" ColumnName="TypeTest" />
+          <ScalarProperty Name="LotBoxID" ColumnName="LotBoxID" />
+          <ScalarProperty Name="JIGCarrierID" ColumnName="JIGCarrierID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BBTemperature" ColumnName="BBTemperature" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="CoolingPlateTemperature" ColumnName="CoolingPlateTemperature" />
+          <ScalarProperty Name="Socket1" ColumnName="Socket1" />
+          <ScalarProperty Name="Socket2" ColumnName="Socket2" />
+          <ScalarProperty Name="Socket3" ColumnName="Socket3" />
+          <ScalarProperty Name="Socket4" ColumnName="Socket4" />
+          <ScalarProperty Name="Socket5" ColumnName="Socket5" />
+          <ScalarProperty Name="Socket6" ColumnName="Socket6" />
+          <ScalarProperty Name="Socket7" ColumnName="Socket7" />
+          <ScalarProperty Name="Socket8" ColumnName="Socket8" />
+          <ScalarProperty Name="Socket9" ColumnName="Socket9" />
+          <ScalarProperty Name="Socket10" ColumnName="Socket10" />
+          <ScalarProperty Name="Socket11" ColumnName="Socket11" />
+          <ScalarProperty Name="Socket12" ColumnName="Socket12" />
+          <ScalarProperty Name="Socket13" ColumnName="Socket13" />
+          <ScalarProperty Name="Socket14" ColumnName="Socket14" />
+          <ScalarProperty Name="Socket15" ColumnName="Socket15" />
+          <ScalarProperty Name="Socket16" ColumnName="Socket16" />
+          <ScalarProperty Name="Socket17" ColumnName="Socket17" />
+          <ScalarProperty Name="Socket18" ColumnName="Socket18" />
+          <ScalarProperty Name="Socket19" ColumnName="Socket19" />
+          <ScalarProperty Name="Socket20" ColumnName="Socket20" />
+          <ScalarProperty Name="Socket21" ColumnName="Socket21" />
+          <ScalarProperty Name="Socket22" ColumnName="Socket22" />
+          <ScalarProperty Name="Socket23" ColumnName="Socket23" />
+          <ScalarProperty Name="Socket24" ColumnName="Socket24" />
+          <ScalarProperty Name="Socket25" ColumnName="Socket25" />
+          <ScalarProperty Name="Socket26" ColumnName="Socket26" />
+          <ScalarProperty Name="Socket27" ColumnName="Socket27" />
+          <ScalarProperty Name="Socket28" ColumnName="Socket28" />
+          <ScalarProperty Name="Socket29" ColumnName="Socket29" />
+          <ScalarProperty Name="Socket30" ColumnName="Socket30" />
+          <ScalarProperty Name="Socket31" ColumnName="Socket31" />
+          <ScalarProperty Name="Socket32" ColumnName="Socket32" />
+          <ScalarProperty Name="Socket33" ColumnName="Socket33" />
+          <ScalarProperty Name="Socket34" ColumnName="Socket34" />
+          <ScalarProperty Name="Socket35" ColumnName="Socket35" />
+          <ScalarProperty Name="Socket36" ColumnName="Socket36" />
+          <ScalarProperty Name="Socket37" ColumnName="Socket37" />
+          <ScalarProperty Name="Socket38" ColumnName="Socket38" />
+          <ScalarProperty Name="Socket39" ColumnName="Socket39" />
+          <ScalarProperty Name="Socket40" ColumnName="Socket40" />
+          <ScalarProperty Name="Socket41" ColumnName="Socket41" />
+          <ScalarProperty Name="Socket42" ColumnName="Socket42" />
+          <ScalarProperty Name="Socket43" ColumnName="Socket43" />
+          <ScalarProperty Name="Socket44" ColumnName="Socket44" />
+          <ScalarProperty Name="Socket45" ColumnName="Socket45" />
+          <ScalarProperty Name="Socket46" ColumnName="Socket46" />
+          <ScalarProperty Name="Socket47" ColumnName="Socket47" />
+          <ScalarProperty Name="Socket48" ColumnName="Socket48" />
+          <ScalarProperty Name="Socket49" ColumnName="Socket49" />
+          <ScalarProperty Name="Socket50" ColumnName="Socket50" />
+          <ScalarProperty Name="Socket51" ColumnName="Socket51" />
+          <ScalarProperty Name="Socket52" ColumnName="Socket52" />
+          <ScalarProperty Name="Socket53" ColumnName="Socket53" />
+          <ScalarProperty Name="Socket54" ColumnName="Socket54" />
+          <ScalarProperty Name="Socket55" ColumnName="Socket55" />
+          <ScalarProperty Name="Socket56" ColumnName="Socket56" />
+          <ScalarProperty Name="Socket57" ColumnName="Socket57" />
+          <ScalarProperty Name="Socket58" ColumnName="Socket58" />
+          <ScalarProperty Name="Socket59" ColumnName="Socket59" />
+          <ScalarProperty Name="Socket60" ColumnName="Socket60" />
+          <ScalarProperty Name="Socket61" ColumnName="Socket61" />
+          <ScalarProperty Name="Socket62" ColumnName="Socket62" />
+          <ScalarProperty Name="Socket63" ColumnName="Socket63" />
+          <ScalarProperty Name="Socket64" ColumnName="Socket64" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SignalTestDatas">
+      <EntityTypeMapping TypeName="DBModel.SignalTestData">
+        <MappingFragment StoreEntitySet="SignalTestDatas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StartTest" ColumnName="StartTest" />
+          <ScalarProperty Name="EndTest" ColumnName="EndTest" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="DBModel.UserGroup">
+        <MappingFragment StoreEntitySet="UserGroups">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMenus">
+      <EntityTypeMapping TypeName="DBModel.UserMenu">
+        <MappingFragment StoreEntitySet="UserMenus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="AllowRead" ColumnName="AllowRead" />
+          <ScalarProperty Name="AllowAdd" ColumnName="AllowAdd" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BagdeNo" ColumnName="BagdeNo" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedUser" ColumnName="UpdatedUser" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSessions">
+      <EntityTypeMapping TypeName="DBModel.UserSession">
+        <MappingFragment StoreEntitySet="UserSessions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="SessionToken" ColumnName="SessionToken" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_UserUserGroup">
+      <EntityTypeMapping TypeName="DBModel.V_UserUserGroup">
+        <MappingFragment StoreEntitySet="V_UserUserGroup">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BagdeNo" ColumnName="BagdeNo" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_UserUserMenu">
+      <EntityTypeMapping TypeName="DBModel.V_UserUserMenu">
+        <MappingFragment StoreEntitySet="V_UserUserMenu">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BagdeNo" ColumnName="BagdeNo" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="AllowRead" ColumnName="AllowRead" />
+          <ScalarProperty Name="AllowAdd" ColumnName="AllowAdd" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Module" ColumnName="Module" />
+          <ScalarProperty Name="ModuleParent" ColumnName="ModuleParent" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

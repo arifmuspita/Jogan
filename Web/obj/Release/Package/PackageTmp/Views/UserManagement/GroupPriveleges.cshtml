@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    DBProject.Models.Properties.UserRightAccess userright = Model.UserRightAccess;
+    DBProject.Models.V_USER_GROUP data = Model.DataObject; 
+
+
+   
+
+}
+
+@if (Model.Method == "list")
+{<div class="box">
+    <div class="box-header with-border">
+        @*@if (userright.AllowAdd)
+        {
+            <div class="form-group"></div>
+            <a href="#" class="btn btn-primary " id="btnAdd"><i class="fa fa-plus"></i> Add User</a>
+            <div class="form-group"></div>
+        }*@
+        <table id="UserGroup_table" class="table table-bordered table-hover" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Group ID</th>
+                    <th>Group Name</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            //$("#btnAdd").click(function (e) {
+            //    e.preventDefault();
+            //    window.location.href = "/UserManagement/Users/edit/0";
+            //});
+            var columndefs = [];
+            var columns = [];
+            columndefs = [{
+                "targets": 0,
+                "orderable": false,
+                "data": "Action",
+                "render": function (data, type, full, meta) {
+                    return '' + '<a href="@Model.SetWebUrl("/UserManagement/GroupPrivelegesDetail/edit/")' + full.Group_ID + '" data -modul="GroupPrivelegesDetail" data-action="edit" class="btn btn-xs default"><i class="fa fa-edit"></i> See detail menu</a>';// + '<a  href="/' + modul + '/' + submodul + '/void/' + full.ID + '"   data-action="void" data-modul="' + submodul + '"  data-id="' + full.id + '" class="btn btn-xs default"><i class="fa fa-trash-o"></i> Void</a>'
+                }
+                    }];
+            columns = [
+                { "data": "Action" },
+                { "data": "Group_ID" },
+                { "data": "Group_Name" },
+            ];
+            DataTableJS.CreateDataTables2("@Model.WebRoot","UserManagement", "UserGroup", 0, "", false, columndefs, columns);
+        });
+    </script></div>
+}
+ 
+

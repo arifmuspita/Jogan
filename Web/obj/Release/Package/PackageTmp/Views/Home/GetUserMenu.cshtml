@@ -1,0 +1,85 @@
+﻿
+@model IEnumerable<DBProject.Models.M_MENU>
+
+@{
+    string parent = "";
+    string child = "";
+    int cch = 0;
+    string act = "";
+    Uri url = Request.Url;
+    string webroot = System.Web.Configuration.WebConfigurationManager.AppSettings["WebRoot"].ToString();
+    if (webroot != "") { webroot = "/" + webroot; }
+    // url = url;
+}
+
+@foreach (var m in Model)
+{
+    act = "active";
+    if (cch != 1) { act = ""; }
+    cch++;
+    string route = webroot+ "/" + m.Module_Parent + "/" + m.Module;
+    if (route == "") { route = "#"; }
+    if (m.Parent_ID == null)
+    {
+        if (m.Detail)
+        {
+            parent = parent + "<li><a href='" + route + "'>" + m.Name + "</a></li>";
+        }
+        else
+        {
+            int pos2 = url.AbsoluteUri.IndexOf(m.Module);
+            act = "";
+            if (pos2 != -1) { act = "active"; }
+            parent = parent + "<li class=\"" + act + " treeview\"> " +
+    "<a href = \"#\" ><i class=\"fa fa-dashboard\"></i><span>" + m.Name + "</span><span class=\"pull-right-container\"><i class=\"fa fa-angle-left pull-right\"></i></span></a> " +
+    //"<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">" + m.Name + "<span class=\"caret\"></span></a> " +
+    "<ul class=\"treeview-menu\">{CHILD_" + m.ID.ToString() + "}</ul></li>";
+        }
+    }
+    else
+    {
+
+        string chld = "{CHILD_" + m.Parent_ID.ToString() + "}";
+        if (!m.Detail)
+        {
+            child = "<li class=\"" + act + "\"><a href=\"" + route  + "\"><i class=\"fa fa-circle - o\"></i> " + m.Name + "</a></li>";
+            //"<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">" + m.Name + "<span class=\"caret\"></span></a> " +
+            //"<ul class=\"dropdown-menu\" >{CHILD_" + m.ID.ToString() + "}</ul></li>";
+        }
+        else
+        {
+            child = "<li><a href='" + route + "'>" + m.Name + "</a></li>" + chld;
+        }
+        System.Text.StringBuilder builder = new System.Text.StringBuilder(parent);
+        int pos = parent.IndexOf(chld);
+        builder.Remove(pos, chld.Length);
+        builder.Insert(pos, child);
+        parent = builder.ToString();
+        builder = null;
+
+    }
+}
+
+@foreach (var m in Model)
+{
+
+    if (m.Parent_ID != null)
+    {
+        System.Text.StringBuilder builder2 = new System.Text.StringBuilder(parent);
+        string chld = "{CHILD_" + m.Parent_ID.ToString() + "}";
+        int pos = parent.IndexOf(chld);
+        if (pos != -1)
+        {
+            builder2.Remove(pos, chld.Length);
+            builder2.Insert(pos, "");
+            parent = builder2.ToString();
+        }
+        builder2 = null;
+    }
+
+}
+@*@{
+    parent = parent + "<li><a href='/Logout'>Logout</a></li>";
+}*@
+
+@Html.Raw(parent)

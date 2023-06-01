@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <GVL Name="FLAG_VAR" Id="{b925ee3f-4bd2-4737-b9ac-93357978b127}">
+    <Declaration><![CDATA[  {attribute 'qualified_only'}
+VAR_GLOBAL
+	ALLOW_EXECUTE_LOAD_FUKUDA : BOOL:=FALSE;
+	ALLOW_EXECUTE_RETURN_FUKUDA:BOOL:=FALSE;
+
+	
+	ALLOW_EXECUTE_LOAD_LASER:BOOL:=FALSE;
+	ALLOW_EXECUTE_RETURN_LASER:BOOL:=FALSE;
+	
+	ALLOW_EXECUTE_LOAD_NG : BOOL:=FALSE;
+	ALLOW_EXECUTE_RETURN_NG:BOOL:=FALSE;
+	ALLOW_EXECUTE_C8:BOOL:=FALSE;
+	PAUSE_SYSTEM:BOOL:=FALSE;
+END_VAR
+  ]]></Declaration>
+  </GVL>
+</TcPlcObject>

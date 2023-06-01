@@ -1,0 +1,1859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JOGANDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceNoiseTestParameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterDeviceID" Type="Int32" Nullable="false" />
+    <Property Name="DeviceNoiseTestParameterTypeID" Type="Int32" Nullable="false" />
+    <Property Name="NoiseLimit" Type="Int32" Nullable="false" />
+    <Property Name="SoakTime" Type="Int32" Nullable="false" />
+    <Property Name="MeasurementDuration" Type="Int32" Nullable="false" />
+    <Property Name="LaudaSetting" Type="Int32" Nullable="false" />
+    <Property Name="BBTemperatureHL" Type="Int32" Nullable="false" />
+    <Property Name="BBTemperatureLL" Type="Int32" Nullable="false" />
+    <Property Name="UpperTempTolerance" Type="Int32" Nullable="false" />
+    <Property Name="LowerTempTolearance" Type="Int32" Nullable="false" />
+    <Property Name="SampleRate" Type="Int32" Nullable="false" />
+    <Property Name="NoDUTOffset" Type="Double" Nullable="false" />
+    <Property Name="OffsetHLimit" Type="Double" Nullable="false" />
+    <Property Name="OffsetLLimit" Type="Double" Nullable="false" />
+    <Property Name="CutOffFreq" Type="Double" Nullable="false" />
+    <Property Name="MovingWindow" Type="Boolean" Nullable="false" />
+    <Property Name="TestingVoltage" Type="Int32" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DeviceNoiseTestParameterType" Relationship="Self.FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID" FromRole="DeviceNoiseTestParameters" ToRole="DeviceNoiseTestParameterTypes" />
+    <NavigationProperty Name="MasterDevice" Relationship="Self.FK_dbo_DeviceNoiseTestParameters_dbo_MasterDevices_MasterDeviceID" FromRole="DeviceNoiseTestParameters" ToRole="MasterDevices" />
+  </EntityType>
+  <EntityType Name="DeviceNoiseTestParameterType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TestType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DeviceNoiseTestParameters" Relationship="Self.FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID" FromRole="DeviceNoiseTestParameterTypes" ToRole="DeviceNoiseTestParameters" />
+  </EntityType>
+  <EntityType Name="DeviceSignalTestParameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterDeviceID" Type="Int32" Nullable="false" />
+    <Property Name="NoDUTOffset" Type="Double" Nullable="false" />
+    <Property Name="OffsetMin" Type="Double" Nullable="false" />
+    <Property Name="OffsetMax" Type="Double" Nullable="false" />
+    <Property Name="OffsetGrpMin" Type="Double" Nullable="false" />
+    <Property Name="OffsetGrpMax" Type="Double" Nullable="false" />
+    <Property Name="NoResponse" Type="Double" Nullable="false" />
+    <Property Name="ResponseMin" Type="Double" Nullable="false" />
+    <Property Name="ResponseMax" Type="Double" Nullable="false" />
+    <Property Name="ResponseGrpMin" Type="Double" Nullable="false" />
+    <Property Name="ResponseGrpMax" Type="Double" Nullable="false" />
+    <Property Name="MatchSignalMax" Type="Double" Nullable="false" />
+    <Property Name="ResistanceMin" Type="Double" Nullable="false" />
+    <Property Name="FirstSoakTime" Type="Int32" Nullable="false" />
+    <Property Name="SecondSoakTime" Type="Int32" Nullable="false" />
+    <Property Name="LaudaSetting" Type="Int32" Nullable="false" />
+    <Property Name="BBSetting" Type="Int32" Nullable="false" />
+    <Property Name="BBTemperatureHL" Type="Int32" Nullable="false" />
+    <Property Name="BBTemperatureLL" Type="Int32" Nullable="false" />
+    <Property Name="SampleRate" Type="Int32" Nullable="false" />
+    <Property Name="HighCutOfFrequency" Type="Double" Nullable="false" />
+    <Property Name="LowCutOfFrequency" Type="Double" Nullable="false" />
+    <Property Name="MeasurementDureation" Type="Int32" Nullable="false" />
+    <Property Name="MeasurementDureation2" Type="Int32" Nullable="false" />
+    <Property Name="TemperatureCoe" Type="Double" Nullable="false" />
+    <Property Name="TestingVoltage" Type="Double" Nullable="false" />
+    <Property Name="Resistance" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterDevice" Relationship="Self.FK_dbo_DeviceSignalTestParameters_dbo_MasterDevices_MasterDeviceID" FromRole="DeviceSignalTestParameters" ToRole="MasterDevices" />
+  </EntityType>
+  <EntityType Name="GroupAccess">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="AllowRead" Type="Boolean" Nullable="false" />
+    <Property Name="AllowAdd" Type="Boolean" Nullable="false" />
+    <Property Name="AllowDelete" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEdit" Type="Boolean" Nullable="false" />
+    <Property Name="AllowExport" Type="Boolean" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_dbo_GroupAccesses_dbo_Menus_MenuID" FromRole="GroupAccesses" ToRole="Menus" />
+    <NavigationProperty Name="UserGroup" Relationship="Self.FK_dbo_GroupAccesses_dbo_UserGroups_UserGroupID" FromRole="GroupAccesses" ToRole="UserGroups" />
+    <Property Name="AllowReport" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_LoginHistories_dbo_Users_UserID" FromRole="LoginHistories" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="MachineCalibration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="CalibrationType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_MachineCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MachineCalibrations" ToRole="MasterMachines" />
+  </EntityType>
+  <EntityType Name="MachineNoiseCalibration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="ScaleSignal" Type="Double" Nullable="false" />
+    <Property Name="ScaleOffset" Type="Double" Nullable="false" />
+    <Property Name="NoiseCorrFactor" Type="Double" Nullable="false" />
+    <Property Name="PT100BBCorrFactor" Type="Double" Nullable="false" />
+    <Property Name="PT100LaudaCorrFactor" Type="Double" Nullable="false" />
+    <Property Name="PT100CorrFactor" Type="Double" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_MachineNoiseCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MachineNoiseCalibrations" ToRole="MasterMachines" />
+  </EntityType>
+  <EntityType Name="MachineSignalCalibration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="ScaleSignal" Type="Double" Nullable="false" />
+    <Property Name="ScaleOffset" Type="Double" Nullable="false" />
+    <Property Name="ScaleResistance" Type="Double" Nullable="false" />
+    <Property Name="MatchCorrFactor" Type="Double" Nullable="false" />
+    <Property Name="Gain" Type="Double" Nullable="false" />
+    <Property Name="PT100CorrFactor" Type="Double" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_MachineSignalCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MachineSignalCalibrations" ToRole="MasterMachines" />
+  </EntityType>
+  <EntityType Name="MasterBoxNG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BoxNGID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MasterDeviceNG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceNGID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceNGType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MasterDevice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DeviceNoiseTestParameters" Relationship="Self.FK_dbo_DeviceNoiseTestParameters_dbo_MasterDevices_MasterDeviceID" FromRole="MasterDevices" ToRole="DeviceNoiseTestParameters" />
+    <NavigationProperty Name="DeviceSignalTestParameters" Relationship="Self.FK_dbo_DeviceSignalTestParameters_dbo_MasterDevices_MasterDeviceID" FromRole="MasterDevices" ToRole="DeviceSignalTestParameters" />
+    <NavigationProperty Name="NoiseTestDatas" Relationship="Self.FK_dbo_NoiseTestDatas_dbo_MasterDevices_MasterDeviceID" FromRole="MasterDevices" ToRole="NoiseTestDatas" />
+    <NavigationProperty Name="OutputResults" Relationship="Self.FK_dbo_OutputResults_dbo_MasterDevices_MasterDeviceID" FromRole="MasterDevices" ToRole="OutputResults" />
+    <NavigationProperty Name="SignalTestDatas" Relationship="Self.FK_dbo_SignalTestDatas_dbo_MasterDevices_MasterDeviceID" FromRole="MasterDevices" ToRole="SignalTestDatas" />
+  </EntityType>
+  <EntityType Name="MasterJigCarrier">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JigCarrierID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JigType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NoiseTestDataDetails" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="MasterJigCarriers" ToRole="NoiseTestDataDetails" />
+    <NavigationProperty Name="OutputResultDetails" Relationship="Self.FK_dbo_OutputResultDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="MasterJigCarriers" ToRole="OutputResultDetails" />
+    <NavigationProperty Name="OutputResultRejectDetails" Relationship="Self.FK_dbo_OutputResultRejectDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="MasterJigCarriers" ToRole="OutputResultRejectDetails" />
+    <NavigationProperty Name="ResistanceTestDataDetails" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="MasterJigCarriers" ToRole="ResistanceTestDataDetails" />
+    <NavigationProperty Name="SignalTestDataDetails" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="MasterJigCarriers" ToRole="SignalTestDataDetails" />
+  </EntityType>
+  <EntityType Name="MasterLotBox">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LotBoxID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LotBoxDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="OutputResults" Relationship="Self.FK_dbo_OutputResults_dbo_MasterLotBoxes_MasterLotBoxID" FromRole="MasterLotBoxes" ToRole="OutputResults" />
+  </EntityType>
+  <EntityType Name="MasterMachine">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MachineID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MachineName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MachineType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MachineCalibrations" Relationship="Self.FK_dbo_MachineCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="MachineCalibrations" />
+    <NavigationProperty Name="MachineNoiseCalibrations" Relationship="Self.FK_dbo_MachineNoiseCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="MachineNoiseCalibrations" />
+    <NavigationProperty Name="MachineSignalCalibrations" Relationship="Self.FK_dbo_MachineSignalCalibrations_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="MachineSignalCalibrations" />
+    <NavigationProperty Name="NoiseTestDataDetails" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="NoiseTestDataDetails" />
+    <NavigationProperty Name="ResistanceTestDataDetails" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="ResistanceTestDataDetails" />
+    <NavigationProperty Name="SignalTestDataDetails" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="MasterMachines" ToRole="SignalTestDataDetails" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Detail" Type="Boolean" Nullable="false" />
+    <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModuleParent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GroupAccesses" Relationship="Self.FK_dbo_GroupAccesses_dbo_Menus_MenuID" FromRole="Menus" ToRole="GroupAccesses" />
+    <NavigationProperty Name="UserMenus" Relationship="Self.FK_dbo_UserMenus_dbo_Menus_MenuID" FromRole="Menus" ToRole="UserMenus" />
+  </EntityType>
+  <EntityType Name="NoiseTestDataDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiseTestDataID" Type="Int32" Nullable="false" />
+    <Property Name="MasterJigCarrierID" Type="Int32" Nullable="false" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="TypeTestData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BBTemperature" Type="Int32" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterJigCarrier" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="NoiseTestDataDetails" ToRole="MasterJigCarriers" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="NoiseTestDataDetails" ToRole="MasterMachines" />
+    <NavigationProperty Name="NoiseTestData" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID" FromRole="NoiseTestDataDetails" ToRole="NoiseTestDatas" />
+    <NavigationProperty Name="NoiseTestDataStatusDetails" Relationship="Self.FK_dbo_NoiseTestDataStatusDetails_dbo_NoiseTestDataDetails_NoiseTestDataDetailID" FromRole="NoiseTestDataDetails" ToRole="NoiseTestDataStatusDetails" />
+  </EntityType>
+  <EntityType Name="NoiseTestData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MasterDeviceID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="StartTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TypeTest" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterDevice" Relationship="Self.FK_dbo_NoiseTestDatas_dbo_MasterDevices_MasterDeviceID" FromRole="NoiseTestDatas" ToRole="MasterDevices" />
+    <NavigationProperty Name="NoiseTestDataDetails" Relationship="Self.FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID" FromRole="NoiseTestDatas" ToRole="NoiseTestDataDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_NoiseTestDatas_dbo_Users_UserID" FromRole="NoiseTestDatas" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="NoiseTestDataStatusDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiseTestDataDetailID" Type="Int32" Nullable="false" />
+    <Property Name="StatusSocket1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket13" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket14" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket15" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket16" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket17" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket18" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket19" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket20" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket21" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket22" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket23" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket24" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket25" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket26" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket27" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket28" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket29" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket30" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket31" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket32" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket33" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket34" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket35" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket36" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket37" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket38" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket39" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket40" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket41" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket42" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket43" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket44" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket45" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket46" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket47" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket48" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket49" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket51" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket52" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket53" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket54" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket55" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket56" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket57" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket58" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket59" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket60" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket61" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket62" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket63" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket64" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NoiseTestDataDetail" Relationship="Self.FK_dbo_NoiseTestDataStatusDetails_dbo_NoiseTestDataDetails_NoiseTestDataDetailID" FromRole="NoiseTestDataStatusDetails" ToRole="NoiseTestDataDetails" />
+  </EntityType>
+  <EntityType Name="OutputResultDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OutputResultID" Type="Int32" Nullable="false" />
+    <Property Name="MasterJigCarrierID" Type="Int32" Nullable="false" />
+    <Property Name="GoodQty" Type="Int32" Nullable="false" />
+    <Property Name="RejectNG1Qty" Type="Int32" Nullable="false" />
+    <Property Name="RejectNG2Qty" Type="Int32" Nullable="false" />
+    <Property Name="RejectNG3Qty" Type="Int32" Nullable="false" />
+    <Property Name="RejectNG4Qty" Type="Int32" Nullable="false" />
+    <Property Name="RejectNG5Qty" Type="Int32" Nullable="false" />
+    <Property Name="NODQty" Type="Int32" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterJigCarrier" Relationship="Self.FK_dbo_OutputResultDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="OutputResultDetails" ToRole="MasterJigCarriers" />
+    <NavigationProperty Name="OutputResult" Relationship="Self.FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID" FromRole="OutputResultDetails" ToRole="OutputResults" />
+  </EntityType>
+  <EntityType Name="OutputResultRejectDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OutputResultID" Type="Int32" Nullable="false" />
+    <Property Name="MasterJigCarrierID" Type="Int32" Nullable="false" />
+    <Property Name="SocketNumber" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterJigCarrier" Relationship="Self.FK_dbo_OutputResultRejectDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="OutputResultRejectDetails" ToRole="MasterJigCarriers" />
+    <NavigationProperty Name="OutputResult" Relationship="Self.FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID" FromRole="OutputResultRejectDetails" ToRole="OutputResults" />
+  </EntityType>
+  <EntityType Name="OutputResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MasterDeviceID" Type="Int32" Nullable="false" />
+    <Property Name="MasterLotBoxID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TotalGoodQty" Type="Int32" Nullable="false" />
+    <Property Name="TotalRejectQty" Type="Int32" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterDevice" Relationship="Self.FK_dbo_OutputResults_dbo_MasterDevices_MasterDeviceID" FromRole="OutputResults" ToRole="MasterDevices" />
+    <NavigationProperty Name="MasterLotBox" Relationship="Self.FK_dbo_OutputResults_dbo_MasterLotBoxes_MasterLotBoxID" FromRole="OutputResults" ToRole="MasterLotBoxes" />
+    <NavigationProperty Name="OutputResultDetails" Relationship="Self.FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID" FromRole="OutputResults" ToRole="OutputResultDetails" />
+    <NavigationProperty Name="OutputResultRejectDetails" Relationship="Self.FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID" FromRole="OutputResults" ToRole="OutputResultRejectDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_OutputResults_dbo_Users_UserID" FromRole="OutputResults" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ResistanceTestDataDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResistanceTestDataID" Type="Int32" Nullable="false" />
+    <Property Name="MasterJigCarrierID" Type="Int32" Nullable="false" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="TypeTestData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BBTemperature" Type="Int32" Nullable="false" />
+    <Property Name="Temperature" Type="Double" Nullable="false" />
+    <Property Name="CoolingPlateTemperature" Type="Double" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterJigCarrier" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="ResistanceTestDataDetails" ToRole="MasterJigCarriers" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="ResistanceTestDataDetails" ToRole="MasterMachines" />
+    <NavigationProperty Name="SignalTestData" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_SignalTestDatas_ResistanceTestDataID" FromRole="ResistanceTestDataDetails" ToRole="SignalTestDatas" />
+    <NavigationProperty Name="ResistanceTestDataStatusDetails" Relationship="Self.FK_dbo_ResistanceTestDataStatusDetails_dbo_ResistanceTestDataDetails_ResistanceTestDataDetailID" FromRole="ResistanceTestDataDetails" ToRole="ResistanceTestDataStatusDetails" />
+  </EntityType>
+  <EntityType Name="ResistanceTestDataStatusDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResistanceTestDataDetailID" Type="Int32" Nullable="false" />
+    <Property Name="StatusSocket1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket13" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket14" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket15" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket16" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket17" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket18" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket19" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket20" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket21" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket22" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket23" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket24" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket25" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket26" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket27" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket28" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket29" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket30" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket31" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket32" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket33" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket34" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket35" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket36" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket37" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket38" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket39" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket40" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket41" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket42" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket43" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket44" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket45" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket46" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket47" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket48" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket49" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket51" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket52" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket53" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket54" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket55" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket56" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket57" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket58" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket59" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket60" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket61" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket62" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket63" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket64" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ResistanceTestDataDetail" Relationship="Self.FK_dbo_ResistanceTestDataStatusDetails_dbo_ResistanceTestDataDetails_ResistanceTestDataDetailID" FromRole="ResistanceTestDataStatusDetails" ToRole="ResistanceTestDataDetails" />
+  </EntityType>
+  <EntityType Name="SignalTestDataDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SignalTestDataID" Type="Int32" Nullable="false" />
+    <Property Name="MasterJigCarrierID" Type="Int32" Nullable="false" />
+    <Property Name="MasterMachineID" Type="Int32" Nullable="false" />
+    <Property Name="TypeTestData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BBTemperature" Type="Int32" Nullable="false" />
+    <Property Name="Temperature" Type="Double" Nullable="false" />
+    <Property Name="CoolingPlateTemperature" Type="Double" Nullable="false" />
+    <Property Name="Socket1" Type="Double" Nullable="false" />
+    <Property Name="Socket2" Type="Double" Nullable="false" />
+    <Property Name="Socket3" Type="Double" Nullable="false" />
+    <Property Name="Socket4" Type="Double" Nullable="false" />
+    <Property Name="Socket5" Type="Double" Nullable="false" />
+    <Property Name="Socket6" Type="Double" Nullable="false" />
+    <Property Name="Socket7" Type="Double" Nullable="false" />
+    <Property Name="Socket8" Type="Double" Nullable="false" />
+    <Property Name="Socket9" Type="Double" Nullable="false" />
+    <Property Name="Socket10" Type="Double" Nullable="false" />
+    <Property Name="Socket11" Type="Double" Nullable="false" />
+    <Property Name="Socket12" Type="Double" Nullable="false" />
+    <Property Name="Socket13" Type="Double" Nullable="false" />
+    <Property Name="Socket14" Type="Double" Nullable="false" />
+    <Property Name="Socket15" Type="Double" Nullable="false" />
+    <Property Name="Socket16" Type="Double" Nullable="false" />
+    <Property Name="Socket17" Type="Double" Nullable="false" />
+    <Property Name="Socket18" Type="Double" Nullable="false" />
+    <Property Name="Socket19" Type="Double" Nullable="false" />
+    <Property Name="Socket20" Type="Double" Nullable="false" />
+    <Property Name="Socket21" Type="Double" Nullable="false" />
+    <Property Name="Socket22" Type="Double" Nullable="false" />
+    <Property Name="Socket23" Type="Double" Nullable="false" />
+    <Property Name="Socket24" Type="Double" Nullable="false" />
+    <Property Name="Socket25" Type="Double" Nullable="false" />
+    <Property Name="Socket26" Type="Double" Nullable="false" />
+    <Property Name="Socket27" Type="Double" Nullable="false" />
+    <Property Name="Socket28" Type="Double" Nullable="false" />
+    <Property Name="Socket29" Type="Double" Nullable="false" />
+    <Property Name="Socket30" Type="Double" Nullable="false" />
+    <Property Name="Socket31" Type="Double" Nullable="false" />
+    <Property Name="Socket32" Type="Double" Nullable="false" />
+    <Property Name="Socket33" Type="Double" Nullable="false" />
+    <Property Name="Socket34" Type="Double" Nullable="false" />
+    <Property Name="Socket35" Type="Double" Nullable="false" />
+    <Property Name="Socket36" Type="Double" Nullable="false" />
+    <Property Name="Socket37" Type="Double" Nullable="false" />
+    <Property Name="Socket38" Type="Double" Nullable="false" />
+    <Property Name="Socket39" Type="Double" Nullable="false" />
+    <Property Name="Socket40" Type="Double" Nullable="false" />
+    <Property Name="Socket41" Type="Double" Nullable="false" />
+    <Property Name="Socket42" Type="Double" Nullable="false" />
+    <Property Name="Socket43" Type="Double" Nullable="false" />
+    <Property Name="Socket44" Type="Double" Nullable="false" />
+    <Property Name="Socket45" Type="Double" Nullable="false" />
+    <Property Name="Socket46" Type="Double" Nullable="false" />
+    <Property Name="Socket47" Type="Double" Nullable="false" />
+    <Property Name="Socket48" Type="Double" Nullable="false" />
+    <Property Name="Socket49" Type="Double" Nullable="false" />
+    <Property Name="Socket50" Type="Double" Nullable="false" />
+    <Property Name="Socket51" Type="Double" Nullable="false" />
+    <Property Name="Socket52" Type="Double" Nullable="false" />
+    <Property Name="Socket53" Type="Double" Nullable="false" />
+    <Property Name="Socket54" Type="Double" Nullable="false" />
+    <Property Name="Socket55" Type="Double" Nullable="false" />
+    <Property Name="Socket56" Type="Double" Nullable="false" />
+    <Property Name="Socket57" Type="Double" Nullable="false" />
+    <Property Name="Socket58" Type="Double" Nullable="false" />
+    <Property Name="Socket59" Type="Double" Nullable="false" />
+    <Property Name="Socket60" Type="Double" Nullable="false" />
+    <Property Name="Socket61" Type="Double" Nullable="false" />
+    <Property Name="Socket62" Type="Double" Nullable="false" />
+    <Property Name="Socket63" Type="Double" Nullable="false" />
+    <Property Name="Socket64" Type="Double" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MasterJigCarrier" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" FromRole="SignalTestDataDetails" ToRole="MasterJigCarriers" />
+    <NavigationProperty Name="MasterMachine" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_MasterMachines_MasterMachineID" FromRole="SignalTestDataDetails" ToRole="MasterMachines" />
+    <NavigationProperty Name="SignalTestData" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID" FromRole="SignalTestDataDetails" ToRole="SignalTestDatas" />
+    <NavigationProperty Name="SignalTestDataStatusDetails" Relationship="Self.FK_dbo_SignalTestDataStatusDetails_dbo_SignalTestDataDetails_SignalTestDataDetailID" FromRole="SignalTestDataDetails" ToRole="SignalTestDataStatusDetails" />
+  </EntityType>
+  <EntityType Name="SignalTestData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MasterDeviceID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="StartTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MasterDevice" Relationship="Self.FK_dbo_SignalTestDatas_dbo_MasterDevices_MasterDeviceID" FromRole="SignalTestDatas" ToRole="MasterDevices" />
+    <NavigationProperty Name="ResistanceTestDataDetails" Relationship="Self.FK_dbo_ResistanceTestDataDetails_dbo_SignalTestDatas_ResistanceTestDataID" FromRole="SignalTestDatas" ToRole="ResistanceTestDataDetails" />
+    <NavigationProperty Name="SignalTestDataDetails" Relationship="Self.FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID" FromRole="SignalTestDatas" ToRole="SignalTestDataDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_SignalTestDatas_dbo_Users_UserID" FromRole="SignalTestDatas" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SignalTestDataStatusDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SignalTestDataDetailID" Type="Int32" Nullable="false" />
+    <Property Name="StatusSocket1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket13" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket14" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket15" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket16" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket17" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket18" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket19" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket20" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket21" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket22" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket23" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket24" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket25" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket26" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket27" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket28" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket29" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket30" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket31" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket32" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket33" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket34" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket35" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket36" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket37" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket38" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket39" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket40" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket41" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket42" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket43" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket44" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket45" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket46" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket47" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket48" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket49" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket51" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket52" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket53" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket54" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket55" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket56" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket57" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket58" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket59" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket60" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket61" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket62" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket63" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusSocket64" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="SignalTestDataDetail" Relationship="Self.FK_dbo_SignalTestDataStatusDetails_dbo_SignalTestDataDetails_SignalTestDataDetailID" FromRole="SignalTestDataStatusDetails" ToRole="SignalTestDataDetails" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GroupAccesses" Relationship="Self.FK_dbo_GroupAccesses_dbo_UserGroups_UserGroupID" FromRole="UserGroups" ToRole="GroupAccesses" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_UserGroups_UserGroupID" FromRole="UserGroups" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="AllowRead" Type="Boolean" Nullable="false" />
+    <Property Name="AllowAdd" Type="Boolean" Nullable="false" />
+    <Property Name="AllowDelete" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEdit" Type="Boolean" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AllowReport" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_dbo_UserMenus_dbo_Menus_MenuID" FromRole="UserMenus" ToRole="Menus" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_UserMenus_dbo_Users_UserID" FromRole="UserMenus" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BagdeNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="LoginHistories" Relationship="Self.FK_dbo_LoginHistories_dbo_Users_UserID" FromRole="Users" ToRole="LoginHistories" />
+    <NavigationProperty Name="NoiseTestDatas" Relationship="Self.FK_dbo_NoiseTestDatas_dbo_Users_UserID" FromRole="Users" ToRole="NoiseTestDatas" />
+    <NavigationProperty Name="OutputResults" Relationship="Self.FK_dbo_OutputResults_dbo_Users_UserID" FromRole="Users" ToRole="OutputResults" />
+    <NavigationProperty Name="SignalTestDatas" Relationship="Self.FK_dbo_SignalTestDatas_dbo_Users_UserID" FromRole="Users" ToRole="SignalTestDatas" />
+    <NavigationProperty Name="UserGroup" Relationship="Self.FK_dbo_Users_dbo_UserGroups_UserGroupID" FromRole="Users" ToRole="UserGroups" />
+    <NavigationProperty Name="UserMenus" Relationship="Self.FK_dbo_UserMenus_dbo_Users_UserID" FromRole="Users" ToRole="UserMenus" />
+    <NavigationProperty Name="UserSessions" Relationship="Self.FK_dbo_UserSessions_dbo_Users_UserID" FromRole="Users" ToRole="UserSessions" />
+  </EntityType>
+  <EntityType Name="UserSession">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="SessionID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SessionToken" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_UserSessions_dbo_Users_UserID" FromRole="UserSessions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="V_GroupAccess">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="AllowRead" />
+      <PropertyRef Name="AllowAdd" />
+      <PropertyRef Name="AllowDelete" />
+      <PropertyRef Name="AllowEdit" />
+      <PropertyRef Name="AllowExport" />
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="Detail" />
+      <PropertyRef Name="Module" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="AllowReport" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AllowRead" Type="Boolean" Nullable="false" />
+    <Property Name="AllowAdd" Type="Boolean" Nullable="false" />
+    <Property Name="AllowDelete" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEdit" Type="Boolean" Nullable="false" />
+    <Property Name="AllowExport" Type="Boolean" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Detail" Type="Boolean" Nullable="false" />
+    <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModuleParent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AllowReport" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_UserUserGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="BagdeNo" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserGroupID" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="NewPassword" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="CreatedUser" />
+      <PropertyRef Name="CreatedDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BagdeNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NewPassword" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedUser" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="V_UserUserMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="BagdeNo" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserGroupID" />
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="AllowRead" />
+      <PropertyRef Name="AllowAdd" />
+      <PropertyRef Name="AllowDelete" />
+      <PropertyRef Name="AllowEdit" />
+      <PropertyRef Name="Detail" />
+      <PropertyRef Name="Module" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BagdeNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="AllowRead" Type="Boolean" Nullable="false" />
+    <Property Name="AllowAdd" Type="Boolean" Nullable="false" />
+    <Property Name="AllowDelete" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEdit" Type="Boolean" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Detail" Type="Boolean" Nullable="false" />
+    <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModuleParent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MenuName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID">
+    <End Role="DeviceNoiseTestParameterTypes" Type="Self.DeviceNoiseTestParameterType" Multiplicity="1" />
+    <End Role="DeviceNoiseTestParameters" Type="Self.DeviceNoiseTestParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeviceNoiseTestParameterTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceNoiseTestParameters">
+        <PropertyRef Name="DeviceNoiseTestParameterTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DeviceNoiseTestParameters_dbo_MasterDevices_MasterDeviceID">
+    <End Role="MasterDevices" Type="Self.MasterDevice" Multiplicity="1" />
+    <End Role="DeviceNoiseTestParameters" Type="Self.DeviceNoiseTestParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterDevices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceNoiseTestParameters">
+        <PropertyRef Name="MasterDeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DeviceSignalTestParameters_dbo_MasterDevices_MasterDeviceID">
+    <End Role="MasterDevices" Type="Self.MasterDevice" Multiplicity="1" />
+    <End Role="DeviceSignalTestParameters" Type="Self.DeviceSignalTestParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterDevices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceSignalTestParameters">
+        <PropertyRef Name="MasterDeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GroupAccesses_dbo_Menus_MenuID">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
+    <End Role="GroupAccesses" Type="Self.GroupAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GroupAccesses">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GroupAccesses_dbo_UserGroups_UserGroupID">
+    <End Role="UserGroups" Type="Self.UserGroup" Multiplicity="1" />
+    <End Role="GroupAccesses" Type="Self.GroupAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GroupAccesses">
+        <PropertyRef Name="UserGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_LoginHistories_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="LoginHistories" Type="Self.LoginHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LoginHistories">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineCalibrations_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="MachineCalibrations" Type="Self.MachineCalibration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineCalibrations">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineNoiseCalibrations_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="MachineNoiseCalibrations" Type="Self.MachineNoiseCalibration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineNoiseCalibrations">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineSignalCalibrations_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="MachineSignalCalibrations" Type="Self.MachineSignalCalibration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineSignalCalibrations">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDatas_dbo_MasterDevices_MasterDeviceID">
+    <End Role="MasterDevices" Type="Self.MasterDevice" Multiplicity="1" />
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterDevices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDatas">
+        <PropertyRef Name="MasterDeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_MasterDevices_MasterDeviceID">
+    <End Role="MasterDevices" Type="Self.MasterDevice" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterDevices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="MasterDeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDatas_dbo_MasterDevices_MasterDeviceID">
+    <End Role="MasterDevices" Type="Self.MasterDevice" Multiplicity="1" />
+    <End Role="SignalTestDatas" Type="Self.SignalTestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterDevices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDatas">
+        <PropertyRef Name="MasterDeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+    <End Role="MasterJigCarriers" Type="Self.MasterJigCarrier" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterJigCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="MasterJigCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+    <End Role="MasterJigCarriers" Type="Self.MasterJigCarrier" Multiplicity="1" />
+    <End Role="OutputResultDetails" Type="Self.OutputResultDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterJigCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultDetails">
+        <PropertyRef Name="MasterJigCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultRejectDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+    <End Role="MasterJigCarriers" Type="Self.MasterJigCarrier" Multiplicity="1" />
+    <End Role="OutputResultRejectDetails" Type="Self.OutputResultRejectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterJigCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultRejectDetails">
+        <PropertyRef Name="MasterJigCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ResistanceTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+    <End Role="MasterJigCarriers" Type="Self.MasterJigCarrier" Multiplicity="1" />
+    <End Role="ResistanceTestDataDetails" Type="Self.ResistanceTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterJigCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ResistanceTestDataDetails">
+        <PropertyRef Name="MasterJigCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+    <End Role="MasterJigCarriers" Type="Self.MasterJigCarrier" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterJigCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="MasterJigCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_MasterLotBoxes_MasterLotBoxID">
+    <End Role="MasterLotBoxes" Type="Self.MasterLotBox" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterLotBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="MasterLotBoxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ResistanceTestDataDetails_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="ResistanceTestDataDetails" Type="Self.ResistanceTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ResistanceTestDataDetails">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_MasterMachines_MasterMachineID">
+    <End Role="MasterMachines" Type="Self.MasterMachine" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterMachines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="MasterMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserMenus_dbo_Menus_MenuID">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
+    <End Role="UserMenus" Type="Self.UserMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserMenus">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID">
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestData" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoiseTestDatas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="NoiseTestDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataStatusDetails_dbo_NoiseTestDataDetails_NoiseTestDataDetailID">
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetail" Multiplicity="1" />
+    <End Role="NoiseTestDataStatusDetails" Type="Self.NoiseTestDataStatusDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoiseTestDataDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataStatusDetails">
+        <PropertyRef Name="NoiseTestDataDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDatas_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDatas">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID">
+    <End Role="OutputResults" Type="Self.OutputResult" Multiplicity="1" />
+    <End Role="OutputResultDetails" Type="Self.OutputResultDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutputResults">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultDetails">
+        <PropertyRef Name="OutputResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID">
+    <End Role="OutputResults" Type="Self.OutputResult" Multiplicity="1" />
+    <End Role="OutputResultRejectDetails" Type="Self.OutputResultRejectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutputResults">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultRejectDetails">
+        <PropertyRef Name="OutputResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ResistanceTestDataDetails_dbo_SignalTestDatas_ResistanceTestDataID">
+    <End Role="SignalTestDatas" Type="Self.SignalTestData" Multiplicity="1" />
+    <End Role="ResistanceTestDataDetails" Type="Self.ResistanceTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SignalTestDatas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ResistanceTestDataDetails">
+        <PropertyRef Name="ResistanceTestDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ResistanceTestDataStatusDetails_dbo_ResistanceTestDataDetails_ResistanceTestDataDetailID">
+    <End Role="ResistanceTestDataDetails" Type="Self.ResistanceTestDataDetail" Multiplicity="1" />
+    <End Role="ResistanceTestDataStatusDetails" Type="Self.ResistanceTestDataStatusDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResistanceTestDataDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ResistanceTestDataStatusDetails">
+        <PropertyRef Name="ResistanceTestDataDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID">
+    <End Role="SignalTestDatas" Type="Self.SignalTestData" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SignalTestDatas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="SignalTestDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataStatusDetails_dbo_SignalTestDataDetails_SignalTestDataDetailID">
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetail" Multiplicity="1" />
+    <End Role="SignalTestDataStatusDetails" Type="Self.SignalTestDataStatusDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SignalTestDataDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataStatusDetails">
+        <PropertyRef Name="SignalTestDataDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDatas_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="SignalTestDatas" Type="Self.SignalTestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDatas">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_UserGroups_UserGroupID">
+    <End Role="UserGroups" Type="Self.UserGroup" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserMenus_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserMenus" Type="Self.UserMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserMenus">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserSessions_dbo_Users_UserID">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserSessions" Type="Self.UserSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserSessions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JOGANDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="DeviceNoiseTestParameters" EntityType="Self.DeviceNoiseTestParameter" />
+    <EntitySet Name="DeviceNoiseTestParameterTypes" EntityType="Self.DeviceNoiseTestParameterType" />
+    <EntitySet Name="DeviceSignalTestParameters" EntityType="Self.DeviceSignalTestParameter" />
+    <EntitySet Name="GroupAccesses" EntityType="Self.GroupAccess" />
+    <EntitySet Name="LoginHistories" EntityType="Self.LoginHistory" />
+    <EntitySet Name="MachineCalibrations" EntityType="Self.MachineCalibration" />
+    <EntitySet Name="MachineNoiseCalibrations" EntityType="Self.MachineNoiseCalibration" />
+    <EntitySet Name="MachineSignalCalibrations" EntityType="Self.MachineSignalCalibration" />
+    <EntitySet Name="MasterBoxNGs" EntityType="Self.MasterBoxNG" />
+    <EntitySet Name="MasterDeviceNGs" EntityType="Self.MasterDeviceNG" />
+    <EntitySet Name="MasterDevices" EntityType="Self.MasterDevice" />
+    <EntitySet Name="MasterJigCarriers" EntityType="Self.MasterJigCarrier" />
+    <EntitySet Name="MasterLotBoxes" EntityType="Self.MasterLotBox" />
+    <EntitySet Name="MasterMachines" EntityType="Self.MasterMachine" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="NoiseTestDataDetails" EntityType="Self.NoiseTestDataDetail" />
+    <EntitySet Name="NoiseTestDatas" EntityType="Self.NoiseTestData" />
+    <EntitySet Name="NoiseTestDataStatusDetails" EntityType="Self.NoiseTestDataStatusDetail" />
+    <EntitySet Name="OutputResultDetails" EntityType="Self.OutputResultDetail" />
+    <EntitySet Name="OutputResultRejectDetails" EntityType="Self.OutputResultRejectDetail" />
+    <EntitySet Name="OutputResults" EntityType="Self.OutputResult" />
+    <EntitySet Name="ResistanceTestDataDetails" EntityType="Self.ResistanceTestDataDetail" />
+    <EntitySet Name="ResistanceTestDataStatusDetails" EntityType="Self.ResistanceTestDataStatusDetail" />
+    <EntitySet Name="SignalTestDataDetails" EntityType="Self.SignalTestDataDetail" />
+    <EntitySet Name="SignalTestDatas" EntityType="Self.SignalTestData" />
+    <EntitySet Name="SignalTestDataStatusDetails" EntityType="Self.SignalTestDataStatusDetail" />
+    <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+    <EntitySet Name="UserMenus" EntityType="Self.UserMenu" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserSessions" EntityType="Self.UserSession" />
+    <EntitySet Name="V_GroupAccess" EntityType="Self.V_GroupAccess" />
+    <EntitySet Name="V_UserUserGroup" EntityType="Self.V_UserUserGroup" />
+    <EntitySet Name="V_UserUserMenu" EntityType="Self.V_UserUserMenu" />
+    <AssociationSet Name="FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID" Association="Self.FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID">
+      <End Role="DeviceNoiseTestParameterTypes" EntitySet="DeviceNoiseTestParameterTypes" />
+      <End Role="DeviceNoiseTestParameters" EntitySet="DeviceNoiseTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DeviceNoiseTestParameters_dbo_MasterDevices_MasterDeviceID" Association="Self.FK_dbo_DeviceNoiseTestParameters_dbo_MasterDevices_MasterDeviceID">
+      <End Role="MasterDevices" EntitySet="MasterDevices" />
+      <End Role="DeviceNoiseTestParameters" EntitySet="DeviceNoiseTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DeviceSignalTestParameters_dbo_MasterDevices_MasterDeviceID" Association="Self.FK_dbo_DeviceSignalTestParameters_dbo_MasterDevices_MasterDeviceID">
+      <End Role="MasterDevices" EntitySet="MasterDevices" />
+      <End Role="DeviceSignalTestParameters" EntitySet="DeviceSignalTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GroupAccesses_dbo_Menus_MenuID" Association="Self.FK_dbo_GroupAccesses_dbo_Menus_MenuID">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="GroupAccesses" EntitySet="GroupAccesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GroupAccesses_dbo_UserGroups_UserGroupID" Association="Self.FK_dbo_GroupAccesses_dbo_UserGroups_UserGroupID">
+      <End Role="UserGroups" EntitySet="UserGroups" />
+      <End Role="GroupAccesses" EntitySet="GroupAccesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_LoginHistories_dbo_Users_UserID" Association="Self.FK_dbo_LoginHistories_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LoginHistories" EntitySet="LoginHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineCalibrations_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_MachineCalibrations_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="MachineCalibrations" EntitySet="MachineCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineNoiseCalibrations_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_MachineNoiseCalibrations_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="MachineNoiseCalibrations" EntitySet="MachineNoiseCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineSignalCalibrations_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_MachineSignalCalibrations_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="MachineSignalCalibrations" EntitySet="MachineSignalCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDatas_dbo_MasterDevices_MasterDeviceID" Association="Self.FK_dbo_NoiseTestDatas_dbo_MasterDevices_MasterDeviceID">
+      <End Role="MasterDevices" EntitySet="MasterDevices" />
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_MasterDevices_MasterDeviceID" Association="Self.FK_dbo_OutputResults_dbo_MasterDevices_MasterDeviceID">
+      <End Role="MasterDevices" EntitySet="MasterDevices" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDatas_dbo_MasterDevices_MasterDeviceID" Association="Self.FK_dbo_SignalTestDatas_dbo_MasterDevices_MasterDeviceID">
+      <End Role="MasterDevices" EntitySet="MasterDevices" />
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+      <End Role="MasterJigCarriers" EntitySet="MasterJigCarriers" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultDetails_dbo_MasterJigCarriers_MasterJigCarrierID" Association="Self.FK_dbo_OutputResultDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+      <End Role="MasterJigCarriers" EntitySet="MasterJigCarriers" />
+      <End Role="OutputResultDetails" EntitySet="OutputResultDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultRejectDetails_dbo_MasterJigCarriers_MasterJigCarrierID" Association="Self.FK_dbo_OutputResultRejectDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+      <End Role="MasterJigCarriers" EntitySet="MasterJigCarriers" />
+      <End Role="OutputResultRejectDetails" EntitySet="OutputResultRejectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ResistanceTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" Association="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+      <End Role="MasterJigCarriers" EntitySet="MasterJigCarriers" />
+      <End Role="ResistanceTestDataDetails" EntitySet="ResistanceTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_MasterJigCarriers_MasterJigCarrierID">
+      <End Role="MasterJigCarriers" EntitySet="MasterJigCarriers" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_MasterLotBoxes_MasterLotBoxID" Association="Self.FK_dbo_OutputResults_dbo_MasterLotBoxes_MasterLotBoxID">
+      <End Role="MasterLotBoxes" EntitySet="MasterLotBoxes" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ResistanceTestDataDetails_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_ResistanceTestDataDetails_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="ResistanceTestDataDetails" EntitySet="ResistanceTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_MasterMachines_MasterMachineID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_MasterMachines_MasterMachineID">
+      <End Role="MasterMachines" EntitySet="MasterMachines" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserMenus_dbo_Menus_MenuID" Association="Self.FK_dbo_UserMenus_dbo_Menus_MenuID">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="UserMenus" EntitySet="UserMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID">
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataStatusDetails_dbo_NoiseTestDataDetails_NoiseTestDataDetailID" Association="Self.FK_dbo_NoiseTestDataStatusDetails_dbo_NoiseTestDataDetails_NoiseTestDataDetailID">
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+      <End Role="NoiseTestDataStatusDetails" EntitySet="NoiseTestDataStatusDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDatas_dbo_Users_UserID" Association="Self.FK_dbo_NoiseTestDatas_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID" Association="Self.FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID">
+      <End Role="OutputResults" EntitySet="OutputResults" />
+      <End Role="OutputResultDetails" EntitySet="OutputResultDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID" Association="Self.FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID">
+      <End Role="OutputResults" EntitySet="OutputResults" />
+      <End Role="OutputResultRejectDetails" EntitySet="OutputResultRejectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_Users_UserID" Association="Self.FK_dbo_OutputResults_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ResistanceTestDataDetails_dbo_SignalTestDatas_ResistanceTestDataID" Association="Self.FK_dbo_ResistanceTestDataDetails_dbo_SignalTestDatas_ResistanceTestDataID">
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+      <End Role="ResistanceTestDataDetails" EntitySet="ResistanceTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ResistanceTestDataStatusDetails_dbo_ResistanceTestDataDetails_ResistanceTestDataDetailID" Association="Self.FK_dbo_ResistanceTestDataStatusDetails_dbo_ResistanceTestDataDetails_ResistanceTestDataDetailID">
+      <End Role="ResistanceTestDataDetails" EntitySet="ResistanceTestDataDetails" />
+      <End Role="ResistanceTestDataStatusDetails" EntitySet="ResistanceTestDataStatusDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID">
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataStatusDetails_dbo_SignalTestDataDetails_SignalTestDataDetailID" Association="Self.FK_dbo_SignalTestDataStatusDetails_dbo_SignalTestDataDetails_SignalTestDataDetailID">
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+      <End Role="SignalTestDataStatusDetails" EntitySet="SignalTestDataStatusDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDatas_dbo_Users_UserID" Association="Self.FK_dbo_SignalTestDatas_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_UserGroups_UserGroupID" Association="Self.FK_dbo_Users_dbo_UserGroups_UserGroupID">
+      <End Role="UserGroups" EntitySet="UserGroups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserMenus_dbo_Users_UserID" Association="Self.FK_dbo_UserMenus_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserMenus" EntitySet="UserMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserSessions_dbo_Users_UserID" Association="Self.FK_dbo_UserSessions_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserSessions" EntitySet="UserSessions" />
+    </AssociationSet>
+    <FunctionImport Name="SP_GroupAccess" ReturnType="Collection(JOGANDBModel.SP_GroupAccess_Result)">
+      <Parameter Name="GroupID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_GroupAccess_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="Detail" Nullable="false" />
+    <Property Type="Int32" Name="TotalChild" Nullable="true" />
+    <Property Type="Int32" Name="AllowRead" Nullable="true" />
+    <Property Type="Int32" Name="AllowAdd" Nullable="true" />
+    <Property Type="Int32" Name="AllowEdit" Nullable="true" />
+    <Property Type="Int32" Name="AllowDelete" Nullable="true" />
+    <Property Type="Int32" Name="AllowReport" Nullable="true" />
+  </ComplexType>
+</Schema>

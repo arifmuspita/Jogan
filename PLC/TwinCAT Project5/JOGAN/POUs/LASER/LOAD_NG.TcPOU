@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="LOAD_NG" Id="{2f23b999-c3ff-402f-a894-b44e03b27e70}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LOAD_NG
+VAR
+	DELAY: TON;
+
+	TMR_DLY: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT SORTER_VAR.I_NG_HOME THEN
+	SORTER_VAR.O_NG_DATA_OUTPUT1:=TRUE;
+	SORTER_VAR.O_NG_DATA_OUTPUT2:=TRUE;
+	SORTER_VAR.O_NG_DATA_OUTPUT3:=TRUE;
+	SORTER_VAR.O_NG_DATA_OUTPUT4:=TRUE;
+	TMR_DLY(IN:=TRUE,PT:=T#1S);
+	IF TMR_DLY.Q THEN
+		SORTER_VAR.O_NG_DATA_OUTPUT1:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT2:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT3:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT4:=FALSE;
+		SORTER_VAR.I_NG_HOME:=TRUE;
+		TMR_DLY(IN:=FALSE);
+	END_IF
+ELSE
+CASE SORTER_VAR.I_NG_CASE OF
+	1:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+		SORTER_VAR.LOAD_NG_IDX :=SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD_NG;
+		
+		SORTER_VAR.O_NG_DATA_OUTPUT1:=TRUE;
+		SORTER_VAR.O_NG_DATA_OUTPUT2:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT3:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT4:=FALSE;
+		
+		SORTER_VAR.I_LOADING_DONE_NG:=FALSE;
+		SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=FALSE;
+		SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=TRUE;
+//HOMING POSITION	
+		LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=21,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+	2:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//NEAR BOX POSITION	
+		LASER_MOVE(STEP_DATA_1:=5,
+				STEP_DATA_2:=3,
+				STEP_DATA_3:=SORTER_VAR.LOAD_NG_IDX+19,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+	3:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//ON BOX POSITION	
+		LASER_MOVE(STEP_DATA_1:=5,
+				STEP_DATA_2:=8,
+				STEP_DATA_3:=SORTER_VAR.LOAD_NG_IDX+19,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+	4:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+			SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=TRUE;
+			SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=FALSE;
+			IF SORTER_VAR.I_CARTESSIAN_GRIPPER_ON THEN
+//GRIP ON AND LIFT
+				LASER_MOVE(STEP_DATA_1:=5,
+				STEP_DATA_2:=8,
+				STEP_DATA_3:=14,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);				
+			END_IF
+	5:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//MOVE BACK	
+		LASER_MOVE(STEP_DATA_1:=5,//SORTER_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX+5,
+				STEP_DATA_2:=2,
+				STEP_DATA_3:=10,//SORTER_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD_NG,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+				
+	6:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//ABOVE TRANSFER POSITION
+		LASER_MOVE(STEP_DATA_1:=8,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+
+	7:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//ON TRANSFER POSITION
+		LASER_MOVE(STEP_DATA_1:=8,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);	
+				
+	8:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+		SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=FALSE;
+		SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=TRUE;
+		IF SORTER_VAR.I_CARTESSIAN_GRIPPER_OFF THEN
+//GRIP OFF AND MOVE BACK
+		LASER_MOVE(STEP_DATA_1:=8,
+				STEP_DATA_2:=1,
+				STEP_DATA_3:=11,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);	
+		END_IF
+	9:	IF SORTER_VAR.ACTIVE_ID=6 THEN
+			SORTER_VAR.ACTIVE_ID:=1;
+		END_IF
+//HOME POSITION
+		LASER_MOVE(STEP_DATA_1:=0,
+				STEP_DATA_2:=0,
+				STEP_DATA_3:=12,
+				STEP_DATA_4:=0,
+				STEP_DATA_5:=0);
+	10:
+		SORTER_VAR.O_NG_DATA_OUTPUT1:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT2:=TRUE;
+		SORTER_VAR.O_NG_DATA_OUTPUT3:=FALSE;
+		SORTER_VAR.O_NG_DATA_OUTPUT4:=FALSE;
+		IF SORTER_VAR.I_NG_TRANSFER_AT_FRONT THEN
+			SORTER_VAR.I_LOADING_DONE_NG:=TRUE;
+			SORTER_VAR.O_NG_DATA_OUTPUT2:=FALSE;
+			SORTER_VAR.I_NG_CASE:=100;
+			FLAG_VAR.ALLOW_EXECUTE_LOAD_NG:=FALSE;
+		END_IF
+		
+	100: 	FLAG_VAR.ALLOW_EXECUTE_LOAD_NG:=FALSE;
+			SORTER_VAR.O_CARTESSIAN_GRIPPER_ON:=FALSE;
+			SORTER_VAR.O_CARTESSIAN_GRIPPER_OFF:=FALSE;
+			
+END_CASE
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="LOAD_NG">
+      <LineId Id="182" Count="13" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="204" Count="2" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="48" Count="4" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="53" Count="7" />
+      <LineId Id="62" Count="9" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="84" Count="2" />
+      <LineId Id="93" Count="2" />
+      <LineId Id="87" Count="5" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="96" Count="18" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="115" Count="8" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="124" Count="2" />
+      <LineId Id="147" Count="2" />
+      <LineId Id="127" Count="5" />
+      <LineId Id="134" Count="11" />
+      <LineId Id="209" Count="2" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="156" Count="1" />
+      <LineId Id="173" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

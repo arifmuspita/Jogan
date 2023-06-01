@@ -1,0 +1,13 @@
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\Utilites.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\Utilites.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\DBProject.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\EntityFramework.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\EntityFramework.SqlServer.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\TwinCAT.Ads.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\DBProject.pdb
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\EntityFramework.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\EntityFramework.SqlServer.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\bin\Debug\TwinCAT.Ads.xml
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\obj\Debug\Utilites.dll
+D:\andri\C#\JOGAN\AllJogan\JOGAN\Utilities\Utilities\obj\Debug\Utilites.pdb

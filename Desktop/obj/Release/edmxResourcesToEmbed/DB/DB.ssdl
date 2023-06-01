@@ -1,0 +1,1315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BoxNGs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxNGID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceNGs">
+    <Key>
+      <PropertyRef Name="DeviceNGID" />
+    </Key>
+    <Property Name="DeviceNGID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DeviceNGType" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceNoiseConfigGroups">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceConfigGroupID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeviceConfigGroupName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceNoiseTestParameters">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceID" Type="int" Nullable="false" />
+    <Property Name="DeviceNoiseTestParameterTypeID" Type="int" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceNoiseTestParameterTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceNoiseConfigGroupID" Type="int" Nullable="false" />
+    <Property Name="NoiseLimit" Type="int" Nullable="false" />
+    <Property Name="SoakTime" Type="int" Nullable="false" />
+    <Property Name="MeasurementDuration" Type="int" Nullable="false" />
+    <Property Name="LaudaSetting" Type="int" Nullable="false" />
+    <Property Name="BBTemperatureHL" Type="int" Nullable="false" />
+    <Property Name="BBTemperatureLL" Type="int" Nullable="false" />
+    <Property Name="UpperTempTolerance" Type="int" Nullable="false" />
+    <Property Name="LowerTempTolearance" Type="int" Nullable="false" />
+    <Property Name="SampleRate" Type="int" Nullable="false" />
+    <Property Name="NoDUTOffset" Type="float" Nullable="false" />
+    <Property Name="OffsetHLimit" Type="float" Nullable="false" />
+    <Property Name="OffsetLLimit" Type="float" Nullable="false" />
+    <Property Name="CutOffFreq" Type="float" Nullable="false" />
+    <Property Name="MovingWindow" Type="bit" Nullable="false" />
+    <Property Name="TestingVoltage" Type="int" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Devices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeviceName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DeviceGroup" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DeviceStatus" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeviceSignalTestParameters">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceID" Type="int" Nullable="false" />
+    <Property Name="NoDUTOffset" Type="float" Nullable="false" />
+    <Property Name="OffsetMin" Type="float" Nullable="false" />
+    <Property Name="OffsetMax" Type="float" Nullable="false" />
+    <Property Name="OffsetGrpMin" Type="float" Nullable="false" />
+    <Property Name="OffsetGrpMax" Type="float" Nullable="false" />
+    <Property Name="NoResponse" Type="float" Nullable="false" />
+    <Property Name="ResponseMin" Type="float" Nullable="false" />
+    <Property Name="ResponseMax" Type="float" Nullable="false" />
+    <Property Name="ResponseGrpMin" Type="float" Nullable="false" />
+    <Property Name="ResponseGrpMax" Type="float" Nullable="false" />
+    <Property Name="MatchSignalMax" Type="float" Nullable="false" />
+    <Property Name="ResistanceMin" Type="float" Nullable="false" />
+    <Property Name="C1stSoakTime" Type="int" Nullable="false" />
+    <Property Name="C2ndSoakTime" Type="int" Nullable="false" />
+    <Property Name="LaudaSetting" Type="int" Nullable="false" />
+    <Property Name="BBSetting" Type="int" Nullable="false" />
+    <Property Name="BBTemperatureHL" Type="int" Nullable="false" />
+    <Property Name="BBTemperatureLL" Type="int" Nullable="false" />
+    <Property Name="SampleRate" Type="int" Nullable="false" />
+    <Property Name="HighCutOfFrequency" Type="float" Nullable="false" />
+    <Property Name="LowCutOfFrequency" Type="float" Nullable="false" />
+    <Property Name="MeasurementDureation" Type="int" Nullable="false" />
+    <Property Name="MeasurementDureation2" Type="int" Nullable="false" />
+    <Property Name="TemperatureCoe" Type="float" Nullable="false" />
+    <Property Name="TestingVoltage" Type="float" Nullable="false" />
+    <Property Name="Resistance" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JIGCarriers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JigCarrierID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="JigDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LotBoxes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LotBoxID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LotBoxDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MachineCalibrations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MachineID" Type="int" Nullable="false" />
+    <Property Name="CalibrationType" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Socket1" Type="float" Nullable="false" />
+    <Property Name="Socket2" Type="float" Nullable="false" />
+    <Property Name="Socket3" Type="float" Nullable="false" />
+    <Property Name="Socket4" Type="float" Nullable="false" />
+    <Property Name="Socket5" Type="float" Nullable="false" />
+    <Property Name="Socket6" Type="float" Nullable="false" />
+    <Property Name="Socket7" Type="float" Nullable="false" />
+    <Property Name="Socket8" Type="float" Nullable="false" />
+    <Property Name="Socket9" Type="float" Nullable="false" />
+    <Property Name="Socket10" Type="float" Nullable="false" />
+    <Property Name="Socket11" Type="float" Nullable="false" />
+    <Property Name="Socket12" Type="float" Nullable="false" />
+    <Property Name="Socket13" Type="float" Nullable="false" />
+    <Property Name="Socket14" Type="float" Nullable="false" />
+    <Property Name="Socket15" Type="float" Nullable="false" />
+    <Property Name="Socket16" Type="float" Nullable="false" />
+    <Property Name="Socket17" Type="float" Nullable="false" />
+    <Property Name="Socket18" Type="float" Nullable="false" />
+    <Property Name="Socket19" Type="float" Nullable="false" />
+    <Property Name="Socket20" Type="float" Nullable="false" />
+    <Property Name="Socket21" Type="float" Nullable="false" />
+    <Property Name="Socket22" Type="float" Nullable="false" />
+    <Property Name="Socket23" Type="float" Nullable="false" />
+    <Property Name="Socket24" Type="float" Nullable="false" />
+    <Property Name="Socket25" Type="float" Nullable="false" />
+    <Property Name="Socket26" Type="float" Nullable="false" />
+    <Property Name="Socket27" Type="float" Nullable="false" />
+    <Property Name="Socket28" Type="float" Nullable="false" />
+    <Property Name="Socket29" Type="float" Nullable="false" />
+    <Property Name="Socket30" Type="float" Nullable="false" />
+    <Property Name="Socket31" Type="float" Nullable="false" />
+    <Property Name="Socket32" Type="float" Nullable="false" />
+    <Property Name="Socket33" Type="float" Nullable="false" />
+    <Property Name="Socket34" Type="float" Nullable="false" />
+    <Property Name="Socket35" Type="float" Nullable="false" />
+    <Property Name="Socket36" Type="float" Nullable="false" />
+    <Property Name="Socket37" Type="float" Nullable="false" />
+    <Property Name="Socket38" Type="float" Nullable="false" />
+    <Property Name="Socket39" Type="float" Nullable="false" />
+    <Property Name="Socket40" Type="float" Nullable="false" />
+    <Property Name="Socket41" Type="float" Nullable="false" />
+    <Property Name="Socket42" Type="float" Nullable="false" />
+    <Property Name="Socket43" Type="float" Nullable="false" />
+    <Property Name="Socket44" Type="float" Nullable="false" />
+    <Property Name="Socket45" Type="float" Nullable="false" />
+    <Property Name="Socket46" Type="float" Nullable="false" />
+    <Property Name="Socket47" Type="float" Nullable="false" />
+    <Property Name="Socket48" Type="float" Nullable="false" />
+    <Property Name="Socket49" Type="float" Nullable="false" />
+    <Property Name="Socket50" Type="float" Nullable="false" />
+    <Property Name="Socket51" Type="float" Nullable="false" />
+    <Property Name="Socket52" Type="float" Nullable="false" />
+    <Property Name="Socket53" Type="float" Nullable="false" />
+    <Property Name="Socket54" Type="float" Nullable="false" />
+    <Property Name="Socket55" Type="float" Nullable="false" />
+    <Property Name="Socket56" Type="float" Nullable="false" />
+    <Property Name="Socket57" Type="float" Nullable="false" />
+    <Property Name="Socket58" Type="float" Nullable="false" />
+    <Property Name="Socket59" Type="float" Nullable="false" />
+    <Property Name="Socket60" Type="float" Nullable="false" />
+    <Property Name="Socket61" Type="float" Nullable="false" />
+    <Property Name="Socket62" Type="float" Nullable="false" />
+    <Property Name="Socket63" Type="float" Nullable="false" />
+    <Property Name="Socket64" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MachineNoiseCalibrations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MachineID" Type="int" Nullable="false" />
+    <Property Name="ScaleSignal" Type="float" Nullable="false" />
+    <Property Name="ScaleOffset" Type="float" Nullable="false" />
+    <Property Name="NoiseCorrFactor" Type="float" Nullable="false" />
+    <Property Name="PT100BBCorrFactor" Type="float" Nullable="false" />
+    <Property Name="PT100LaudaCorrFactor" Type="float" Nullable="false" />
+    <Property Name="PT100CorrFactor" Type="float" Nullable="false" />
+    <Property Name="Socket1" Type="float" Nullable="false" />
+    <Property Name="Socket2" Type="float" Nullable="false" />
+    <Property Name="Socket3" Type="float" Nullable="false" />
+    <Property Name="Socket4" Type="float" Nullable="false" />
+    <Property Name="Socket5" Type="float" Nullable="false" />
+    <Property Name="Socket6" Type="float" Nullable="false" />
+    <Property Name="Socket7" Type="float" Nullable="false" />
+    <Property Name="Socket8" Type="float" Nullable="false" />
+    <Property Name="Socket9" Type="float" Nullable="false" />
+    <Property Name="Socket10" Type="float" Nullable="false" />
+    <Property Name="Socket11" Type="float" Nullable="false" />
+    <Property Name="Socket12" Type="float" Nullable="false" />
+    <Property Name="Socket13" Type="float" Nullable="false" />
+    <Property Name="Socket14" Type="float" Nullable="false" />
+    <Property Name="Socket15" Type="float" Nullable="false" />
+    <Property Name="Socket16" Type="float" Nullable="false" />
+    <Property Name="Socket17" Type="float" Nullable="false" />
+    <Property Name="Socket18" Type="float" Nullable="false" />
+    <Property Name="Socket19" Type="float" Nullable="false" />
+    <Property Name="Socket20" Type="float" Nullable="false" />
+    <Property Name="Socket21" Type="float" Nullable="false" />
+    <Property Name="Socket22" Type="float" Nullable="false" />
+    <Property Name="Socket23" Type="float" Nullable="false" />
+    <Property Name="Socket24" Type="float" Nullable="false" />
+    <Property Name="Socket25" Type="float" Nullable="false" />
+    <Property Name="Socket26" Type="float" Nullable="false" />
+    <Property Name="Socket27" Type="float" Nullable="false" />
+    <Property Name="Socket28" Type="float" Nullable="false" />
+    <Property Name="Socket29" Type="float" Nullable="false" />
+    <Property Name="Socket30" Type="float" Nullable="false" />
+    <Property Name="Socket31" Type="float" Nullable="false" />
+    <Property Name="Socket32" Type="float" Nullable="false" />
+    <Property Name="Socket33" Type="float" Nullable="false" />
+    <Property Name="Socket34" Type="float" Nullable="false" />
+    <Property Name="Socket35" Type="float" Nullable="false" />
+    <Property Name="Socket36" Type="float" Nullable="false" />
+    <Property Name="Socket37" Type="float" Nullable="false" />
+    <Property Name="Socket38" Type="float" Nullable="false" />
+    <Property Name="Socket39" Type="float" Nullable="false" />
+    <Property Name="Socket40" Type="float" Nullable="false" />
+    <Property Name="Socket41" Type="float" Nullable="false" />
+    <Property Name="Socket42" Type="float" Nullable="false" />
+    <Property Name="Socket43" Type="float" Nullable="false" />
+    <Property Name="Socket44" Type="float" Nullable="false" />
+    <Property Name="Socket45" Type="float" Nullable="false" />
+    <Property Name="Socket46" Type="float" Nullable="false" />
+    <Property Name="Socket47" Type="float" Nullable="false" />
+    <Property Name="Socket48" Type="float" Nullable="false" />
+    <Property Name="Socket49" Type="float" Nullable="false" />
+    <Property Name="Socket50" Type="float" Nullable="false" />
+    <Property Name="Socket51" Type="float" Nullable="false" />
+    <Property Name="Socket52" Type="float" Nullable="false" />
+    <Property Name="Socket53" Type="float" Nullable="false" />
+    <Property Name="Socket54" Type="float" Nullable="false" />
+    <Property Name="Socket55" Type="float" Nullable="false" />
+    <Property Name="Socket56" Type="float" Nullable="false" />
+    <Property Name="Socket57" Type="float" Nullable="false" />
+    <Property Name="Socket58" Type="float" Nullable="false" />
+    <Property Name="Socket59" Type="float" Nullable="false" />
+    <Property Name="Socket60" Type="float" Nullable="false" />
+    <Property Name="Socket61" Type="float" Nullable="false" />
+    <Property Name="Socket62" Type="float" Nullable="false" />
+    <Property Name="Socket63" Type="float" Nullable="false" />
+    <Property Name="Socket64" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Machines">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MachineID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MachineName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MachineSignalCalibrations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MachineID" Type="int" Nullable="false" />
+    <Property Name="ScaleSignal" Type="float" Nullable="false" />
+    <Property Name="ScaleOffset" Type="float" Nullable="false" />
+    <Property Name="ScaleResistance" Type="float" Nullable="false" />
+    <Property Name="MatchCorrFactor" Type="float" Nullable="false" />
+    <Property Name="Gain" Type="float" Nullable="false" />
+    <Property Name="PT100CorrFactor" Type="float" Nullable="false" />
+    <Property Name="Socket1" Type="float" Nullable="false" />
+    <Property Name="Socket2" Type="float" Nullable="false" />
+    <Property Name="Socket3" Type="float" Nullable="false" />
+    <Property Name="Socket4" Type="float" Nullable="false" />
+    <Property Name="Socket5" Type="float" Nullable="false" />
+    <Property Name="Socket6" Type="float" Nullable="false" />
+    <Property Name="Socket7" Type="float" Nullable="false" />
+    <Property Name="Socket8" Type="float" Nullable="false" />
+    <Property Name="Socket9" Type="float" Nullable="false" />
+    <Property Name="Socket10" Type="float" Nullable="false" />
+    <Property Name="Socket11" Type="float" Nullable="false" />
+    <Property Name="Socket12" Type="float" Nullable="false" />
+    <Property Name="Socket13" Type="float" Nullable="false" />
+    <Property Name="Socket14" Type="float" Nullable="false" />
+    <Property Name="Socket15" Type="float" Nullable="false" />
+    <Property Name="Socket16" Type="float" Nullable="false" />
+    <Property Name="Socket17" Type="float" Nullable="false" />
+    <Property Name="Socket18" Type="float" Nullable="false" />
+    <Property Name="Socket19" Type="float" Nullable="false" />
+    <Property Name="Socket20" Type="float" Nullable="false" />
+    <Property Name="Socket21" Type="float" Nullable="false" />
+    <Property Name="Socket22" Type="float" Nullable="false" />
+    <Property Name="Socket23" Type="float" Nullable="false" />
+    <Property Name="Socket24" Type="float" Nullable="false" />
+    <Property Name="Socket25" Type="float" Nullable="false" />
+    <Property Name="Socket26" Type="float" Nullable="false" />
+    <Property Name="Socket27" Type="float" Nullable="false" />
+    <Property Name="Socket28" Type="float" Nullable="false" />
+    <Property Name="Socket29" Type="float" Nullable="false" />
+    <Property Name="Socket30" Type="float" Nullable="false" />
+    <Property Name="Socket31" Type="float" Nullable="false" />
+    <Property Name="Socket32" Type="float" Nullable="false" />
+    <Property Name="Socket33" Type="float" Nullable="false" />
+    <Property Name="Socket34" Type="float" Nullable="false" />
+    <Property Name="Socket35" Type="float" Nullable="false" />
+    <Property Name="Socket36" Type="float" Nullable="false" />
+    <Property Name="Socket37" Type="float" Nullable="false" />
+    <Property Name="Socket38" Type="float" Nullable="false" />
+    <Property Name="Socket39" Type="float" Nullable="false" />
+    <Property Name="Socket40" Type="float" Nullable="false" />
+    <Property Name="Socket41" Type="float" Nullable="false" />
+    <Property Name="Socket42" Type="float" Nullable="false" />
+    <Property Name="Socket43" Type="float" Nullable="false" />
+    <Property Name="Socket44" Type="float" Nullable="false" />
+    <Property Name="Socket45" Type="float" Nullable="false" />
+    <Property Name="Socket46" Type="float" Nullable="false" />
+    <Property Name="Socket47" Type="float" Nullable="false" />
+    <Property Name="Socket48" Type="float" Nullable="false" />
+    <Property Name="Socket49" Type="float" Nullable="false" />
+    <Property Name="Socket50" Type="float" Nullable="false" />
+    <Property Name="Socket51" Type="float" Nullable="false" />
+    <Property Name="Socket52" Type="float" Nullable="false" />
+    <Property Name="Socket53" Type="float" Nullable="false" />
+    <Property Name="Socket54" Type="float" Nullable="false" />
+    <Property Name="Socket55" Type="float" Nullable="false" />
+    <Property Name="Socket56" Type="float" Nullable="false" />
+    <Property Name="Socket57" Type="float" Nullable="false" />
+    <Property Name="Socket58" Type="float" Nullable="false" />
+    <Property Name="Socket59" Type="float" Nullable="false" />
+    <Property Name="Socket60" Type="float" Nullable="false" />
+    <Property Name="Socket61" Type="float" Nullable="false" />
+    <Property Name="Socket62" Type="float" Nullable="false" />
+    <Property Name="Socket63" Type="float" Nullable="false" />
+    <Property Name="Socket64" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Detail" Type="bit" Nullable="false" />
+    <Property Name="Module" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModuleParent" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NoiseTestDataDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiseTestDataID" Type="int" Nullable="false" />
+    <Property Name="TypeTest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LotBoxID" Type="int" Nullable="false" />
+    <Property Name="JIGCarrierID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="BBTemperature" Type="int" Nullable="false" />
+    <Property Name="Socket1" Type="float" Nullable="false" />
+    <Property Name="Socket2" Type="float" Nullable="false" />
+    <Property Name="Socket3" Type="float" Nullable="false" />
+    <Property Name="Socket4" Type="float" Nullable="false" />
+    <Property Name="Socket5" Type="float" Nullable="false" />
+    <Property Name="Socket6" Type="float" Nullable="false" />
+    <Property Name="Socket7" Type="float" Nullable="false" />
+    <Property Name="Socket8" Type="float" Nullable="false" />
+    <Property Name="Socket9" Type="float" Nullable="false" />
+    <Property Name="Socket10" Type="float" Nullable="false" />
+    <Property Name="Socket11" Type="float" Nullable="false" />
+    <Property Name="Socket12" Type="float" Nullable="false" />
+    <Property Name="Socket13" Type="float" Nullable="false" />
+    <Property Name="Socket14" Type="float" Nullable="false" />
+    <Property Name="Socket15" Type="float" Nullable="false" />
+    <Property Name="Socket16" Type="float" Nullable="false" />
+    <Property Name="Socket17" Type="float" Nullable="false" />
+    <Property Name="Socket18" Type="float" Nullable="false" />
+    <Property Name="Socket19" Type="float" Nullable="false" />
+    <Property Name="Socket20" Type="float" Nullable="false" />
+    <Property Name="Socket21" Type="float" Nullable="false" />
+    <Property Name="Socket22" Type="float" Nullable="false" />
+    <Property Name="Socket23" Type="float" Nullable="false" />
+    <Property Name="Socket24" Type="float" Nullable="false" />
+    <Property Name="Socket25" Type="float" Nullable="false" />
+    <Property Name="Socket26" Type="float" Nullable="false" />
+    <Property Name="Socket27" Type="float" Nullable="false" />
+    <Property Name="Socket28" Type="float" Nullable="false" />
+    <Property Name="Socket29" Type="float" Nullable="false" />
+    <Property Name="Socket30" Type="float" Nullable="false" />
+    <Property Name="Socket31" Type="float" Nullable="false" />
+    <Property Name="Socket32" Type="float" Nullable="false" />
+    <Property Name="Socket33" Type="float" Nullable="false" />
+    <Property Name="Socket34" Type="float" Nullable="false" />
+    <Property Name="Socket35" Type="float" Nullable="false" />
+    <Property Name="Socket36" Type="float" Nullable="false" />
+    <Property Name="Socket37" Type="float" Nullable="false" />
+    <Property Name="Socket38" Type="float" Nullable="false" />
+    <Property Name="Socket39" Type="float" Nullable="false" />
+    <Property Name="Socket40" Type="float" Nullable="false" />
+    <Property Name="Socket41" Type="float" Nullable="false" />
+    <Property Name="Socket42" Type="float" Nullable="false" />
+    <Property Name="Socket43" Type="float" Nullable="false" />
+    <Property Name="Socket44" Type="float" Nullable="false" />
+    <Property Name="Socket45" Type="float" Nullable="false" />
+    <Property Name="Socket46" Type="float" Nullable="false" />
+    <Property Name="Socket47" Type="float" Nullable="false" />
+    <Property Name="Socket48" Type="float" Nullable="false" />
+    <Property Name="Socket49" Type="float" Nullable="false" />
+    <Property Name="Socket50" Type="float" Nullable="false" />
+    <Property Name="Socket51" Type="float" Nullable="false" />
+    <Property Name="Socket52" Type="float" Nullable="false" />
+    <Property Name="Socket53" Type="float" Nullable="false" />
+    <Property Name="Socket54" Type="float" Nullable="false" />
+    <Property Name="Socket55" Type="float" Nullable="false" />
+    <Property Name="Socket56" Type="float" Nullable="false" />
+    <Property Name="Socket57" Type="float" Nullable="false" />
+    <Property Name="Socket58" Type="float" Nullable="false" />
+    <Property Name="Socket59" Type="float" Nullable="false" />
+    <Property Name="Socket60" Type="float" Nullable="false" />
+    <Property Name="Socket61" Type="float" Nullable="false" />
+    <Property Name="Socket62" Type="float" Nullable="false" />
+    <Property Name="Socket63" Type="float" Nullable="false" />
+    <Property Name="Socket64" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NoiseTestDatas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeviceID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="StartTest" Type="datetime" Nullable="false" />
+    <Property Name="EndTest" Type="datetime" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutputResultDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OutputResultID" Type="int" Nullable="false" />
+    <Property Name="JIGCarrierID" Type="int" Nullable="false" />
+    <Property Name="GoodQty" Type="int" Nullable="false" />
+    <Property Name="RejectNG1Qty" Type="int" Nullable="false" />
+    <Property Name="RejectNG2Qty" Type="int" Nullable="false" />
+    <Property Name="RejectNG3Qty" Type="int" Nullable="false" />
+    <Property Name="RejectNG4Qty" Type="int" Nullable="false" />
+    <Property Name="RejectNG5Qty" Type="int" Nullable="false" />
+    <Property Name="NODQty" Type="int" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutputResultRejectDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OutputResultID" Type="int" Nullable="false" />
+    <Property Name="JIGCarrierID" Type="int" Nullable="false" />
+    <Property Name="SocketNumber" Type="int" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutputResults">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeviceID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TotalGoodQty" Type="int" Nullable="false" />
+    <Property Name="TotalRejectQty" Type="int" Nullable="false" />
+    <Property Name="LotBoxID" Type="int" Nullable="false" />
+    <Property Name="BoxNGID" Type="int" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SignalTestDataDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SignalTestDataID" Type="int" Nullable="false" />
+    <Property Name="TypeTest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LotBoxID" Type="int" Nullable="false" />
+    <Property Name="JIGCarrierID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="BBTemperature" Type="int" Nullable="false" />
+    <Property Name="Temperature" Type="float" Nullable="false" />
+    <Property Name="CoolingPlateTemperature" Type="float" Nullable="false" />
+    <Property Name="Socket1" Type="float" Nullable="false" />
+    <Property Name="Socket2" Type="float" Nullable="false" />
+    <Property Name="Socket3" Type="float" Nullable="false" />
+    <Property Name="Socket4" Type="float" Nullable="false" />
+    <Property Name="Socket5" Type="float" Nullable="false" />
+    <Property Name="Socket6" Type="float" Nullable="false" />
+    <Property Name="Socket7" Type="float" Nullable="false" />
+    <Property Name="Socket8" Type="float" Nullable="false" />
+    <Property Name="Socket9" Type="float" Nullable="false" />
+    <Property Name="Socket10" Type="float" Nullable="false" />
+    <Property Name="Socket11" Type="float" Nullable="false" />
+    <Property Name="Socket12" Type="float" Nullable="false" />
+    <Property Name="Socket13" Type="float" Nullable="false" />
+    <Property Name="Socket14" Type="float" Nullable="false" />
+    <Property Name="Socket15" Type="float" Nullable="false" />
+    <Property Name="Socket16" Type="float" Nullable="false" />
+    <Property Name="Socket17" Type="float" Nullable="false" />
+    <Property Name="Socket18" Type="float" Nullable="false" />
+    <Property Name="Socket19" Type="float" Nullable="false" />
+    <Property Name="Socket20" Type="float" Nullable="false" />
+    <Property Name="Socket21" Type="float" Nullable="false" />
+    <Property Name="Socket22" Type="float" Nullable="false" />
+    <Property Name="Socket23" Type="float" Nullable="false" />
+    <Property Name="Socket24" Type="float" Nullable="false" />
+    <Property Name="Socket25" Type="float" Nullable="false" />
+    <Property Name="Socket26" Type="float" Nullable="false" />
+    <Property Name="Socket27" Type="float" Nullable="false" />
+    <Property Name="Socket28" Type="float" Nullable="false" />
+    <Property Name="Socket29" Type="float" Nullable="false" />
+    <Property Name="Socket30" Type="float" Nullable="false" />
+    <Property Name="Socket31" Type="float" Nullable="false" />
+    <Property Name="Socket32" Type="float" Nullable="false" />
+    <Property Name="Socket33" Type="float" Nullable="false" />
+    <Property Name="Socket34" Type="float" Nullable="false" />
+    <Property Name="Socket35" Type="float" Nullable="false" />
+    <Property Name="Socket36" Type="float" Nullable="false" />
+    <Property Name="Socket37" Type="float" Nullable="false" />
+    <Property Name="Socket38" Type="float" Nullable="false" />
+    <Property Name="Socket39" Type="float" Nullable="false" />
+    <Property Name="Socket40" Type="float" Nullable="false" />
+    <Property Name="Socket41" Type="float" Nullable="false" />
+    <Property Name="Socket42" Type="float" Nullable="false" />
+    <Property Name="Socket43" Type="float" Nullable="false" />
+    <Property Name="Socket44" Type="float" Nullable="false" />
+    <Property Name="Socket45" Type="float" Nullable="false" />
+    <Property Name="Socket46" Type="float" Nullable="false" />
+    <Property Name="Socket47" Type="float" Nullable="false" />
+    <Property Name="Socket48" Type="float" Nullable="false" />
+    <Property Name="Socket49" Type="float" Nullable="false" />
+    <Property Name="Socket50" Type="float" Nullable="false" />
+    <Property Name="Socket51" Type="float" Nullable="false" />
+    <Property Name="Socket52" Type="float" Nullable="false" />
+    <Property Name="Socket53" Type="float" Nullable="false" />
+    <Property Name="Socket54" Type="float" Nullable="false" />
+    <Property Name="Socket55" Type="float" Nullable="false" />
+    <Property Name="Socket56" Type="float" Nullable="false" />
+    <Property Name="Socket57" Type="float" Nullable="false" />
+    <Property Name="Socket58" Type="float" Nullable="false" />
+    <Property Name="Socket59" Type="float" Nullable="false" />
+    <Property Name="Socket60" Type="float" Nullable="false" />
+    <Property Name="Socket61" Type="float" Nullable="false" />
+    <Property Name="Socket62" Type="float" Nullable="false" />
+    <Property Name="Socket63" Type="float" Nullable="false" />
+    <Property Name="Socket64" Type="float" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SignalTestDatas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeviceID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="StartTest" Type="datetime" Nullable="false" />
+    <Property Name="EndTest" Type="datetime" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroups">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMenus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="AllowRead" Type="bit" Nullable="false" />
+    <Property Name="AllowAdd" Type="bit" Nullable="false" />
+    <Property Name="AllowDelete" Type="bit" Nullable="false" />
+    <Property Name="AllowEdit" Type="bit" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="BagdeNo" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Salt" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedUser" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSessions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="SessionID" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="SessionToken" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'JOGANDB.dbo.V_UserUserGroup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_UserUserGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="BagdeNo" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserGroupID" />
+      <PropertyRef Name="Salt" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="NewPassword" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="BagdeNo" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+    <Property Name="Salt" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NewPassword" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'JOGANDB.dbo.V_UserUserMenu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_UserUserMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="BagdeNo" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserGroupID" />
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="AllowRead" />
+      <PropertyRef Name="AllowAdd" />
+      <PropertyRef Name="AllowDelete" />
+      <PropertyRef Name="AllowEdit" />
+      <PropertyRef Name="Detail" />
+      <PropertyRef Name="Module" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="BagdeNo" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="AllowRead" Type="bit" Nullable="false" />
+    <Property Name="AllowAdd" Type="bit" Nullable="false" />
+    <Property Name="AllowDelete" Type="bit" Nullable="false" />
+    <Property Name="AllowEdit" Type="bit" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Detail" Type="bit" Nullable="false" />
+    <Property Name="Module" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModuleParent" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID">
+    <End Role="DeviceNoiseTestParameterTypes" Type="Self.DeviceNoiseTestParameterTypes" Multiplicity="1" />
+    <End Role="DeviceNoiseTestParameters" Type="Self.DeviceNoiseTestParameters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeviceNoiseTestParameterTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceNoiseTestParameters">
+        <PropertyRef Name="DeviceNoiseTestParameterTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DeviceNoiseTestParameters_dbo_Devices_DeviceID">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+    <End Role="DeviceNoiseTestParameters" Type="Self.DeviceNoiseTestParameters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceNoiseTestParameters">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DeviceNoiseTestParameterTypes_dbo_DeviceNoiseConfigGroups_DeviceNoiseConfigGroupID">
+    <End Role="DeviceNoiseConfigGroups" Type="Self.DeviceNoiseConfigGroups" Multiplicity="1" />
+    <End Role="DeviceNoiseTestParameterTypes" Type="Self.DeviceNoiseTestParameterTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeviceNoiseConfigGroups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceNoiseTestParameterTypes">
+        <PropertyRef Name="DeviceNoiseConfigGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DeviceSignalTestParameters_dbo_Devices_DeviceID">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+    <End Role="DeviceSignalTestParameters" Type="Self.DeviceSignalTestParameters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DeviceSignalTestParameters">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineCalibrations_dbo_Machines_MachineID">
+    <End Role="Machines" Type="Self.Machines" Multiplicity="1" />
+    <End Role="MachineCalibrations" Type="Self.MachineCalibrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineCalibrations">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineNoiseCalibrations_dbo_Machines_MachineID">
+    <End Role="Machines" Type="Self.Machines" Multiplicity="1" />
+    <End Role="MachineNoiseCalibrations" Type="Self.MachineNoiseCalibrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineNoiseCalibrations">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MachineSignalCalibrations_dbo_Machines_MachineID">
+    <End Role="Machines" Type="Self.Machines" Multiplicity="1" />
+    <End Role="MachineSignalCalibrations" Type="Self.MachineSignalCalibrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MachineSignalCalibrations">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_JIGCarriers_JIGCarrierID">
+    <End Role="JIGCarriers" Type="Self.JIGCarriers" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JIGCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="JIGCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_LotBoxes_LotBoxID">
+    <End Role="LotBoxes" Type="Self.LotBoxes" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LotBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="LotBoxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID">
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestDatas" Multiplicity="1" />
+    <End Role="NoiseTestDataDetails" Type="Self.NoiseTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoiseTestDatas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDataDetails">
+        <PropertyRef Name="NoiseTestDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDatas_dbo_Devices_DeviceID">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestDatas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDatas">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_NoiseTestDatas_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoiseTestDatas" Type="Self.NoiseTestDatas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoiseTestDatas">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultDetails_dbo_JIGCarriers_JIGCarrierID">
+    <End Role="JIGCarriers" Type="Self.JIGCarriers" Multiplicity="1" />
+    <End Role="OutputResultDetails" Type="Self.OutputResultDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JIGCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultDetails">
+        <PropertyRef Name="JIGCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID">
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="1" />
+    <End Role="OutputResultDetails" Type="Self.OutputResultDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutputResults">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultDetails">
+        <PropertyRef Name="OutputResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultRejectDetails_dbo_JIGCarriers_JIGCarrierID">
+    <End Role="JIGCarriers" Type="Self.JIGCarriers" Multiplicity="1" />
+    <End Role="OutputResultRejectDetails" Type="Self.OutputResultRejectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JIGCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultRejectDetails">
+        <PropertyRef Name="JIGCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID">
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="1" />
+    <End Role="OutputResultRejectDetails" Type="Self.OutputResultRejectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutputResults">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResultRejectDetails">
+        <PropertyRef Name="OutputResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_BoxNGs_BoxNGID">
+    <End Role="BoxNGs" Type="Self.BoxNGs" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxNGs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="BoxNGID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_Devices_DeviceID">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_LotBoxes_LotBoxID">
+    <End Role="LotBoxes" Type="Self.LotBoxes" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LotBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="LotBoxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OutputResults_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="OutputResults" Type="Self.OutputResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OutputResults">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_JIGCarriers_JIGCarrierID">
+    <End Role="JIGCarriers" Type="Self.JIGCarriers" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JIGCarriers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="JIGCarrierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_LotBoxes_LotBoxID">
+    <End Role="LotBoxes" Type="Self.LotBoxes" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LotBoxes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="LotBoxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID">
+    <End Role="SignalTestDatas" Type="Self.SignalTestDatas" Multiplicity="1" />
+    <End Role="SignalTestDataDetails" Type="Self.SignalTestDataDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SignalTestDatas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDataDetails">
+        <PropertyRef Name="SignalTestDataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDatas_dbo_Devices_DeviceID">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+    <End Role="SignalTestDatas" Type="Self.SignalTestDatas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDatas">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SignalTestDatas_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SignalTestDatas" Type="Self.SignalTestDatas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SignalTestDatas">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserMenus_dbo_Menus_MenuID">
+    <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
+    <End Role="UserMenus" Type="Self.UserMenus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserMenus">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserMenus_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserMenus" Type="Self.UserMenus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserMenus">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_UserGroups_UserGroupID">
+    <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserSessions_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserSessions" Type="Self.UserSessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserSessions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxNGs" EntityType="Self.BoxNGs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceNGs" EntityType="Self.DeviceNGs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceNoiseConfigGroups" EntityType="Self.DeviceNoiseConfigGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceNoiseTestParameters" EntityType="Self.DeviceNoiseTestParameters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceNoiseTestParameterTypes" EntityType="Self.DeviceNoiseTestParameterTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceSignalTestParameters" EntityType="Self.DeviceSignalTestParameters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JIGCarriers" EntityType="Self.JIGCarriers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LotBoxes" EntityType="Self.LotBoxes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MachineCalibrations" EntityType="Self.MachineCalibrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MachineNoiseCalibrations" EntityType="Self.MachineNoiseCalibrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Machines" EntityType="Self.Machines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MachineSignalCalibrations" EntityType="Self.MachineSignalCalibrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoiseTestDataDetails" EntityType="Self.NoiseTestDataDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoiseTestDatas" EntityType="Self.NoiseTestDatas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutputResultDetails" EntityType="Self.OutputResultDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutputResultRejectDetails" EntityType="Self.OutputResultRejectDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutputResults" EntityType="Self.OutputResults" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SignalTestDataDetails" EntityType="Self.SignalTestDataDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SignalTestDatas" EntityType="Self.SignalTestDatas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserMenus" EntityType="Self.UserMenus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSessions" EntityType="Self.UserSessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="V_UserUserGroup" EntityType="Self.V_UserUserGroup" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_UserUserGroup].[ID] AS [ID], 
+    [V_UserUserGroup].[GroupID] AS [GroupID], 
+    [V_UserUserGroup].[GroupName] AS [GroupName], 
+    [V_UserUserGroup].[Name] AS [Name], 
+    [V_UserUserGroup].[BagdeNo] AS [BagdeNo], 
+    [V_UserUserGroup].[UserName] AS [UserName], 
+    [V_UserUserGroup].[UserGroupID] AS [UserGroupID], 
+    [V_UserUserGroup].[Salt] AS [Salt], 
+    [V_UserUserGroup].[Email] AS [Email], 
+    [V_UserUserGroup].[Password] AS [Password], 
+    [V_UserUserGroup].[NewPassword] AS [NewPassword]
+    FROM [dbo].[V_UserUserGroup] AS [V_UserUserGroup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_UserUserMenu" EntityType="Self.V_UserUserMenu" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_UserUserMenu].[ID] AS [ID], 
+    [V_UserUserMenu].[GroupID] AS [GroupID], 
+    [V_UserUserMenu].[GroupName] AS [GroupName], 
+    [V_UserUserMenu].[Name] AS [Name], 
+    [V_UserUserMenu].[BagdeNo] AS [BagdeNo], 
+    [V_UserUserMenu].[UserName] AS [UserName], 
+    [V_UserUserMenu].[UserGroupID] AS [UserGroupID], 
+    [V_UserUserMenu].[MenuID] AS [MenuID], 
+    [V_UserUserMenu].[AllowRead] AS [AllowRead], 
+    [V_UserUserMenu].[AllowAdd] AS [AllowAdd], 
+    [V_UserUserMenu].[AllowDelete] AS [AllowDelete], 
+    [V_UserUserMenu].[AllowEdit] AS [AllowEdit], 
+    [V_UserUserMenu].[ParentID] AS [ParentID], 
+    [V_UserUserMenu].[Detail] AS [Detail], 
+    [V_UserUserMenu].[Module] AS [Module], 
+    [V_UserUserMenu].[ModuleParent] AS [ModuleParent], 
+    [V_UserUserMenu].[Code] AS [Code], 
+    [V_UserUserMenu].[MenuName] AS [MenuName]
+    FROM [dbo].[V_UserUserMenu] AS [V_UserUserMenu]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID" Association="Self.FK_dbo_DeviceNoiseTestParameters_dbo_DeviceNoiseTestParameterTypes_DeviceNoiseTestParameterTypeID">
+      <End Role="DeviceNoiseTestParameterTypes" EntitySet="DeviceNoiseTestParameterTypes" />
+      <End Role="DeviceNoiseTestParameters" EntitySet="DeviceNoiseTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DeviceNoiseTestParameters_dbo_Devices_DeviceID" Association="Self.FK_dbo_DeviceNoiseTestParameters_dbo_Devices_DeviceID">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="DeviceNoiseTestParameters" EntitySet="DeviceNoiseTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DeviceNoiseTestParameterTypes_dbo_DeviceNoiseConfigGroups_DeviceNoiseConfigGroupID" Association="Self.FK_dbo_DeviceNoiseTestParameterTypes_dbo_DeviceNoiseConfigGroups_DeviceNoiseConfigGroupID">
+      <End Role="DeviceNoiseConfigGroups" EntitySet="DeviceNoiseConfigGroups" />
+      <End Role="DeviceNoiseTestParameterTypes" EntitySet="DeviceNoiseTestParameterTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DeviceSignalTestParameters_dbo_Devices_DeviceID" Association="Self.FK_dbo_DeviceSignalTestParameters_dbo_Devices_DeviceID">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="DeviceSignalTestParameters" EntitySet="DeviceSignalTestParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineCalibrations_dbo_Machines_MachineID" Association="Self.FK_dbo_MachineCalibrations_dbo_Machines_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MachineCalibrations" EntitySet="MachineCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineNoiseCalibrations_dbo_Machines_MachineID" Association="Self.FK_dbo_MachineNoiseCalibrations_dbo_Machines_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MachineNoiseCalibrations" EntitySet="MachineNoiseCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MachineSignalCalibrations_dbo_Machines_MachineID" Association="Self.FK_dbo_MachineSignalCalibrations_dbo_Machines_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MachineSignalCalibrations" EntitySet="MachineSignalCalibrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_JIGCarriers_JIGCarrierID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_JIGCarriers_JIGCarrierID">
+      <End Role="JIGCarriers" EntitySet="JIGCarriers" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_LotBoxes_LotBoxID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_LotBoxes_LotBoxID">
+      <End Role="LotBoxes" EntitySet="LotBoxes" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID" Association="Self.FK_dbo_NoiseTestDataDetails_dbo_NoiseTestDatas_NoiseTestDataID">
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+      <End Role="NoiseTestDataDetails" EntitySet="NoiseTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDatas_dbo_Devices_DeviceID" Association="Self.FK_dbo_NoiseTestDatas_dbo_Devices_DeviceID">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_NoiseTestDatas_dbo_Users_UserID" Association="Self.FK_dbo_NoiseTestDatas_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoiseTestDatas" EntitySet="NoiseTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultDetails_dbo_JIGCarriers_JIGCarrierID" Association="Self.FK_dbo_OutputResultDetails_dbo_JIGCarriers_JIGCarrierID">
+      <End Role="JIGCarriers" EntitySet="JIGCarriers" />
+      <End Role="OutputResultDetails" EntitySet="OutputResultDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID" Association="Self.FK_dbo_OutputResultDetails_dbo_OutputResults_OutputResultID">
+      <End Role="OutputResults" EntitySet="OutputResults" />
+      <End Role="OutputResultDetails" EntitySet="OutputResultDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultRejectDetails_dbo_JIGCarriers_JIGCarrierID" Association="Self.FK_dbo_OutputResultRejectDetails_dbo_JIGCarriers_JIGCarrierID">
+      <End Role="JIGCarriers" EntitySet="JIGCarriers" />
+      <End Role="OutputResultRejectDetails" EntitySet="OutputResultRejectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID" Association="Self.FK_dbo_OutputResultRejectDetails_dbo_OutputResults_OutputResultID">
+      <End Role="OutputResults" EntitySet="OutputResults" />
+      <End Role="OutputResultRejectDetails" EntitySet="OutputResultRejectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_BoxNGs_BoxNGID" Association="Self.FK_dbo_OutputResults_dbo_BoxNGs_BoxNGID">
+      <End Role="BoxNGs" EntitySet="BoxNGs" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_Devices_DeviceID" Association="Self.FK_dbo_OutputResults_dbo_Devices_DeviceID">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_LotBoxes_LotBoxID" Association="Self.FK_dbo_OutputResults_dbo_LotBoxes_LotBoxID">
+      <End Role="LotBoxes" EntitySet="LotBoxes" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OutputResults_dbo_Users_UserID" Association="Self.FK_dbo_OutputResults_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OutputResults" EntitySet="OutputResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_JIGCarriers_JIGCarrierID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_JIGCarriers_JIGCarrierID">
+      <End Role="JIGCarriers" EntitySet="JIGCarriers" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_LotBoxes_LotBoxID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_LotBoxes_LotBoxID">
+      <End Role="LotBoxes" EntitySet="LotBoxes" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID" Association="Self.FK_dbo_SignalTestDataDetails_dbo_SignalTestDatas_SignalTestDataID">
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+      <End Role="SignalTestDataDetails" EntitySet="SignalTestDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDatas_dbo_Devices_DeviceID" Association="Self.FK_dbo_SignalTestDatas_dbo_Devices_DeviceID">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SignalTestDatas_dbo_Users_UserID" Association="Self.FK_dbo_SignalTestDatas_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SignalTestDatas" EntitySet="SignalTestDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserMenus_dbo_Menus_MenuID" Association="Self.FK_dbo_UserMenus_dbo_Menus_MenuID">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="UserMenus" EntitySet="UserMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserMenus_dbo_Users_UserID" Association="Self.FK_dbo_UserMenus_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserMenus" EntitySet="UserMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_UserGroups_UserGroupID" Association="Self.FK_dbo_Users_dbo_UserGroups_UserGroupID">
+      <End Role="UserGroups" EntitySet="UserGroups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserSessions_dbo_Users_UserID" Association="Self.FK_dbo_UserSessions_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserSessions" EntitySet="UserSessions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

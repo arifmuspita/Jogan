@@ -1,0 +1,265 @@
+﻿@{
+    JOGAN.Models.UserSession sess = Commons.Commons.JSONToObjectFromCookies<JOGAN.Models.UserSession>("pos_usersession");
+
+}
+@model JOGAN.Models.Property.MVCProp
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="~/Contents/adminlte/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/font-awesome.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/ionicons.min.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/AdminLTE.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/DropdownMenu.css" />
+    <link rel="stylesheet" href="~/Contents/css/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/Contents/js/select2-4.0.3/css/select2.min.css" />
+    @if (Model.ModuleName == "login")
+    {
+        <link rel="stylesheet" href="~/Contents/adminlte/plugins/iCheck/flat/blue.css" />
+    }
+    @if (sess != null && Model.CreateDataTable)
+    {
+        <link rel="stylesheet" href="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.css">
+    }
+    <script src="~/Contents/adminlte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    @*<script src=" https://code.jquery.com/jquery-1.12.3.min.js"></script>*@
+    <script src="~/Contents/adminlte/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="~/Contents/adminlte/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    @* <script src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="~/Contents/adminlte/plugins/fastclick/fastclick.min.js"></script>      *@
+    @if (sess != null && Model.CreateDataTable)
+    {
+        <script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+        @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>*@
+        @*<script type='text/javascript' src='~/Contents/js/dataTables.editor.min.js'></script>*@
+
+        <script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="~/Contents/js/DataTableJS.js"></script>
+    }
+
+    <title>POS</title>
+
+    <style>
+        /*.open .dropdown-menu{display:block;}*/
+    </style>
+    <script>
+            var DataTable = null;
+    </script>
+</head>
+
+@if (Model.ModuleName == "login")
+{
+    @:<body class="hold-transition login-page">
+        @RenderBody()
+}
+@if (Model.ModuleName != "login")
+{
+    @:<body class="skin-blue layout-top-nav fixed">
+        @:<div class="wrapper">
+            @:<header class="main-header">
+                @:<nav class="navbar navbar-static-top">
+                    @:<div class="container">
+                        @:<div class="navbar-header">
+                            @:<a href="/Home" class="navbar-brand">POS</a>
+                            @:<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                @:<i class="fa fa-bars"></i>
+                                @:</button>
+                            @:</div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+                        @:<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            @:<ul class="nav navbar-nav multi-level">
+        if (sess != null)
+    {
+        Html.RenderAction("GetUserMenu", "Home");
+    }
+        @: </ul>
+
+
+        @: </div><!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+    @:<div class="navbar-custom-menu">
+        @:<form class="navbar-form navbar-left" role="search">
+            @:<div class="form-group">
+                @:<input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+                @: </div>
+            @: </form>
+        @: </div><!-- /.navbar-custom-menu -->
+    @: </div><!-- /.container-fluid -->
+    @: </nav>
+        @: </header>
+
+
+        <div class="content-wrapper" style="overflow:auto">
+            <div class="container">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    @* <h1>
+                            Top Navigation
+                            <small>Example 2.0</small>
+                        </h1>
+                            <ol class="breadcrumb">
+                                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                                <li><a href="#">Layout</a></li>
+                                <li class="active">Top Navigation</li>
+                            </ol>*@
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    @* <div class="box-body">
+                            The great content goes here
+                        </div><!-- /.box-body -->*@
+
+
+                    @if (sess != null && Model.CreateFilter)
+                    {
+                        @:<div id="content_menu" class="box  box-primary">
+                    Html.RenderAction("CreateFilter", "Filter");
+                        @: </div>
+                    }
+
+
+                    <div id="content_admin" class="box box-primary">
+                        @if (sess != null && Model.CreateDataTable)
+                        {
+                            switch (Model.ModuleName)
+                            {
+                                case "Branch":
+                                    Html.RenderAction(Model.ModuleName, "DataTable");
+                                    break;
+                                case "Product":
+                                    Html.RenderAction(Model.ModuleName, "DataTable");
+                                    break;
+                                case "CheckList":
+                                    //Html.RenderAction("CheckListDone", "DataTable");
+                                    Html.RenderAction("CheckList", "DataTable");
+                                    break;
+                                case "WorkOrder":
+                                    //Html.RenderAction("CheckListDone", "DataTable");
+                                    if (Model.Method == "list")
+                                    {
+                                        Html.RenderAction("WorkOrder", "DataTable");
+                                    }
+
+                                    break;
+                            }
+
+                        }
+                        @RenderBody()
+
+                    </div>
+
+                </section><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://www.psinformatika.com/">PT. Prima Solusi Informatika</a>.</strong> All rights reserved.
+            </div><!-- /.container -->
+        </footer>
+
+        @: </div>
+        }
+    @*<script src="~/Contents/js/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->       *@
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.5 -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    },
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    });
+        });
+    </script>
+    @*<script src="~/Contents/adminlte/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>*@
+    @* <script src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="~/Contents/adminlte/plugins/fastclick/fastclick.min.js"></script>      *@
+    @if (sess != null && Model.CreateDataTable)
+    {
+        @*<script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>*@
+        @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>*@
+        @*<script type='text/javascript' src='~/Contents/js/dataTables.editor.min.js'></script>*@
+
+        @*<script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.js"></script>
+            <script type="text/javascript" src="~/Contents/js/DataTableJS.js"></script>*@
+        <script>
+        $(document).ready(function () {
+            var tbl = "";
+            @switch (Model.ModuleName)
+            {
+                case "Branch":
+                    @:DataTable = DataTableJS.CreateDataTables("Master", "Branch", 0, "",false);
+                    break;
+                case "Product":
+                    @:DataTable = DataTableJS.CreateDataTables("Master", "Product", 0, "",false);
+                    break;
+                case "CheckList":
+                    @:DataTable = DataTableJS.CreateDataTables("Transaction", "CheckListDone", 0, "",false);
+                    @:DataTable = DataTableJS.CreateDataTables("Transaction", "CheckListUnDone", 0, "",false);
+                    @:tbl = "CheckListUnDone_table";
+                    break;
+                case "WorkOrder":
+                    if (Model.Method == "list")
+                    {
+                        @:DataTable = DataTableJS.CreateDataTables("Transaction", "WorkOrderDone", 0, "",false);
+                                    @:DataTable = DataTableJS.CreateDataTables("Transaction", "WorkOrderUnDone", 0, "",false);
+                                    @:tbl = "WorkOrderUnDone_table";
+                    }
+                    else
+                    {
+                        int? id = ((JOGAN.Models.V_WorkOrderCheckList)Model.DataObject).ID == null ? 0 : ((JOGAN.Models.V_WorkOrderCheckList)Model.DataObject).ID;
+                        @:DataTable = DataTableJS.CreateDataTables("Transaction", "WorkOrderDetail", @id, "",false);
+
+                    }
+                    break;
+                case "ItemRequest":
+                    if (Model.Method == "list")
+                    {
+//                        @:DataTable = DataTableJS.CreateDataTables("Transaction", "WorkOrderDone", 0, "");
+                                    //@:DataTable = DataTableJS.CreateDataTables("Transaction", "WorkOrderUnDone", 0, "");
+//                                    @:tbl = "WorkOrderUnDone_table";
+                    }
+                    else
+                    {
+                        int? id = ((JOGAN.Models.V_WorkOrderItemRequest)Model.DataObject).ID == null ? 0 : ((JOGAN.Models.V_WorkOrderItemRequest)Model.DataObject).ID;
+                        @:DataTable = DataTableJS.CreateDataTables("Transaction", "ItemRequestDetail", @id, "",true);
+
+                    }
+                    break;
+            }
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                console.log(tbl);
+                $("#"+tbl).DataTable().columns.adjust();
+                    //.tables( { visible: true, api: true } )
+                    //.columns.adjust();
+            })
+            //console.log(DataTable);
+        });
+        </script>
+    }
+    <script src="~/Contents/adminlte/dist/js/app.js"></script>
+</body>
+</html>

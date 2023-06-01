@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="EXECUTE_FUNCTION" Id="{51038094-f217-43fa-bbc0-fca0bb742f38}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION EXECUTE_FUNCTION : BOOL
+VAR_INPUT
+	FUNCT_NAME :STRING [255];
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF FUNCT_NAME = 'LOAD_FUKUDA' THEN
+	//LOAD_FUKUDA(INPUT_VAR.I_CURRENT_TRANSACTION.STATION_NUMBER_LOAD,INPUT_VAR.I_CURRENT_TRANSACTION.JIG_INDEX_LOAD,INPUT_VAR.I_CURRENT_TRANSACTION.TRANSPORT_INDEX);
+	INPUT_VAR.I_FUNC_CALLED:=TRUE;
+	LOAD_FUKUDA();
+END_IF
+//INPUT_VAR.I_FUNCTION_NAME:='';]]></ST>
+    </Implementation>
+    <LineIds Name="EXECUTE_FUNCTION">
+      <LineId Id="3" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,163 @@
+﻿@{
+    DBProject.Models.T_USER_SESSION sess = Commons.Commons.JSONToObjectFromCookies<DBProject.Models.T_USER_SESSION>("web_session");
+    string webroot = System.Web.Configuration.WebConfigurationManager.AppSettings["WebRoot"].ToString();
+    if (webroot != "") { webroot = "/" + webroot; }
+}
+@model DBProject.Models.Properties.MVCProp
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    @*<link rel="stylesheet" href="~/Contents/adminlte/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/font-awesome.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/ionicons.min.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/AdminLTE.css" />
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/DropdownMenu.css" />
+    <link rel="stylesheet" href="~/Contents/js/select2-4.0.3/css/select2.min.css" />*@
+    
+
+
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="~/Contents/adminlte/bootstrap/css/bootstrap.min.css")">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Contents/adminlte/font-awesome.css")">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Contents/adminlte/ionicons.min.css")">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/AdminLTE.css")">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/Contents/adminlte/dist/css/skins/skin-blue.css")">
+    <!-- iCheck -->
+    @*<link rel="stylesheet" href="~/Contents/adminlte/plugins/iCheck/flat/blue.css")">*@
+
+    @*<link rel="stylesheet" href="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.css")">*@
+    @*<link rel="stylesheet" href="~/Contents/adminlte/plugins/tinymce/skins/lightgray/skin.min.css")">*@
+    @*<link rel="stylesheet" href="~/Contents/css/jquery.loadmask.css')" />
+    <link rel="stylesheet" href="~/Contents/css/ggtooltip.css')" />*@
+
+    @if (Model.ModuleName == "login")
+    {
+        <link rel="stylesheet" href="~/Contents/adminlte/plugins/iCheck/flat/blue.css" />
+    }
+    @if (sess != null && Model.Method=="list")
+    {
+        <link rel="stylesheet" href="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.css">
+    }
+    <!--[if IE 8]>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <![endif]-->  
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="~/Contents/css/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+    <script src="~/Contents/adminlte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="~/Contents/adminlte/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <!--<![endif]-->  
+  
+    <script src="~/Contents/adminlte/bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>*@
+    @if (sess != null && Model.Method == "list")
+    {
+        <script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="~/Contents/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/Contents/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="~/Contents/js/DataTableJS.js"></script>
+        @*@Html.RazorJSInclude("~/Contents/js/DataTableJS.js")*@
+    }
+
+    <style>
+        .col-centered {
+            float: none;
+            margin: 0 auto;
+        }
+        /*td.details-control {
+            background: url("{{ twig_asset_url ("images/icon/details_open.png") }}") no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url("{{ twig_asset_url ("images/icon/details_close.png") }}") no-repeat center center;
+        }*/
+    </style>
+
+    <title>JOGAN PROJECT</title>
+
+    <style>
+        /*.open .dropdown-menu{display:block;}*/
+    </style>
+    <script>
+        var DataTable = null;
+    </script>
+</head>
+@if (Model.ModuleName == "login")
+{
+@:<body class="hold-transition login-page">
+    @RenderBody()
+}
+@if (Model.ModuleName != "login")
+{
+@:<body class="hold-transition skin-blue sidebar-mini">
+@:        <div class="wrapper">
+@:            <header class="main-header">
+@:                <!-- Logo -->
+@:                <a href="@webroot/" class="logo">
+@:                    <!-- mini logo for sidebar mini 50x50 pixels -->
+@:                    <span class="logo-mini">JOGAN WEB</span>
+@:                    <!-- logo for regular state and mobile devices -->
+@:                    <span class="logo-lg">JOGAN WEB</span>
+@:                </a>
+@:                <!-- Header Navbar: style can be found in header.less -->
+@:                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+@:                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+@:                        <span class="sr-only">Toggle navigation</span>
+@:                    </a>
+@:                    <div class="navbar-custom-menu">
+@:                        <ul class="nav navbar-nav">
+@:                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+@:                            </li>
+@:                                </ul>
+@:                           </div>
+@:                        </nav>
+@:                    </header>
+  <!-- Left side column. contains the logo and sidebar -->
+@:                        <aside class="main-sidebar">
+                            <!-- sidebar: style can be found in sidebar.less -->
+@:                            <section class="sidebar">
+                                <!-- sidebar menu: : style can be found in sidebar.less -->
+@:                                <ul class="sidebar-menu">
+@:                                    <li class="header">MAIN NAVIGATION</li>
+    if (sess != null)
+    {
+        Html.RenderAction("GetUserMenu", "Home");
+    }
+ 
+
+@:                                    <li class="header">LABELS</li>
+@:                                    <li><a href="@webroot/Home/Logout"><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
+@:                                </ul>
+@:                            </section>
+                            <!-- /.sidebar -->
+@:                        </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+@:                        <div class="content-wrapper">
+                            <!-- Content Header (Page header) -->
+@:                            <section class="content-header"></section>
+                            <!-- Main content -->
+@:                            <section class="content">
+                                @RenderBody()
+@:                            </section>
+                            <!-- /.content -->
+@:                        </div>  
+}
+              <script src="~/Contents/adminlte/dist/js/app.js"></script>
+</body>
+
+</html>
